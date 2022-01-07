@@ -1,0 +1,52 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = NormativaGeneral.tex
+
+\usepackage[margin=1in,headheight=5\baselineskip,headsep=1\baselineskip,includehead]{geometry}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{multirow}
+%% set up and width for the tabularx environment to expand and fit to.
+\newlength{\headerwidth}
+\setlength{\headerwidth}{\textwidth}
+\newsavebox{\myheader}
+\begin{lrbox}{\myheader}%
+    \begin{minipage}[b]{\headerwidth}
+    \renewcommand{\arraystretch}{1.29}%
+    \begin{tabularx}{\headerwidth}{|@{}c@{}|c|X|c|}\hline
+    \multirow{3}{*}{\includegraphics[height=0.65in]{example-image-a}}
+                                                & \multicolumn{2}{c|}{ TEXT ONE VALUE }                 & Text Four \\\cline{2-3}
+                                                & \multirow{2}{*}{1234} & \centering\textbf{Text two}   &           \\\cline{3-3}
+                                                &                       & \centering\textbf{Text Three} &           \\\hline
+    \end{tabularx}
+    \par
+    \bfseries
+    Time: 45 Min \hspace*{\fill} 
+    Date:        \hspace*{\fill}
+    Marks:45
+    \end{minipage}
+\end{lrbox}
+\newsavebox{\myfooter}
+\begin{lrbox}{\myfooter}%
+    \begin{minipage}[b]{\headerwidth}
+    \renewcommand{\arraystretch}{1.29}%
+    \begin{tabularx}{\headerwidth}{|@{}c@{}|c|X|c|}\hline
+    \multirow{3}{*}{\includegraphics[height=0.65in]{example-image-a}}
+                                                & \multicolumn{2}{c|}{ TEXT ONE VALUE }                 & Text Four \\\cline{2-3}
+                                                & \multirow{2}{*}{1234} & \centering\textbf{Text two}   &           \\\cline{3-3}
+                                                &                       & \centering\textbf{Text Three} &           \\\hline
+    \end{tabularx}
+    \end{minipage}
+\end{lrbox}
+
+%% Setting up the header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\lhead{}
+\chead{\usebox{\myheader}}
+\rhead{}
+\lfoot{}
+\cfoot{\usebox{\myfooter}}
+\rfoot{}
