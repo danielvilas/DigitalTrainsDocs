@@ -6,6 +6,7 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{lastpage}
 %% set up and width for the tabularx environment to expand and fit to.
 \newlength{\headerwidth}
 \setlength{\headerwidth}{\textwidth}
@@ -13,29 +14,29 @@
 \begin{lrbox}{\myheader}%
     \begin{minipage}[b]{\headerwidth}
     \renewcommand{\arraystretch}{1.29}%
-    \begin{tabularx}{\headerwidth}{|@{}c@{}|c|X|c|}\hline
+    \begin{tabularx}{\headerwidth}{|@{}c@{}|X|c|}\hline
     \multirow{3}{*}{\includegraphics[height=0.65in]{example-image-a}}
-                                                & \multicolumn{2}{c|}{ TEXT ONE VALUE }                 & Text Four \\\cline{2-3}
-                                                & \multirow{2}{*}{1234} & \centering\textbf{Text two}   &           \\\cline{3-3}
-                                                &                       & \centering\textbf{Text Three} &           \\\hline
+                    & \multicolumn{1}{c|}{ DANIEL BAHN }
+                    & PR \\ %\cline{3-3}
+                    & \centering\textbf{\Large Normativa General }  & \textbf{\Large 22-000} \\ %\cline{3-3}
+                    &  \centering\textbf{\large Normas Generales a Cumplir} &  DRAFT  \\ \hline
     \end{tabularx}
     \par
     \bfseries
-    Time: 45 Min \hspace*{\fill} 
-    Date:        \hspace*{\fill}
-    Marks:45
+    Procedimiento Recomendado\hspace*{\fill} 
+    Enero 2022
     \end{minipage}
 \end{lrbox}
 \newsavebox{\myfooter}
 \begin{lrbox}{\myfooter}%
     \begin{minipage}[b]{\headerwidth}
     \renewcommand{\arraystretch}{1.29}%
-    \begin{tabularx}{\headerwidth}{|@{}c@{}|c|X|c|}\hline
-    \multirow{3}{*}{\includegraphics[height=0.65in]{example-image-a}}
-                                                & \multicolumn{2}{c|}{ TEXT ONE VALUE }                 & Text Four \\\cline{2-3}
-                                                & \multirow{2}{*}{1234} & \centering\textbf{Text two}   &           \\\cline{3-3}
-                                                &                       & \centering\textbf{Text Three} &           \\\hline
-    \end{tabularx}
+    \begin{tabularx}{\headerwidth}{|@{}c@{}|X|c|}\hline
+    \multirow{2}{*}{\small \copyright DANIEL BAHN}
+      & \centering{ RP-22-000 }  & Pagina \\ 
+      & \centering\textbf{\large Normativa General}   & \thepage\ / \pageref{LastPage} \\ \hline
+     \end{tabularx}
+
     \end{minipage}
 \end{lrbox}
 
