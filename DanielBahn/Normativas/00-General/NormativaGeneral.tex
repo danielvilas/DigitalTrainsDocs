@@ -3,14 +3,25 @@
 
 \documentclass{article}
 \usepackage{danielbahnheader}
-\title{Package Example}
-\author{Team Learn ShareLaTeX}
-\date{ }
+\usepackage[spanish]{babel}
 
-\makeHeader
 
 \begin{document}
-%\maketitle
+\title{⟨title⟩}
+\author{⟨author⟩}
+\date{2022-04-01}
+\maketitle
+\makeHeader
+\thispagestyle{fancy}
+\begin{abstract}
+    Normativa general.
+\end{abstract}
 
-gggg
+\section{Un teorema}
+\label{thm:abc}
+Teorema de prueba.
+
+referencia: \ref{thm:abc}
+
+ggggd
 \end{document}
