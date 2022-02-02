@@ -1,12 +1,76 @@
-\NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}[2020-10-01]
 \ProvidesPackage{danielbahnheader}[2014/08/21 Example package]
 
-\RequirePackage[margin=1in,headheight=5\baselineskip,headsep=1\baselineskip,includehead]{geometry}
+\PassOptionsToPackage{margin=1in,headheight=5\baselineskip,headsep=1\baselineskip,includehead}{geometry}
+\RequirePackage{geometry}
 \RequirePackage{tabularx}
 \RequirePackage{graphicx}
 \RequirePackage{multirow}
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
+\RequirePackage{indentfirst}
+\RequirePackage{xcolor}
+%From
+\RequirePackage{iftex}
+\ifPDFTeX
+\RequirePackage[T1]{fontenc}
+\RequirePackage{inputenc}
+\fi
+\RequirePackage{PJLpaper}
+
+\definecolor{maintheme}{RGB}{70,130,180}
+\definecolor{forestgreen}{RGB}{21,122,81}
+\definecolor{lightorange}{RGB}{255,185,88}
+
+\newcommand{\partfont}{\bfseries\sffamily}
+\newcommand{\secfont}{\bfseries\sffamily}
+\newcommand{\subsecfont}{\bfseries\sffamily}
+\newcommand{\subsubsecfont}{\bfseries\sffamily}
+
+\RequirePackage[explicit,newparttoc]{titlesec}
+\PassOptionsToPackage{normalem}{ulem}
+\RequirePackage{ulem}
+
+    %% Part
+    \titleformat{\part}[display]
+        {%
+        \partfont\filleft}
+        {\partstring}
+        {.3em}
+        {\fontsize{16}{0}\selectfont\MakeUppercase{#1}}
+    \titleformat{name=\part,numberless}[display]
+        {% \phantomsection\addcontentsline{toc}{part}{#1}%
+        \partfont\filleft}
+        {\phantom{\MakeUppercase{\partname}}}
+        {.3em}
+        {\fontsize{16}{0}\selectfont\MakeUppercase{#1}}
+    %% Text after part
+    \newcommand{\parttext}[1]{%
+        \begin{flushright}%
+            \begin{minipage}{0.833\textwidth}%
+                \color{maintext!80!paper}\raggedleft#1%
+            \end{minipage}%
+        \end{flushright}%
+    }
+
+
+\titleformat{\section}
+{\color{maintheme}\secfont\Large\bfseries}{\thesection}{.75em}{#1}
+
+\titleformat{\subsection}
+{\subsecfont}{\thesubsection}{.75em}
+{\scshape #1}
+
+\titleformat{\subsubsection}
+    {\color{maintext!70!paper}\subsubsecfont}{\thesubsubsection}{.5em}
+    {#1}
+
+    \titleformat{\paragraph}[runin]
+    {\conditionalbfseries\scshape}{\theparagraph}{1em}{#1}
+
+\titlespacing{\section}{0pt}{\baselineskip}{.6\baselineskip}
+\titlespacing{\subsection}{0pt}{.75\baselineskip}{.4\baselineskip}
+\titlespacing{\subsubsection}{0pt}{.6\baselineskip}{.3\baselineskip}
 
 %% set up and width for the tabularx environment to expand and fit to.
 \newcommand{\makeHeader}{
@@ -20,7 +84,7 @@
         \multirow{3}{*}{\includegraphics[height=0.65in]{example-image-a}}
                         & \multicolumn{1}{c|}{ DANIEL BAHN }
                         & PR \\ %\cline{3-3}
-                        & \centering\textbf{\Large Normativa General }  & \textbf{\Large 22-000} \\ %\cline{3-3}
+                        & \centering\textbf{\Large \@title }  & \textbf{\Large 22-000} \\ %\cline{3-3}
                         &  \centering\textbf{\large Normas Generales a Cumplir} &  DRAFT  \\ \hline
         \end{tabularx}
         \par
@@ -54,3 +118,45 @@
     \cfoot{\usebox{\myfooter}}
     \rfoot{}
 }
+
+\RequirePackage{tikz}
+\newcommand{\ideabulb}[2][0.15]{%
+    \scalebox{#1}{%
+    \begin{tikzpicture}
+        \filldraw[draw=#2,fill=#2] (0,0) circle [radius=1cm];
+        \filldraw[draw=paper,fill=paper,rounded corners=0.8pt]
+            [rotate=20] (-0.26,-0.66) rectangle (-0.06,-0.6)
+            [xshift=-0.4mm,yshift=1mm] (-0.26,-0.66) rectangle (0.02,-0.6)
+            [xshift=0.4mm,yshift=1mm] (-0.26,-0.66) rectangle (-0.06,-0.6);
+        \draw[draw=paper,line width=0.7mm] (-0.18,-0.46)
+            .. controls (-0.18,-0.28) and (-0.28,-0.12) ..(-0.4,0.1)
+            .. controls (-0.55,0.4) and (-0.3,0.64) ..(0,0.64)
+            .. controls (0.3,0.64) and (0.55,0.4) ..(0.4,0.1)
+            .. controls (0.28,-0.12) and (0.18,-0.28) ..(0.18,-0.46);
+    \end{tikzpicture}}}
+
+\newcommand{\questionmark}[2][0.15]{%
+    \scalebox{#1}{%
+    \begin{tikzpicture}
+        \filldraw[draw=#2,fill=#2] (0,0) circle [radius=1cm];
+        \filldraw[paper,yshift=0.5mm,scale=0.9] (-0.4,0.1) circle [radius=0.77mm];
+        \draw[draw=paper,line width=1.5mm,yshift=0.5mm,scale=0.9] (-0.4,0.1)
+            .. controls (-0.55,0.4) and (-0.3,0.64) ..(0,0.64)
+            .. controls (0.3,0.64) and (0.55,0.4) ..(0.4,0.1)
+            .. controls (0.28,-0.12) and (0.05,-0.28) ..(0.05,-0.3)
+            .. controls (0,-0.36) and (0.0,-0.45) ..(0.0,-0.5);
+        \fill[fill=paper,rounded corners=0.6mm]
+            (-0.09,-0.75) rectangle (0.09,-0.53);
+    \end{tikzpicture}
+    }
+}
+
+
+\RequirePackage[many]{tcolorbox}
+
+\newtcolorbox{tip}[2][]
+{enhanced jigsaw,pad at break*=1mm,breakable,colback=maintext!3!paper,
+left=3.5mm,right=3.5mm,
+opacityframe=0.9,colframe=orange,arc=.7mm,coltitle = orange!20!black,  
+title    = {\normalfont\sffamily\color{white}\bfseries\textsc #2}}
+
