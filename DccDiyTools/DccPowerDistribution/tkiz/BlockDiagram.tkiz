@@ -1,0 +1,83 @@
+    \begin{tikzpicture}
+        \draw [very thin, green] (-1,-1) grid (12,4);
+        \begin{scope}[shift={(0,2)}]
+            \node [left] (txtCcB) at (0, 1){CC Bloque};
+            \pic(picCcB)[rotate=-90] at (1,1)  {screwTerminal} ;
+            \node [left](txtCcJ) at (0, 0){CC Jack};
+            \pic (picCcJ) at (1,0)  {jack} ;
+
+            \draw[] (txtCcB.east) -- (picCcB-cable-down.center);
+            \draw[] (txtCcJ.east) -- (picCcJ-cable.center);
+            \node[draw](proteccion) at (4,0.5) {Protección};
+
+            \draw[] (picCcB-cable-up.center) -- (2.25,1) 
+                -- (2.25, 0.5) -- (proteccion.west);
+            \draw[] (picCcJ-point.center) -- (2.25,0)
+                -- (2.25, 0.5);
+            \node[](ptVDrive)  at (proteccion.east-| 6,0) {};
+            \node[above](lblVdrive) at (ptVDrive.center)  {VDrive};
+            \draw (proteccion.east) -- (ptVDrive.center);
+            \draw (2.75, 0.5) -- (2.75,1.25) -- (5.25,1.25) 
+                -- (5.25,0.5);
+            \pic[] at (proteccion.center |- 0,1.25) {SmallDiode};
+            \draw[blue, dashed] (3.5,1.25) -- (3.5,1.5) -- (4.5,1.5)
+                -- (4.5,1.25);
+            \draw[blue, dashed] (proteccion.center |- 0,0)
+                -- (5.25,0) -- (5.25,.5);
+        \end{scope}
+
+        \begin{scope}
+            \node [left] (txtDccIn) at (0, 0){DCC};
+            \pic[rotate=-90] (picDccIn) at(1,0){JstXh2};
+            \pic[](DccDiode) at (3,0){DiodeBrigde};
+
+            \draw[] (txtDccIn.east) -- (picDccIn-cable.center);
+            \draw[] (picDccIn-pcb.center) -- (DccDiode-ac.center);
+
+            \draw[] (DccDiode-cc.center) -- (DccDiode-cc.center -| proteccion.south)
+                -- (proteccion.south);
+        \end{scope}
+
+        \begin{scope}[shift={(ptVDrive.center |- 0,0)}]
+            \pic[](picOutVdrive)  at (0,0){screwTerminal};
+            \node[below](lblOutVdrive)  at (picOutVdrive-cable-down.center){Vdrive};
+            \draw[] (ptVDrive.center) -- (picOutVdrive-cable-up.center);
+            \pic[rotate=-90,yscale=-1](picLedVdrive)  at (-0.75,0){SmallLedGreen};
+            \draw (0,0.5) -- (picLedVdrive-p.center |- 0,0.5) -- (picLedVdrive-p.center);
+        \end{scope}
+
+        \begin{scope}[shift={(ptVDrive.center -| 7.5,0)}]
+            \node[draw](buck) at (0,0) {Buck}; 
+            
+            \node[](pt5V)  at (1.5,0) {};
+            \node[above](lbl5V) at (pt5V.center)  {+5V};
+            \draw (buck.east) -- (pt5V.center);
+            \draw (ptVDrive.center) -- (buck.west);
+        \end{scope}
+
+        \begin{scope}[shift={(pt5V.center |- 0,0)}]
+            \pic[](picOut5V)  at (0,0){screwTerminal};
+            \node[below](lblOut5)  at (picOut5V-cable-down.center){+5V};
+            \draw[] (pt5V.center) -- (picOut5V-cable-up.center);
+            \pic[rotate=-90,yscale=-1](picLed5V)  at (-0.75,0){SmallLedGreen};
+            \draw (0,0.5) -- (picLed5V-p.center |- 0,0.5) -- (picLed5V-p.center);
+        \end{scope}
+
+
+        \begin{scope}[shift={(pt5V.center -| 10.5,0)}]
+            \node[draw](ldo) at (0,0) {LDO};  
+            \node[](pt33V)  at (1.5,0) {};
+            \node[above](lbl33V) at (pt33V.center)  {+3.3V};
+            \draw (ldo.east) -- (pt33V.center);
+            \draw (pt5V.center) -- (ldo.west);
+        \end{scope}
+
+        \begin{scope}[shift={(pt33V.center |- 0,0)}]
+            \pic[](picOut33V)  at (0,0){screwTerminal};
+            \node[below](lblOut33)  at (picOut33V-cable-down.center){+3.3V};
+            \draw[] (pt33V.center) -- (picOut33V-cable-up.center);
+            \pic[rotate=-90,yscale=-1](picLed33V)  at (-0.75,0){SmallLedGreen};
+            \draw (0,0.5) -- (picLed33V-p.center |- 0,0.5) -- (picLed33V-p.center);
+        \end{scope}
+
+    \end{tikzpicture}
