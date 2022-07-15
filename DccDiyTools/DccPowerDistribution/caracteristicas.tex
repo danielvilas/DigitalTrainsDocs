@@ -1,30 +1,144 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = es_ES
 % !TeX root = DccPowerDistribution.tex
-
+\subsection{Objetivos}
+Como se ha dicho DccPowerDistribution es modulo cuyo objetivo principal dotar de alimentacion para otros modulos DiY
+para facilitar el desarrollo de otros modulos por parte del usuario. Los objetivos tecnicos del modulo son:
+\begin{itemize}
+    \item \textbf{Autoseleccion DCC - CC} Cuado esten los dos buses conectados debe usar Corriente Continua.
+sin que el usuario tenga que cambiar interruptores.    
+    \item \textbf{1A Corriente} continua: que permita mover un motor y algunos accesorios
+sin problemas
+    \item \textbf{1.5A Corriente} maximo. Como margen de seguridad.
+    \item \textbf{Tres salidas de Voltaje}:
+    \begin{itemize}
+        \item \textbf{VDrive}: El Voltaje de entrada para alimentar otros modulos.
+        \item \textbf{+5V}: 5 Voltios para arduinos y otros componentes
+        \item \textbf{+3.3V} 3.3 Voltios para los nuevos Arduinos ARM y otros microcontroladores similares
+    \end{itemize} 
+\end{itemize}
 
 \subsection{Diagrama de Bloques}
+El diseño del modulo en bloques es el siguiente:
 \begin{figure}[H]
     \centering
-    \input{tkiz/BlockDiagram.tkiz}
-    \caption{Conectores Dcc}
+    \input{tikz/BlockDiagram.tex}
+    \caption{Diseño por Diagrama de Bloques}
     \label{fig:BlockDiagrama}
 \end{figure}
+Mediante jumpers y soldaduras es posible configurar la placa para alterar su funcionamiento.
+Las lineas discontinuas azules son jumpers para poder hacer derivaciones (por defecto abiertos) y
+las cruzes rojas son pistas para romper con puntos de soldaura cercanos para unir soldando.
 
+\subsubsection{Seleccion de corriente}
+La señal \textbf{DCC} va directa la \textbf{interface DCC} y a un puente rectificador
+\textbf{AC -> CC} para poder ser usado como fuente de corriente, pero antes debe pasar
+por el bloque \textbf{Proteccion}. 
 
+Pero la prioridad es utilizar la corriente que venga de un adaptador Corriente Continua (CC), 
+ya sea por el \textbf{Jack CC} o por el \textbf{Bloque CC} atornillable. 
+Por lo que si hay corriente de una adaptador CC, el bloque \textbf{Proteccion} bloqueara la corriente
+proveniente de la señal DCC y la linea \textbf{VDrive} sera alimentada desde el adaptador
+pasando por diodo de proteccion en caso de tener corriente DCC y CC a la vez.
 
-\subsection{Limites de entrada}
-\begin{center}
-    \begin{tabular}{ c c c }
-        \multicolumn{3}{c}{Entrada DCC} \\ \hline
-      & Seguro & Maximo \\ 
-     Voltaje & 14-20V & 12-24V \\  
-     Corriente & 1A & 1.5A \\
-     [1ex] 
-     \multicolumn{3}{c}{Entrada Jack y Terminal} \\ \hline
-     & Seguro & Maximo \\ 
-     Voltaje & 12-20V & 10-24V \\  
-     Corriente & 1.5A & 2A \\ \hline
-    
+Es posbile evitar la proteccion con el jumper de bypass (lineas azules cerca del bloque) y
+con los cortes (cruces rojas) cerca del retificador. Mirar el apartado de configuración para
+más informacion.
+
+Los dos conectores, \textbf{Jack CC} y \textbf{Bloque CC} atornillable, estan conectados
+en paralelo directo, por lo que se debe tener cuidado en caso de conectar los dos.
+
+\subsubsection{Distribucion de corriente}
+Este modulo genera tres carriles de potencia, \textbf{VDrive}, \textbf{+5V} y \textbf{+3.3V}.
+VDrive es tal cual la fuente que se ha selecionado y el resto se generan a partir de esta.
+
+Los tres carriles acaban en un bloque terminal atornillable para conectar a otros modulos.
+Junto al cual se haya un led para visualizar que existe dicho carril. Este led puede ser
+inhibido, cortando una pista. Mirar el apartado de configuración para
+más informacion.
+
+El carril de 5 Voltios se crea mediante un circuito \textbf{Buck StepDown} generado con la herramienta
+de diseño "WEBENCH Power Designer", siendo este más o menos el circuito de referencia del chip usado.
+
+Asi mismo el carril de 3.3 Voltios se genera con un regulador lineal siguiendo el cortocircuito
+de referencia del mismo.
+
+\subsubsection{Interface DCC}
+La interface DCC se basa en el diseño de referencia con dos optoaisladores, de tal forma que la
+señal DCC se convierte en TTL y la linea ACK activa una carga en la red DCC.
+
+El conector DCC incluye los siguientes puntos:
+\begin{itemize}
+    \item \textbf{+5V}: linea para TTL Alto, se utiliza de vuelta en el pin DCC-TTL. Puede ser configurada
+para usar el rail \textbf{+5V}.
+    \item \textbf{DCC-ACK}: un 1 logico aqui provacara que se active una carga en la red DCC
+notificando un OK a la central (como una programacion correcta).
+    \item \textbf{DCC-TTL}: Linea que repite la señal DCC en un valor valido TTL, usando como valor
+la señal +5V del conector.
+    \item \textbf{GND}: Nivel base GND para unir a otros modulos.
+\end{itemize} 
+
+\subsection{Limites}
+DccPowerDistribution soporta varios Voltajes y corrientes maximas segun cual sea el conector que
+se use y como se configuren los bypass. Los componentes se han elegido pensando en un consumo maximo
+continuado de \textbf{1A}. Por especificaciones los elementos pueden soportar de manera continudada al
+menos un 50\% más. 
+
+La tablas siguente recogen los Voltajes aceptados recomendados, maximo sin bypass y maximo si activamos
+el bypass para evitar la proteccion.
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c |c |c |c |c |}
+        entrada & \thead[b]{item} & \thead[b]{Recomendado} & \thead[b]{Maximo} & \thead[b]{Con Bypass} \\ 
+        \Xhline{5\arrayrulewidth}
+%Entrada DCC
+        \rowcolor{Melon!15}
+        & Voltaje &14-20V & \multicolumn{2}{c|}{12-24V} \\
+        \cline{2 - 5}
+        \rowcolor{Melon!10} \cellcolor{Melon!15}
+        \multirow{-2}{*}{DCC}&Corriente & 1A & 1.5A & 2A \\ \Xhline{3\arrayrulewidth}
+%Entrada Jack
+        \rowcolor{blue!15} & Voltaje & 12-20V & \multicolumn{2}{c|}{10-24V} \\
+        \cline{2 - 5}
+        \rowcolor{blue!10} \cellcolor{blue!15} \multirow{-2}{*}{ \makecell{ \cellcolor{blue!15} Jack\\ \cellcolor{blue!15} Terminal}} & Corriente & 1A & 1.5A & 3A \\
+        \Xhline{5\arrayrulewidth}
     \end{tabular}
-\end{center}
+    \caption{Limites de entrada}
+    \label{tab:limiteEntrada}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c |c |c |c |c |}
+        Salidas & \thead[b]{item} & \thead[b]{Recomendado} & \thead[b]{Maximo} & \thead[b]{Con Bypass} \\ 
+        \Xhline{5\arrayrulewidth}
+%Salida Vdrive        
+        \rowcolor{BlueGreen!15}& Voltaje & \multicolumn{3}{c|}{Mismo que la entrada - 1.0V} \\
+        \cline{2-5}
+        \rowcolor{BlueGreen!10} \cellcolor{BlueGreen!15}
+        \multirow{-2}{*}{Vdrive}&Corriente* & 1A & 1.5A & 3A \\ \Xhline{3\arrayrulewidth}
+%Salida +5V        
+        \rowcolor{red!15}& Voltaje & \multicolumn{3}{c|}{5V +/- 2\% con ruido} \\
+        \cline{2-5}
+        \rowcolor{red!10} \cellcolor{red!15}
+        \multirow{-2}{*}{+5V}&Corriente* & 1A & 1.5A & 3A \\ \Xhline{3\arrayrulewidth}
+%Salida +3.3V                
+        \rowcolor{Goldenrod!15}& Voltaje & \multicolumn{3}{c|}{3.3V +/- 0.6\%} \\
+        \cline{2-5}
+        \rowcolor{Goldenrod!10} \cellcolor{Goldenrod!15}
+        \multirow{-2}{*}{+3.3V}&Corriente* & 0.5A & 1A & 1A \\ \Xhline{3\arrayrulewidth}
+   \end{tabular}
+   \caption{Limites de salida}
+   \label{tab:limiteSalida}
+   \textbf{*}:La suma de la corriente de salidas no puede exceder el limite de corriente de entrada
+\end{table}
+
+DccPowerDistribution ha sido diseñado y probado para poder utilizar hasta 1A en total y lo componentes
+escogidos para que segun sus especificaciones puedan soportar al menos 1.5A

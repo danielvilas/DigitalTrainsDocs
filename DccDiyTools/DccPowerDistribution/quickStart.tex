@@ -226,13 +226,13 @@ marcada con los simbolos + y -.
 
 \begin{figure}[h]
     \centering
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=1]
         \begin{scope}
-            \clip (-6.5,-2.5) rectangle  +(13,5);
+            \clip (-6.5,0) rectangle  +(13,2.5);
             \node[inner sep=0pt] (russell) at (0.1,4.75)
                 {\includegraphics[scale=2]{images/front.png}};
         \end{scope}
-        %\draw [very thin, green] (-5,-1) grid (5,2);
+        
         \draw [color=red](-6.2,2.4) rectangle + (2.3,-2.5); 
         \node [text width = 1.3cm] at (-5,-0.5){VDrive};
         \draw [color=red](-0.3,2.4) rectangle + (2.3,-2.5); 
@@ -245,8 +245,6 @@ marcada con los simbolos + y -.
         \draw [color= yellow, line width=2pt] (1.1,2.05) circle[radius=0.3];
         \draw [color= yellow, line width=2pt] (4.5,2.05) circle[radius=0.3];
         \draw [color= yellow, line width=2pt] (5.65,2.05) circle[radius=0.3];
-       
-        %\node[below] {$a$};
     \end{tikzpicture}
     \caption{Salida Voltaje y Corriente}
     \label{fig:VccOutConnectors2}

@@ -28,12 +28,12 @@ Dcc Power Distribution es un modulo "DCC DiY Tools" que recoje la señal DCC y l
 El objetivo de este modulo es proporcinar una interface DCC para que el usuario de este modulo tenga la señal DCC y energia para sus propios modulos.
 
 Los modulos "DCC DiY Tools" son una serie de "Herramientas DCC Hazlo tu Mismo", pensadas para la gente con conocimiento de las placas Arduino y similares
-puedan desarrollar sus porpios modulos sin tener que preocuparse de las complejidades y de los problemas comunes. Cualquiera que tenga un skecth corriendo
+puedan desarrollar sus porpios modulos sin tener que preocuparse de las complejidades y de los problemas comunes. Cualquiera que tenga un sketch corriendo
 sobre una placa blanca de prototipo y quiera moverla a su maqueta se puede beneficiar de este modulo y asi no depender de un ordenador. 
 
-Este modulo de distribucion de energia viene de la necesidad de controlar una serie de desvios con servomotores para hacer un moviento lento. Pero no
-esta limitado a esto. Cualquier modulo que neceiste recibir alimentacion y señal DCC, en TTL, puede servirse de este dispositivo. Las caracteristicas de
-este modulo son:
+Este modulo de distribucion de energia viene de la necesidad de controlar una serie de desvios con servomotores para hacer un moviento lento y para una 
+maqueta no siempre tiene conectado un bus de +12V conectado. Pero no esta limitado a esto. Cualquier modulo que neceiste recibir alimentacion y señal DCC,
+ en TTL, puede servirse de este dispositivo. Las caracteristicas generales de este modulo son:
 
 \begin{itemize}
     \item \textbf{Multi Alimentacion}: Se puede alimentar por DCC o por un adaptador de Corriente Continua
@@ -62,9 +62,26 @@ este modulo son:
     \item \textbf{Open Software Hardware}: Este modulo se basa en diferentes diseños OSH y asi mismo se publica como OSH.
 \end{itemize}
 
+\subsection{Objetivos}
+DccPowerDistribution es modulo cuyo objetivo principal dotar de alimentacion para otros modulos DiY
+para facilitar el desarrollo de otros modulos por parte del usuario. Los objetivos del modulo son:
+\begin{itemize}
+    \item \textbf{Facilitar la toma de energia} al usuario objetivo, que es una persona que sepa
+de arduino y quiera mover su circuito a su maqueta.   
+    \item \textbf{Funcionar solo con un bus DCC}: Debe ser capaz de recoger la corriente desde el bus
+DCC si no hay un bus de Corriente Continua(CC) disponible. Como por ejemplo en maquetas de pruebas
+    \item \textbf{Usar un Bus CC}: para no sobrecargar el bus DCC sin ser necesario.
+    \item \textbf{Ser robusto ante caidas DCC}: Ante un cortocircuito las centrales y los boosters 
+paran de suministrar corriente DCC, por lo que el bus CC debe ser prioritario.
+    \item \textbf{Facilitar el uso de DCC}: Para que el usuario tenga una señal DCC en TTL y usarla
+con su placa.
+\end{itemize}
 
+\newpage
 \section{Guia Rapida}
 \input{quickStart.tex}
+
+\newpage
 \section{Caracteristicas Tecnicas}
 \input{caracteristicas.tex}
 \section{Objetivos}

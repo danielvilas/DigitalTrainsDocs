@@ -19,12 +19,20 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{DccDiyTools}[2022/06/24 Dcc Diy Tools Master Document Class v0.1]
 
+\RequirePackage[dvipsnames,table]{xcolor}
+
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{chngpage}
 \usepackage{tcolorbox}
+
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{makecell}
+
+
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} 
 \ProcessOptions\relax 
@@ -187,6 +195,40 @@
         \node (-pcb) at (-0,0.6) {};
    }
 }
+
+\tikzset{
+    JstXh4/.pic={
+        % \draw [step=0.1,very thin, yellow] (-1,-1) grid (1,1);
+        % \draw [step=0.5,very thin, red] (-1,-1) grid (1,1);
+        % \draw [very thin, green] (-1,-1) grid (1,1);
+        
+        \draw [color=lightgray, line width=3pt,cap=round] (.45,0.3) -- (.45,-.45);
+        \draw [color=lightgray, line width=3pt,cap=round] (.15,0.3) -- (.15,-.45);
+        \draw [color=lightgray, line width=3pt,cap=round] (-.15,0.3) -- (-.15,-.45);
+        \draw [color=lightgray, line width=3pt,cap=round] (-.45,0.3) -- (-.45,-.45);
+
+        \draw[fill=white] (-0.7,0.2) -- (-0.7,-0.5) -- (-0.5,-0.5) 
+            -- (-0.5,-.1) -- (-0.35,-.1) -- (-.35,-.45) 
+            -- (.35,-.45) -- (.35,-.1)
+            -- (0.5, -.1) -- (0.5,-0.5)
+            -- (0.7,-0.5) -- (0.7, 0.2) --(-0.7,0.2);
+
+        \draw[fill=white] (-0.7,0.2) rectangle +(0.1,0.3);
+        \draw[fill=white] (0.7,0.2) rectangle +(-0.1,0.3);
+
+        \node (-cable) at (-0,-0.6) {};
+        \node (-pcb) at (-0,0.6) {};
+        \node (-p0) at (-.45,0.5) {};
+        \node (-p1) at (-.15,0.5) {};
+        \node (-p2) at (.15,0.5) {};
+        \node (-p3) at (.45,0.5) {};
+        \node (-c0) at (-.45,-0.6) {};
+        \node (-c1) at (-.15,-0.6) {};
+        \node (-c2) at (.15,-0.6) {};
+        \node (-c3) at (.45,-0.6) {};
+   }
+}
+
 \tikzset{
     SmallDiode/.pic={
         %\draw [step=0.1,very thin, yellow] (-1,-1) grid (1,1);
@@ -202,13 +244,15 @@
    }
 }
 
+
+
+
+
 \tikzset{
-    SmallLedGreen/.pic={
-        % \draw [step=0.1,very thin, yellow] (-1,-1) grid (1,1);
-        % \draw [step=0.5,very thin, red] (-1,-1) grid (1,1);
-        % \draw [very thin, green] (-1,-1) grid (1,1);
+    pics/SmallLed/.style args={#1}{
+      code = {
         \draw (-0.2,0) -- (0.2,0);
-        \draw [fill=green!75] (-0.1, -0.1) -- (0.1,0)
+        \draw [fill=#1!75] (-0.1, -0.1) -- (0.1,0)
             -- (-0.1, 0.1) --(-0.1, -0.1) ;
         \draw (0.1,0.1) -- (0.1,-0.1);
         
@@ -217,12 +261,47 @@
         
         \node[](-p) at (-0.2,0) {};
         \node[](-n) at (0.2,0) {};
-        
-    
-   }
+    }}
 }
 
+\tikzset{
+    pics/SmallOpto/.style={
+      code = {
+        % \draw [step=0.1,very thin, yellow] (-1,-1) grid (1,1);
+        % \draw [step=0.5,very thin, red] (-1,-1) grid (1,1);
+        % \draw [very thin, green] (-1,-1) grid (1,1);
+        \pic[rotate=-90] at (-0.2,0) {SmallLed=black};
+        \draw[line width=1pt] (0.1,0.2) -- (0.1,-0.2);
+        \draw[] (0.3,0.3) -- (0.1,0.1);
+        \draw[] (0.3,-0.3) -- (0.1,-0.1);
+        \draw[fill=black!75, cap=round] (0.3,-0.25) -- (0.3,-0.3)
+            -- (0.25,-0.3) -- (0.3,-0.25);
+        
+    }}
+}
 
+\tikzset{
+    pics/DccIface/.style={
+      code = {
+        % \draw [step=0.1,very thin, yellow] (-1,-1) grid (1,1);
+        % \draw [step=0.5,very thin, red] (-1,-1) grid (1,1);
+        % \draw [very thin, green] (-1,-1) grid (1,1);
+        \pic[] at (0.8,0) {SmallOpto};
+        \draw[] (-1.3,-0.5) rectangle +(2.6,1);
+
+        \node[above] at (-0.5,0){DCC};
+        \node[below] at (-0.5,0){Interface};
+
+        \node[](-east-out)at(1.4,0.15){};
+        \node[](-east-in)at(1.4,-0.15){};
+        \node[](-east)at(1.4,0){};
+
+        \node[](-west-out)at(-1.4,-0.15){};
+        \node[](-west-in)at(-1.4,0.15){};
+        \node[](-west)at(-1.4,0){};
+        
+    }}
+}
 
 \tikzset{
     DiodeBrigde/.pic={
@@ -242,8 +321,8 @@
  
         \node[scale=0.5] at (-0.45,0) {AC};
         \node[scale=0.5] at (0.45,0) {CC};
---
         \node(-ac) at (-0.7,0) {};
         \node(-cc) at (0.7,0) {};
    }
 }
+
