@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+    
+    
+    \pic[rotate=-90,transform shape](ac) at(-1,0) {WallAc};
+    \pic[rotate=-90,transform shape](board)at (1,0) {SmallBoard};
+
+    \draw[red, line width=4pt,rounded corners=6pt] (ac-jack.center) 
+    -- (ac-jack.center |- 0,1.8) 
+    -- (board-jack.center|- 0,1.8) 
+    -- (board-jack.center);
+    %\draw[green] (ac-mains.center) -- (board-terminal.center);
+
+\end{tikzpicture} 

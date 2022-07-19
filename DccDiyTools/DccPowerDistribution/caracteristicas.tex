@@ -15,7 +15,9 @@ sin problemas
         \item \textbf{VDrive}: El Voltaje de entrada para alimentar otros modulos.
         \item \textbf{+5V}: 5 Voltios para arduinos y otros componentes
         \item \textbf{+3.3V} 3.3 Voltios para los nuevos Arduinos ARM y otros microcontroladores similares
-    \end{itemize} 
+    \end{itemize}
+    \item \textbf{Bus 12V}: Los buses de 12V de Corriente Continua son los más utilizados para los accesorios
+tales como bombillas y otros componentes. DccPowerDistribution esta pensado para utilizar este bus.
 \end{itemize}
 
 \subsection{Diagrama de Bloques}
@@ -110,6 +112,9 @@ el bypass para evitar la proteccion.
     \caption{Limites de entrada}
     \label{tab:limiteEntrada}
 \end{table}
+
+El Jack y el Terminal atornillable, estan en paralelo por lo que comparten limites. Y es por eso que solo
+uno puede ser usado como entrada.
 
 \begin{table}[H]
     \centering

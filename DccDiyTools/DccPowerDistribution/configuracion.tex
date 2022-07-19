@@ -1,0 +1,53 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = DccPowerDistribution.tex
+
+La placa DccPowerDistribution tiene una serie de jumpers y puntos de soldaura/corte
+que permiten cambiar ciertas partes y ajustar su comportamiento.
+
+\subsection{Jack o Terminal Atornillable}
+
+El conector Jack se puede conectar directamente a un adaptador AC/DC que tenga salida 
+jack 2mm, un conector muy generico usado por diferentes dispositivos electronicos.
+Por norma general, solo tienen una salida, por lo que solo se puede conectar a una placa
+
+Por otra parte el terminal Atornillable facilita la conexion cuando ya existe un bus de
+corriente continua CC. Con lo que es mas facil conectar varias placas.
+
+Ambos estan conectados en paralelo sin ninguna proteccion, por lo que es necesario
+asegurarse que solo uno recibe corriente. La forma más sencilla es solo soldar uno 
+de ellos o conectar solo uno.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.25\textwidth}
+        \centering
+        \input{tikz/power_jack.tex}
+        \caption{Solo Jack}
+        \label{fig:VccConnectionJack}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.7\textwidth}
+        \centering
+        \input{tikz/power_terminal.tex}
+        \caption{Solo Terminal}
+        \label{fig:VccConnectionTerminal}
+    \end{minipage}
+\end{figure}
+
+Si se sueldan los dos conectores se puede usar una placa como iniciador de bus VccConnectionJack
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/power_jack_bus.tex}
+    \caption{Jack Iniciando Bus}
+    \label{fig:VccConnectionJackBus}
+\end{figure}
+
+En el caso de que se use un bus de Coriente Continua, es posible añadir modulos que no sean
+de la gama DccDiyTools, pero es necesario asegurarse de que sean compatibles a nivel de voltaje
+y que el adaptador de corriente sea capaz de suministrar la corriente necesaria para todos los
+modulos conectados.
+
+\subsection{Entrada de corriente}
+La corriente puede ser tomada desde el bus DCC o un bus de Corriente Continua (CC)

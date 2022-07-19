@@ -1,0 +1,44 @@
+\tikzset{
+    pics/SmallBoard/.style={
+      code = {
+        % \draw [step=0.1,very thin, yellow] (-2,-1) grid (2,1);
+        % \draw [step=0.5,very thin, red] (-2,-1) grid (2,1);
+        % \draw [very thin, green] (-2,-1) grid (2,1);
+        \node[inner sep=0pt] at (0,0)
+        {\includegraphics[scale=0.25]{images/front.png}};  
+
+
+        \node[](-jack) at (-1.35,0.278) {};
+        \node[](-terminal) at (-.8,0.65) {};
+    }}
+}
+
+\tikzset{
+    pics/WallAc/.style={
+      code = {
+    \begin{scope}[shift={(0.25,0)}]
+        % \draw [step=0.1,very thin, yellow] (-2,-2) grid (2,2);
+        % \draw [step=0.5,very thin, red] (-2,-2) grid (2,2);
+        % \draw [very thin, green] (-2,-2) grid (2,2);
+        % Mains lead
+        \draw[line width=2pt,cap=round, lightgray] (0.05,-0.21) -- (0.05,-0.45);
+        \draw[line width=2pt,cap=round, lightgray] (0.275,-0.21) -- (0.275,-0.45);
+        % Relief and out cable
+        \draw[line width=2pt,cap=round] (-0.5,0.25) -- (-1,0.25);
+        \draw[line width=2pt,cap=round,black!75] (-0.55,0.35)--(-0.55,0.15);
+        \draw[line width=2pt,cap=round,black!75] (-0.63,0.325)--(-0.63,0.175);
+        \draw[line width=2pt,cap=round,black!75] (-0.71,0.3)--(-0.71,0.2);
+        \draw[line width=2pt,cap=round,black!75] (-0.79,0.275)--(-0.79,0.225);
+        \draw[line width=2pt,cap=round,black!75] (-0.87,0.275)--(-0.87,0.225);
+
+        \draw[line width=2pt,rounded corners=1pt,fill=black!75] (-0.5,0) rectangle +(1,0.5);
+        \draw[line width=2pt,rounded corners=1pt,fill=black!65] (-0.1,0) rectangle +(0.5,-0.2);
+        % \draw[line width=2pt,cap=round, gray] (0.05,-0.21) -- (0.05,-0.45);
+        % \draw[line width=2pt,cap=round,gray] (0.275,-0.21) -- (0.275,-0.45);
+
+        \node[white,scale=0.5] at (0,0.25) {DC Wall};
+        \node[](-jack) at (-1.1,0.25) {};
+        \node[](-mains) at (.1625,-0.55) {};
+    \end{scope}
+    }}
+}
