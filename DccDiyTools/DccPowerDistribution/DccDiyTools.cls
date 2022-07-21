@@ -21,11 +21,16 @@
 
 \RequirePackage[dvipsnames,table]{xcolor}
 
+
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
+
+
+
+
 \usepackage{tikz}
-\usepackage{chngpage}
+%\usepackage{chngpage}
 \usepackage{tcolorbox}
 
 \usepackage{tabularx}
@@ -34,10 +39,13 @@
 
 
 
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} 
 \ProcessOptions\relax 
 
 \LoadClass{article}
+
+\usepackage[oneside]{sidenotes}
 
 %%---------------------
 %% Datos para el Documento DanielBahn
@@ -244,8 +252,31 @@
    }
 }
 
-
-
+\tikzset{
+    pics/JumperPadNO/.style ={
+      code = {
+      
+        \draw [gray, fill=gray!75] (-0.5,0.2) -- (-0.5,0.6) arc (180:90:0.3)
+            -- (0.2,0.9) arc (90:0:.3) -- (0.5,0.2)
+            -- (-0.5,0.2);
+        
+        \draw [gray, fill=gray!75] (-0.5,-0.2) -- (-0.5,-0.6) arc (-180:-90:0.3)
+            -- (0.2,-0.9) arc (-90:0:.3) -- (0.5,-0.2)
+            -- (-0.5,-0.2);
+        
+    }}
+}
+\tikzset{
+    pics/JumperPadNC/.style ={
+      code = {
+        \draw [yellow, fill=yellow!75] (-0.2,0.3) rectangle (0.2,-0.3);
+        
+        \pic[] at (0,0) {JumperPadNO};
+        
+        \node[](-cut1) at (-0.5,0) {};
+        \node[](-cut2) at (0.5,0) {};
+    }}
+}
 
 
 \tikzset{

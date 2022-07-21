@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+    \begin{scope}
+        \pic[] (nc) at (-1.4,0){JumperPadNC};
+
+        \node[left] at (-3,0.5){Cortar aqui};
+        \draw[-stealth] (-3,0.5) -- (nc-cut1.west);
+
+        \draw[red,line width=2pt, dashdotted](nc-cut1.center)--(nc-cut2.center);
+        \pic[] at (1.4,0){JumperPadNO};
+        \draw[-stealth] (-0.5,0) -- (0.5,0);
+    \end{scope}
+\end{tikzpicture}

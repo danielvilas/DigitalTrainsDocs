@@ -35,7 +35,7 @@ de ellos o conectar solo uno.
     \end{minipage}
 \end{figure}
 
-Si se sueldan los dos conectores se puede usar una placa como iniciador de bus VccConnectionJack
+Si se sueldan los dos conectores se puede usar una placa como iniciador de bus CC
 
 \begin{figure}[H]
     \centering
@@ -49,5 +49,158 @@ de la gama DccDiyTools, pero es necesario asegurarse de que sean compatibles a n
 y que el adaptador de corriente sea capaz de suministrar la corriente necesaria para todos los
 modulos conectados.
 
-\subsection{Entrada de corriente}
-La corriente puede ser tomada desde el bus DCC o un bus de Corriente Continua (CC)
+\subsection{Origen Automatico, siempre DCC o siempre CC}
+La corriente puede ser tomada desde el bus DCC o un bus de Corriente Continua (CC).
+Esto se puede hacer mediante la activacion de los ByPass, o lineas azules en el diagrama
+de bloques. El selector principal que determina el origen es J3 y tiene tres opciones
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/J3_Options.tex}
+    \caption{Opciones J3 - Origen de corriente}
+    \label{fig:VccSelection}
+\end{figure}
+
+J3 por defecto vendra sin componente, para que se pueda soldar un cable en la configuracion desada
+y ademas pueda servir como puntos  de prueba. Puede ponerse una cabezera dupont 2.54mm y asi usar 
+jumpers.
+
+\begin{itemize}
+    \item \textbf{Automatico}: Dejar J3 sin conectar nada.
+    \item \textbf{Siempre CC}: Pone un jumer entre los pines más cercanos al Jack CC.
+    \begin{itemize}
+        \item En esta configuracion se recomienda desactivar la señal DCC, no conectandola
+ o mediante \textbf{JP1, JP2, JP3 y JP4}.
+        \item Con esta configuracion se puede lograr un maximo de \textbf{3A}. Pero simpre y
+cuando se suelde un cable entre los puntos \sidenote[][-1em]{Hay jumpers de \textbf{3A}, en ese caso se pueden usar}.             
+    \end{itemize}
+     \item \textbf{Siempre DCC}:Pone un jumer entre los pines más cercanos al conector DCC.
+     \begin{itemize}
+         \item En esta configuracion se recomienda no conectar corriente CC
+         \item Con esta configuracion se puede lograr un maximo de \textbf{2A}. Pero simpre y
+ cuando se suelde un cable entre los puntos.             
+     \end{itemize}
+\end{itemize}
+
+\subsection{Desactivacion Entrada de corriente DCC}
+Es posible configurar DccPowerDistribution para que sea imposible utilizar la señal DCC como
+entrada de corriente, y no perder la señal DCC-TTL. Para ello se pueden utilizar los puntos
+de soldadura \textbf{JP1, JP2, JP3} y \textbf{JP4}.
+
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/Jp1234_Options.tex}
+    \caption{Ubicacion DCC Disable}
+    \label{fig:DccDisable}
+\end{figure}
+
+Como se puede ver hay dos juegos de puntos de soldadura, JP1 con JP2 y JP3 con JP4. Cada juego
+realiza una funcion diferente.
+\begin{itemize}
+    \item \textbf{JP1} y \textbf{JP2}: conectan la señal DCC al bloque rectificador. Si se cortan
+se pierde la funcionalidad ACK y la entrada de corriente por DCC. Se ha detectado que las centrales
+DCC pueden confundirse con el bloque rectificador\sidenote[][-3em]{Tiene que ver con el tiempo de recuparacion
+de los diodos} y suponer que hay un corto\sidenote[][1em]{Se han utilizado rectificadores 
+rapidos, por lo que no se espera que suceda esto}. En estas centrales
+es necesario cortar estos puntos de soldadura.
+    \item \textbf{JP3} y \textbf{JP4}: conectan la señal rectificada DCC al bloque de proteccion.
+    Se deben cortar ambos para desactivar la corriente DCC y aun mantener la funcionalidad ACK
+        
+\end{itemize}
+
+\subsection{DCC +5V}
+Para que la salida DCC-TTL funcione se necesita una señal de referencia TTL. La interface DCC hace un
+Pull-Up a este valor cuando no hay señal DCC y lo situara a 0v conforme la señal vaya recibiendose.
+Este valor de referencia puede ser el mismo carrill 5V generado por DccPowerDistribution, o venir de
+fuera mediante el pin DCC \textbf{+5V}.
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/SalidaDcc2.tex}
+    \caption{Entrada/Salida Señal DCC}
+    \label{fig:DccOut2}
+\end{figure}
+
+Se puede cambiar este comportamiento mediante el punto de soldadura \textbf{JP8}.
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/Jp8.tex}
+    \caption{Ubicacion JP8}
+    \label{fig:Jp8Loc}
+\end{figure}
+
+Si las conexiones estan cortadas el pin DCC +5V se comportara como entrada, requirendo que se suministre
+el voltaje de referencia TTL para la salida DCC-TTL. En este caso se puede usar logica 3.3V
+
+Por otra parte, si se unen mediante soldadura. La linea DCC +5V estara conectada al rail +5V generado
+por el conversor Buck. Por lo que se puede usar para suministrar corriente a los modulos DCC.
+
+\subsection{Leds de los Railes}
+Los Leds junto a los terminales de salida se pueden desconectar para ahorrar unos 
+miliamperios de comsumo. Estos leds son utiles para ver de un vistazo rapido el estado
+de cada carril de potencia. Pero una vez instalado bajo una maqueta no se van ver siempre
+por lo que puede ser interesante desactivarlos.
+
+Cada cada carril tiene asociado un led, un color\sidenote[][]{Puede variar segun ediciones de
+DccPowerDistribution}, un Punto de soldadura y una resistencia para limitar su consumo.
+El diseño original se recoge en la siguiente tabla:
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c |c |c |c |c |}
+        Carril & \thead[b]{Punto} & \thead[b]{Color($V_{drop}$)} & \thead[b]{Resistencia} & \thead[b]{Consumo} \\ 
+        \Xhline{5\arrayrulewidth}
+%VDrive
+        \rowcolor{Melon!15} Vdrive(12V)
+        & JP6 &Blanco(3V) & 900$\Omega$ & 10mA \\
+        \hline
+        \rowcolor{blue!15} 5V
+        & JP7 & Azul(3V) & 200$\Omega$ & 10mA \\
+        \rowcolor{cyan!15} 3.3V
+        & JP5 & Cyan(2.7V) & 100$\Omega$ & 5.5mA \\
+        \hline
+    \end{tabular}
+    \caption{Diseño de los leds}
+    \label{tab:leds}
+\end{table}
+
+Junto a cada terminal de salida esta el led, la resitencia y el punto de soldadura.
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/LedDisable.tex}
+    \caption{Ubicacion JP5, JP6 and JP7}
+    \label{fig:LedDisable}
+\end{figure}
+
+Para deshabilitar un led solo es necesario cortar el punto de soldadura  que corresponda.
+Y volverlo a soldar para habilitarlo
+
+\subsection{Cortar y recuperar un punto de soldadura}
+Los puntos de soldadura son dos Pads cercanos que pueden estar unidos con una pista entre
+ambos, sindo NC o Normally Closed, pero tambien puede estar sin conexion, llamandose NO, o
+Normally Open. 
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/SolderPadNONC.tex}
+    \caption{Tipos de Puntos de Soldadura}
+    \label{fig:JpTipos}
+\end{figure}
+
+Un Punto de Soldadura NC puede deshabilitase cortando la pista que esta uniendo los Pads
+con X-Acto, bisturi o similar\sidenote[][]{Como un cutter pequeño}. En estos momentos se
+habra convertido en un NO. Para comprobarlo, se recomienda usar un tester en modo
+continudad o diodo
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/SolderPadNO2NC.tex}
+    \caption{Deshabilitar NC}
+    \label{fig:JpNc2No}
+\end{figure}

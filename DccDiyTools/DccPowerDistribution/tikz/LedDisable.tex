@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=1]
+    \begin{scope}
+        \clip (-7.,0) rectangle  +(14,2.5);
+        \node[inner sep=0pt] (russell) at (0.6,4.75)
+            {\includegraphics[scale=2]{images/front.png}};
+    \end{scope}
+    \node [text width = 1.3cm] at (-5,-0.5){VDrive};
+    \node [text width = 1.3cm] at (1,-0.5){+5V};
+    \node [text width = 1.3cm] at (5.4,-0.5){+3.3V};
+
+
+    \draw [color= yellow, line width=2pt,rounded corners=2pt] (-6.5,1.5) rectangle +(1.,0.9);
+    \draw [color= yellow, line width=2pt,rounded corners=2pt] (-0.6,1.5) rectangle +(1.,0.9);
+    \draw [color= yellow, line width=2pt,rounded corners=2pt] (3.8,1.5) rectangle +(1.,0.9);
+   
+\end{tikzpicture}
