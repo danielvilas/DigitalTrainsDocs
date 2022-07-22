@@ -25,28 +25,31 @@
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
-
-
-
-
 \usepackage{tikz}
-%\usepackage{chngpage}
 \usepackage{tcolorbox}
-
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{makecell}
-
-
-
+\DeclareOption{english}{\AtEndOfClass{\main@language{english}}}
+\DeclareOption{spanish}{\AtEndOfClass{\main@language{spanish}}}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} 
 \ProcessOptions\relax 
-
 \LoadClass{article}
 
+\RequirePackage[english, spanish]{babel}
 \usepackage[oneside]{sidenotes}
+\RequirePackage{hyperref}
 
+
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    filecolor=magenta,      
+%    urlcolor=cyan,
+%    pdftitle={Overleaf Example},
+%    pdfpagemode=FullScreen,
+%    }
 %%---------------------
 %% Datos para el Documento DanielBahn
 %%---------------------
@@ -145,7 +148,9 @@
     %\dbOldMaketitle
 
     \newpage
- 
+    \vspace*{\fill}
+    \doclicenseThis
+    \newpage
  
  
 }
@@ -266,6 +271,27 @@
         
     }}
 }
+
+
+\tikzset{
+    pics/JumperPadSolder/.style ={
+      code = {
+      
+        \draw [gray, fill=gray!75] (-0.5,0.2) -- (-0.5,0.6) arc (180:90:0.3)
+            -- (0.2,0.9) arc (90:0:.3) -- (0.5,0.2)
+            -- (-0.5,0.2);
+        
+        \draw [gray, fill=gray!75] (-0.5,-0.2) -- (-0.5,-0.6) arc (-180:-90:0.3)
+            -- (0.2,-0.9) arc (-90:0:.3) -- (0.5,-0.2)
+            -- (-0.5,-0.2);
+
+        \draw[gray!60, fill=gray!45] (-0.4,-0.5) -- (-0.4,0.5) arc(180:90:.3)
+        -- (0.1,0.8) arc(90:0:.3) -- (0.4,-0.5) arc(0:-90:.3)
+        -- (-0.1,-0.8) arc(-90:-180:.3);
+        
+    }}
+}
+
 \tikzset{
     pics/JumperPadNC/.style ={
       code = {
