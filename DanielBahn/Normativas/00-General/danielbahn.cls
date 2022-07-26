@@ -17,39 +17,20 @@
 %----------------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{DccDiyTools}[2022/06/24 Dcc Diy Tools Master Document Class v0.1]
-
-\RequirePackage[dvipsnames,table]{xcolor}
-
+\ProvidesClass{DanielBahn}[2022/06/24 Daniel Bahn Master Document Class v0.1]
 
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage{chngpage}
 \usepackage{tcolorbox}
-\usepackage{tabularx}
-\usepackage{multirow}
-\usepackage{makecell}
-\DeclareOption{english}{\AtEndOfClass{\main@language{english}}}
-\DeclareOption{spanish}{\AtEndOfClass{\main@language{spanish}}}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} 
 \ProcessOptions\relax 
+
 \LoadClass{article}
 
-\RequirePackage[english, spanish]{babel}
-\usepackage[oneside]{sidenotes}
-\RequirePackage{hyperref}
-
-
-%\hypersetup{
-%    colorlinks=true,
-%    linkcolor=blue,
-%    filecolor=magenta,      
-%    urlcolor=cyan,
-%    pdftitle={Overleaf Example},
-%    pdfpagemode=FullScreen,
-%    }
 %%---------------------
 %% Datos para el Documento DanielBahn
 %%---------------------
@@ -58,16 +39,10 @@
 \newcommand{\dbDate}[1]{\renewcommand{\dbDate}{#1}}
 \newcommand{\dbStatus}[1]{\renewcommand{\dbStatus}{#1}}
 \newcommand{\dbVersion}[1]{\renewcommand{\dbVersion}{#1}}
-\newcommand{\subtitle}[1]{\renewcommand{\subtitle}{#1}}
-\newcommand{\dbImage}[1]{\renewcommand{\dbImage}{#1} \settoggle{dbImagePresent}{true}}
 
 %%---------------------
 %% Configuracion de la pagina
 %%---------------------
-%\settoggle{dbImagePresent}{true}
-\newtoggle{dbImagePresent} 
-\settoggle{dbImagePresent}{false} 
-%\DeclareOption{unnumberedsections}{\settoggle{unnumberedsections}{true}} % Set the class option toggle if the class option was used in the template
 
 
 \usepackage[
@@ -76,7 +51,7 @@
 	left=1cm, 
 	right=5.25cm, 
 	marginparwidth=4.25cm, 
-	marginparsep=0.5cm, 
+	marginparsep=1cm, 
 	footskip=1.5cm, 
 	headsep=0.8cm,
 	headheight=1cm, 
@@ -101,8 +76,6 @@
 \usepackage[sfdefault]{plex-sans} 
 \usepackage{plex-serif} 
 \usepackage{plex-mono} 
-
-\setlength{\parskip}{6pt}
 
 
 %%---------------------
@@ -139,44 +112,18 @@
             \vspace{10\baselineskip}
             \large \dbType \ {\textbf{\dbDate-\dbCode}}\par
             {\fontsize{60pt}{64pt}\usefont{T1}{qzc}{m}{it}\@title \par}
-            {\fontsize{40pt}{42pt}\selectfont\subtitle \par}
 
             {\Large\fontseries{l}\selectfont{\@author}\par}
             {\small\usefont{T1}{MontserratAlternates-TOsF}{b}{n}(\dbStatus \ v\dbVersion)}\par
-           
-            \iftoggle{dbImagePresent}{ % Conditional logic for the unnumbered sections class options
-	            \vspace{5\baselineskip}
-                \includegraphics{\dbImage}
-            }{
-	            
-            }
-
-            
+ 
         %\end{addmargin}
     \end{pagcompleta}
 
     %\dbOldMaketitle
 
     \newpage
-    \vspace*{\fill}
-    \doclicenseThis
-    \newpage
+ 
  
  
 }
 \makeatother
-
-
-\makeatletter
-\RenewDocumentCommand\sidenotetext{o o +m}{%      
-	\IfNoValueOrEmptyTF{#1}{%
-		\@sidenotes@placemarginal{#2}{\textsuperscript{\thesidenote}\footnotesize#3}
-		\refstepcounter{sidenote}%
-	}{
-		\@sidenotes@placemarginal{#2}{\textsuperscript{#1}\footnotesize#3}
-	}
-}
-\makeatother
-
-
-\RequirePackage{DccDiyToolsPics}
