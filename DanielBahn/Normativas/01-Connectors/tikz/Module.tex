@@ -1,0 +1,24 @@
+
+
+\begin{tikzpicture}
+
+    %\draw [very thin, green]  (-6,-3) grid (6,3);
+    \begin{scope}[shift={(-4.5,0)}] 
+        \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
+        \pic[]() at (0,0.25) {RailStraigh=black};
+        \node[]() at (0,-0.5){Segmento 1};
+    \end{scope}
+
+    \begin{scope}[shift={(0,0)}] 
+        \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
+        \pic[]() at (0,0.25) {RailStraigh=black};
+        \node[]() at (0,-0.5){Segmento 2};
+    \end{scope}
+
+    \begin{scope}[shift={(4.5,0)}] 
+        \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
+        \pic[]() at (0,0.25) {RailStraigh=black};
+        \node[]() at (0,-0.5){Segmento 3};
+    \end{scope}
+
+\end{tikzpicture}
