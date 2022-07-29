@@ -3,22 +3,43 @@
 \begin{tikzpicture}
 
     %\draw [very thin, green]  (-6,-3) grid (6,3);
-    \begin{scope}[shift={(-4.5,0)}] 
+    \begin{scope}[shift={(-4.5,1)}] 
         \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
         \pic[]() at (0,0.25) {RailStraigh=black};
         \node[]() at (0,-0.5){Segmento 1};
     \end{scope}
 
-    \begin{scope}[shift={(0,0)}] 
+    \begin{scope}[shift={(0,1)}] 
         \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
         \pic[]() at (0,0.25) {RailStraigh=black};
         \node[]() at (0,-0.5){Segmento 2};
     \end{scope}
 
-    \begin{scope}[shift={(4.5,0)}] 
+    \begin{scope}[shift={(4.5,1)}] 
         \draw [fill=Melon!15] (-2,-1) rectangle +(4,2);
         \pic[]() at (0,0.25) {RailStraigh=black};
         \node[]() at (0,-0.5){Segmento 3};
     \end{scope}
+    
+    \draw[black, line width=3pt] (-6,-0.5) -- (7,-0.5);
+    \draw[red, line width=3pt] (-6,-1) -- (7,-1);
+    \draw[blue, line width=3pt] (-6,-1.5) -- (7,-1.5);
+
+    \node[left] at (-6,-0.5){CC};
+    \node[left] at (-6,-1){DCC};
+    \node[left] at (-6,-1.5){LCB};
+
+    \draw[black, line width=1.5pt] (-0.2,-0.5) --(-0.2,0);
+    \draw[red, line width=1.5pt] (0,-1) --(0,0);
+    \draw[blue, line width=1.5pt] (0.2,-1.5) --(0.2,0);
+
+    \draw[black, line width=1.5pt] (-4.7,-0.5) --(-4.7,0);
+    \draw[red, line width=1.5pt] (-4.5,-1) --(-4.5,0);
+    \draw[blue, line width=1.5pt] (-4.3,-1.5) --(-4.3,0);
+
+
+    \draw[black, line width=1.5pt] (4.3,-0.5) --(4.3,0);
+    \draw[red, line width=1.5pt] (4.5,-1) --(4.5,0);
+    \draw[blue, line width=1.5pt] (4.7,-1.5) --(4.7,0);
 
 \end{tikzpicture}

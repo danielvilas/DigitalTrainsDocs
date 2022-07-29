@@ -1,0 +1,37 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = DB-Conectors.tex
+
+Entrando en un poco más de detalle y en la realidad de la maqueta
+el esquema es:
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/SegmentosDetail.tex}
+    \caption{Detalle de los segmentos}
+    \label{fig:SegmentosDetail}
+\end{figure}
+En este diagrama se han representado los tres tipos de segementos que hay
+en esta version de la maqueta y los diferentes elementos disponibles:
+\begin{itemize}
+    \item \textbf{1 Tramo de via}: Segmento que represanta modulo con una sola via
+En el diagrama \ref{fig:MaquetaSimple} tenemos 2.
+    \item \textbf{2 Tramos de via}: Segmento que representa los modulos con varias
+tramos vias. En el diagrama \ref{fig:MaquetaSimple} tenemos 3.
+    \item \textbf{Desvio}:Segmento que representa los modulos que contienen un accesorio
+, como por ejemplo un decoder controlador de desvios\sidenote{Por espacio, el
+unico tipo de accesorios en esta maqueta}. En el diagrama \ref{fig:MaquetaSimple} tenemos 3.
+    \item \textbf{Via Programacion}: Segmento de quita y pon, para poder
+configurar los diferentes decoders o maquinas disponibles.
+    \item \textbf{Central DCC}: Dispositivo que genera la señal DCC
+que luego las maquinas y accesorios interpretan.
+    \item \textbf{LCB Hub}: Dispositivo para distribuir el bus 
+LCB a otros dispositivos. La central ya dispone un pequeño concentrador.
+El bus LCB que se va usar es LocoNet, y por temas de espacio en los segmentos
+sera externo a los mismos.
+    \item \textbf{Mando DCC}: Dispositivo LCB para controlar las maquinas
+y los accesorios.
+    \item \textbf{Mimic Panel}: Dispositivo LCB que mimetiza la red simulada
+en la maqueta y permite ver rapidamente el estado de los desvios, semaforos y
+y permite controlar el estado de los mismos.
+\end{itemize}

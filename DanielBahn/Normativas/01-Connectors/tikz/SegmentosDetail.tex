@@ -1,0 +1,117 @@
+
+
+\begin{tikzpicture}
+%    \draw [very thin, green]  (0,0) grid (15,20);
+%    \foreach \x [] in {0,1,...,15}{  
+%        \node[] at (\x,0) {\x} ;
+%    }
+%    \foreach \y [] in {1,2,...,20}{  
+%        \node[] at (0,\y) {\y} ;
+%    }
+
+    \draw[fill=Melon!15] (9,4) rectangle +(5,4);
+    \node[above]at(11.5,4){1 Tramo de Via};
+    \draw[fill=Melon!15] (9,9) rectangle +(5,4);
+    \node[above]at(11.5,9){2 Tramos de Via};
+    \draw[fill=Melon!15] (9,14) rectangle +(5,4);
+    \node[above]at(11.5,14){Desvio};
+
+    \begin{scope}
+        \pic[](acCc) at (13,1){WallAc};
+        \draw[black, line width=3pt] (acCc-jack.center)
+        -- (12,1.25) arc(-90:-180:0.5)
+        -- (11.5,2) arc (180:90:.5)
+        -- (13,2.5) arc (-90:0:.5)
+        -- (13.5,18.5);
+        \node[draw, fill=white]at(13.5,3.5){CC};
+        \node[draw, fill=white]at(13.5,8.5){CC};
+        \node[draw, fill=white]at(13.5,13.5){CC};
+        \node[draw, fill=white]at(13.5,18.5){CC};
+
+        \draw[black, line width=1.5pt] (13.5,15.75)--(12.,15.75)
+        arc(90:180:.25) -- +(0,-0.75);
+        \node[white, scale=0.75, draw, fill=blue!50]at(12.5,15.75){Cc-L};
+
+    \end{scope}
+
+    \begin{scope}
+        \draw[red, line width=3pt] (8.5,18.5) 
+        -- (9,18.5) arc(90:0:0.5) -- (9.5,5)
+        arc (0:-90:.5) -- (6.5,4.5);
+        \node[draw, fill=yellow!50]at(8.5,4.5){DCC};
+        \node[draw, fill=yellow!50]at(9.5,8.5){DCC};
+        \node[draw, fill=yellow!50]at(9.5,13.5){DCC};
+        \node[draw, fill=yellow!50]at(8.5,18.5){DCC};
+
+        \draw[red, line width=1.5pt] (9.5,6.25)--(11.35,6.25)
+        arc(-90:0:.25) -- +(0,0.75);
+        \node[white, scale=0.75, draw, fill=black]at(10.5,6.25){Dcc-L};
+        \pic[]() at (11.5,7){RailStraigh=black};
+
+        \draw[red, line width=1.5pt] (9.5,11.25)--(11.35,11.25)
+        arc(-90:0:.25) -- +(0,0.75);
+        \node[white, scale=0.75, draw, fill=black]at(10.5,11.25){Dcc-L};
+        \pic[]() at (11.5,12){RailStraigh=black};
+
+        \draw[red, line width=1.5pt] (9.5,10.75)--(11.35,10.75)
+        arc(90:0:.25) -- +(0,-0.75);
+        \node[white, scale=0.75, draw, fill=black]at(10.5,10.75){Dcc-L};
+        \pic[]() at (11.5,10){RailStraigh=black};
+
+        \draw[red, line width=1.5pt] (9.5,16.25)--(11.35,16.25)
+        arc(-90:0:.25) -- +(0,0.75);
+        \node[white, scale=0.75, draw, fill=black]at(10.5,16.25){Dcc-L};
+        \pic[]() at (11.5,17){RailStraigh=black};
+
+        \draw[red, line width=1.5pt] (9.5,15.75)--(11,15.75)
+        arc(90:0:.25) -- +(0,-0.75);
+        \node[white, scale=0.75, draw, fill=black]at(10.5,15.75){Dcc-L};
+        \node[draw, fill=white] at (11.5,15){Turnout Decoder};
+    \end{scope}
+
+    \begin{scope}
+        \draw[blue, line width=3pt] (3,4.5) -- (2,4.5) 
+            arc(270:180:0.5) -- (1.5,11) ;
+        \draw[blue, line width=1.5pt](1.5,10.5) --
+        (4.5,10.5) arc(-90:0:.5) -- (5,11.5);
+        \draw[fill=yellow!05](1,10) rectangle +(1,2);
+        \node[right] at (2,11) {LCB Hub};    
+        \pic[]() at ( 1.5,11.5){Rj11};
+        \pic[]() at ( 1.5,10.5){Rj11};
+        \pic[]() at (5,13){HandHeld};
+        \node[above] at (5,14.5) {Mando DCC};
+    \end{scope}
+
+    \begin{scope}
+        \draw[blue, line width=1.5pt] (1.5,12) -- (1.5,17.5)
+            arc(180:90:.5) -- (3,18);
+        \draw[fill=yellow!05](3,17) rectangle +(3,2);
+        \draw[line width=2pt] (3.5,18) -- (5,18);
+        \draw[line width=2pt] (4,18)--(4.3,18.3) --(5,18.3);
+        \draw[fill=red] (5.3,18.3) circle(.1);
+        \draw[fill=green!75] (5.3,18) circle(.1);
+        \draw[green!25, fill=green!50] (5.3,18) circle(.08); 
+        \node[above] at (4.5,17){Mimic Panel};
+    \end{scope}
+
+    \begin{scope}
+        \pic[](acDcc) at (7,1){WallAc};
+        \draw[black, line width=3pt] (acDcc-jack.center)
+        -- (5.25,1.25) arc (270:180:.25)
+        -- (5,3);
+
+        \draw [fill=Melon!15] (3,7) rectangle +(4,2);
+        
+        \node[below] at(5,9){Via Programacion};
+        \draw[red,line width=1.5pt] (5,5.5)
+            -- (5,8);
+        \node[white, scale=0.75, draw, fill=black]
+            at(5,6.5){Dcc-L};
+        
+        \pic[]() at (5,7.75){RailStraigh=black};
+        \draw[fill=yellow!05](3,3) rectangle +(4,3);
+        \node at (5,4.5){Central DCC};
+
+
+    \end{scope}
+\end{tikzpicture}
