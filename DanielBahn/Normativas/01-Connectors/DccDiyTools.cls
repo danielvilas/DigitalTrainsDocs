@@ -26,6 +26,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{tikz}
+\usetikzlibrary{fit}
 \usepackage{tcolorbox}
 \usepackage{tabularx}
 \usepackage{multirow}
