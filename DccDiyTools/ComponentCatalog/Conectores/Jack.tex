@@ -35,25 +35,13 @@
             \draw (0,0) rectangle (3,1.5) ;
         }{Amazon}{Sin Id} {24V} {3.5A}
         \cline{1 - 2}
+        
         \multicolumn{5}{|l|}{\makecell[l]{
             \tabitem Incluye tuerca para sujetar a panel \\
             \tabitem Incluye protector de goma
         }} \\
         \hline
-    \end{tabular}
-    \caption{Jack 2mm Amazon}
-    \label{tab:DcJack1}
-\end{table}
-
-%DC jack Metal Amazon
-\begin{table}[H]
-    \centering
-    \renewcommand\theadfont{\bfseries}
-    \setlength{\tabcolsep}{10pt}
-    \renewcommand{\arraystretch}{1.5}
-
-    \begin{tabular}{|c|c|c|c|c|}
-        \beginConnectorTable{DC Jack 2mm}
+        
         \multirow{3}{*}{\makecell{Macho \\ Plug}}
     
         \connectordata{
@@ -84,21 +72,11 @@
             \tabitem Cables pre-soldados
         }} \\
         \hline
-    \end{tabular}
-    \caption{Jack 2mm Amazon}
-    \label{tab:DcJack2}
-\end{table}
-
-%KLDX-0202-A PCB
-\begin{table}[H]
-    \centering
-    \renewcommand\theadfont{\bfseries}
-    \setlength{\tabcolsep}{10pt}
-    \renewcommand{\arraystretch}{1.5}
-
-    \begin{tabular}{|c|c|c|c|c|}
+        \connectorblockinfo{Uso}{Paso de corriente a cajas}
+        \connectorblockinfo{Ubicacion}{Terraza}
+        \noalign{\vskip 2mm}    
         \beginConnectorTable{KLDX-0202-A Jack Para PCB}
-        \multirow{3}{*}{\makecell{Hembra \\ Socket}}
+        \multirow{4}{*}{\makecell{Hembra \\ Socket}}
         \connectordata{
             \begin{scope}
                 \clip (-1,-0.75) rectangle  +(2,1.5);
@@ -107,13 +85,16 @@
             \end{scope}
         }{
             \draw (0,0) rectangle (3,1.5) ;
-        }{Mouser}{KLDX-0202-A} {24V} {3A}
+        }{Mouser}{KLDX-0202} {24V} {3A}
+        
+        \connectorinfo{Codigo}{KLDX-0202-A}{
+            \tabitem \textbf{Fabricante}: Kycon
+        }
         \cline{1 - 2}
-        \multicolumn{5}{|l|}{\makecell[l]{
-            \tabitem Para PCB
-        }} \\
-        \hline
+        %\hline
+        \connectorblockinfo{Uso}{Paso de corriente a PCB}
+        \connectorblockinfo{Ubicacion}{Cajon}
     \end{tabular}
-    \caption{Jack 2mm PCB}
-    \label{tab:DcJackPcb}
+    \caption{Jack 2mm}
+    \label{tab:DcJackPcb2mm}
 \end{table}

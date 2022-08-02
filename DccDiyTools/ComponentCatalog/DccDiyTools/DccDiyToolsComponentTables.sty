@@ -5,6 +5,13 @@
   \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
 }
 
+\newcommand\connectorblockinfo[2]{
+    \thead[b]{#1} & \multicolumn{4}{|l|}{
+        \makecell[l]{ #2 }
+    } \\
+    \hline
+}
+
 \newcommand\connectorinfo[3]{
     &
     \thead[b]{#1} & #2 & \multicolumn{2}{|l|}{
