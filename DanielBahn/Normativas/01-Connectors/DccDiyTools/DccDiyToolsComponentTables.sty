@@ -5,14 +5,6 @@
   \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
 }
 
-\newcommand\connectorinfo[3]{
-    &
-    \thead[b]{#1} & #2 & \multicolumn{2}{|l|}{
-        \makecell[l]{ #3 }
-    } \\
-    \cline{2-5}  
-}
-
 \newcommand\connectordata[6]{
     & \multirow{3}{*}{
             \begin{tikzpicture}[baseline=0]
@@ -33,7 +25,7 @@
         & & #3 & #5 & \\
         \cline{3 - 4}
         & & #4 & #6 & \\
-        \cline{2 -5}
+        \hline
 }
 
 \newcommand\beginConnectorTable[1]{

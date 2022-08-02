@@ -17,7 +17,7 @@
 %----------------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{DccDiyTools}[2022/06/24 Dcc Diy Tools Master Document Class v0.1]
+\ProvidesClass{DccDiyTools/DccDiyTools}[2022/06/24 Dcc Diy Tools Master Document Class v0.1]
 
 \RequirePackage[dvipsnames,table]{xcolor}
 
@@ -178,6 +178,3 @@
 	}
 }
 \makeatother
-
-
-\RequirePackage{DccDiyToolsPics}
