@@ -1,0 +1,36 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../ComponentCatalog.tex
+%!TEX root=../ComponentCatalog.tex
+
+%Rocket KCD1-101
+RA11131121
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Interruptor Basculante}
+        \multirow{3}{*}{\makecell{KCD1-101}}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(2.5,1.8);
+                \node[inner sep=0pt] at (0.7,0.6)
+                    {\includegraphics[scale=.1]{pictures/rj.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Amazon}{Interruptor} {125V} {10A} 
+        
+        \connectorinfo{Codigo}{RA11131121}{
+            \tabitem \textbf{Fabricante}: E-Switch
+        }
+        \cline{1 - 2}
+        \connectorblockinfo{Uso}{UI Dcc Decoder Config}
+        \connectorblockinfo{Ubicacion}{Terraza}
+    \end{tabular}
+    \caption{Encoder EC10}
+    \label{tab:rs-KCD1-101}
+\end{table}
