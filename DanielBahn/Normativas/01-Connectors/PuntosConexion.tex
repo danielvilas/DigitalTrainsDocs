@@ -36,7 +36,15 @@ en la maqueta y permite ver rapidamente el estado de los desvios, semaforos y
 y permite controlar el estado de los mismos.
 \end{itemize}
 
-\subsection{Detalle de un modulo}
+\subsection{Detalle de un Segmento}
+Como se puede ver en la firgura \ref{fig:MaquetaSimple} de la arquitectura el modulo más complicado
+del circuito consta de una via continua y otra paralela con un desvio. Sera este nuestro modelo de
+definicion del resto puesto que son más simples.
+
+Lo que se desea para esta version es poder controlar el desvio mediante DCC o LCB. Controlar semaforos
+en base al estado del desvio, controlar la señal DCC con un modulo de frenada ABC y poder enviar 
+informacion de ocupacion de las vias.
+
 \begin{figure}[H]
     \centering
     \input{tikz/ModuloDetail.tex}

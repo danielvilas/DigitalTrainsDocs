@@ -1,13 +1,13 @@
 
 \begin{tikzpicture}
-        \draw [very thin, green]  (0,0) grid (15,20);
+        \draw [very thin, green]  (0,0) grid (15,15);
         \foreach \x [] in {0,1,...,15}{  
             \node[] at (\x,0) {\x} ;
         }
-        \foreach \y [] in {1,2,...,20}{  
+        \foreach \y [] in {1,2,...,15}{  
             \node[] at (0,\y) {\y} ;
         }
-        \begin{scope}
+        \begin{scope}[shift={(2,5)}]
             \pic()at(1.5,0.5){RailStraigh=black};
             \pic()at(4.1,0.5){RailStraigh=black};
             \pic()at(6.8,0.5){RailStraigh=black};
