@@ -127,3 +127,122 @@
     \caption{JST RCY}
     \label{tab:DcJstSM}
 \end{table}
+
+{
+    \renewcommand{\arraystretch}{1.5}
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \begin{longtable}[H]{|c|c|c|c|c|}
+    %\centering
+
+
+        \beginConnectorTable{JST XH}
+        \multirow{10}{*}{\makecell{Macho \\ Plug }}
+        \connectorinfo{Contact}{SXH-001T-P0.6}{
+            \tabitem \textbf{Tipo}: Socket  \\
+            \tabitem \textbf{AWG}: 22-28 \\
+            \tabitem \textit{Alternativa}: BXH-001T-P0.6
+        } 
+
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=0.4]{pictures/connectors/XH/XHP-2.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{XHP-2}{
+            \tabitem \textbf{Tipo}: Plug  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=0.4]{pictures/connectors/XH/XHP-4.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{XHP-4}{
+            \tabitem \textbf{Tipo}: Plug  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+
+        \cline{1 - 2}
+        \connectorblockinfo{Uso}{PCB - Cable - PCB}
+        \connectorblockinfo{Ubicacion}{CJ}
+        \pagebreak
+        \hline
+        \multirow{20}{*}{\makecell{Hembra \\ Header }}
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=0.4]{pictures/connectors/XH/B2B-XH-A.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{B2B-XH-A}{
+            \tabitem \textbf{Tipo}: Header  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=0.4]{pictures/connectors/XH/S2B-XH-A.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{S2B-XH-A}{
+            \tabitem \textbf{Tipo}: Header  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=0.4]{pictures/connectors/XH/B4B-XH-A.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{B4B-XH-A}{
+            \tabitem \textbf{Tipo}: Header  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+        \connectordata{     
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=1]{pictures/connectors/XH/S4B-XH-A.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Farnell}{JST XH} {250V} {3A} 
+        
+        \connectorinfo{Housing}{S4B-XH-A}{
+            \tabitem \textbf{Tipo}: Header  \\
+             \tabitem \textbf{Color}: Blanco
+        }
+
+        \cline{1 - 2}
+        \connectorblockinfo{Uso}{PCB - Cable - PCB}
+        \connectorblockinfo{Ubicacion}{CJ}
+
+        \caption{JST XH}
+        \label{tab:DcJstXH}
+    \end{longtable}
+}
