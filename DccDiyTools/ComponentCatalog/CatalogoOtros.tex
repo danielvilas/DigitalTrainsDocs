@@ -35,6 +35,9 @@
 \end{table}
 
 \subsection{Servo Motores}
+\input{Otros/Servos.tex}
+
+\subsection{Networking}
 \begin{table}[H]
     \centering
     \renewcommand\theadfont{\bfseries}
@@ -42,49 +45,49 @@
     \renewcommand{\arraystretch}{1.5}
 
     \begin{tabular}{|c|c|c|c|c|}
-        \beginConnectorTable{SG-90}
-        \multirow{4}{*}{\makecell{SG-90}}
-        \connectordata{
-            \begin{scope}
-                \clip (0,0) rectangle  +(2,1.5);
-                \node[inner sep=0pt] at (0.9,0.75)
-                    {\includegraphics[scale=0.2]{pictures/SG90.jpg}};
-            \end{scope}
-        }{
-            \draw (0,0) rectangle (3,1.5) ;
-        }{Aliexpress}{SG-90} {5V} {1A} 
-        & \multicolumn{4}{|l|}{\tabitem Sin marca} \\
-        \hline
-        \connectorblockinfo{Uso}{Control Desvios}
-        \connectorblockinfo{Ubicacion}{TT-Tren}
-    \end{tabular}
-    \caption{Servo SG-90}
-    \label{tab:sg90}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \renewcommand\theadfont{\bfseries}
-    \setlength{\tabcolsep}{10pt}
-    \renewcommand{\arraystretch}{1.5}
-
-    \begin{tabular}{|c|c|c|c|c|}
-        \beginConnectorTable{C1.5CLS}
-        \multirow{4}{*}{\makecell{C1.5CLS}}
+        \beginConnectorTable{Modulos Ethernet}
+        \multirow{4}{*}{\makecell{ENC28J60 }}
         \connectordata{
             \begin{scope}
                 \clip (0,0) rectangle  +(3,1.5);
-                \node[inner sep=0pt] at (1.5,0.75)
-                    {\includegraphics[scale=0.2]{pictures/ServoLineal.jpg}};
+                \node[rotate=-30] at (1.5,0.75)
+                    {\includegraphics[scale=0.08]{pictures/ETHArduino.jpg}};
             \end{scope}
         }{
             \draw (0,0) rectangle (3,1.5) ;
-        }{Aliexpress}{Servo Lineal} {5V} {1A} 
+        }{Aliexpress}{Eth Arduino ENC} {5V} {1A} 
         & \multicolumn{4}{|l|}{\tabitem Sin marca} \\
         \hline
-        \connectorblockinfo{Uso}{Control Desvios}
+        \connectorblockinfo{Uso}{LCB por Ethernet}
         \connectorblockinfo{Ubicacion}{TT-Tren}
     \end{tabular}
-    \caption{Servo SG-90}
-    \label{tab:ServoLineal}
+    \caption{Ethernet}
+    \label{tab:ModuloEncETH}
+\end{table}
+\subsection{Audio}
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Modulos Audio}
+        \multirow{4}{*}{\makecell{PCM-5102 }}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[] at (1.5,0.8)
+                    {\includegraphics[scale=0.14]{pictures/PCM5102.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Aliexpress}{PCM5102A} {5V} {10mA} 
+        & \multicolumn{4}{|l|}{\tabitem CJMCU} \\
+        \hline
+        \connectorblockinfo{Uso}{Audio de fondo en la Maqueta}
+        \connectorblockinfo{Ubicacion}{TT-Tren}
+    \end{tabular}
+    \caption{Modulos de Audio}
+    \label{tab:Pcm5102}
 \end{table}

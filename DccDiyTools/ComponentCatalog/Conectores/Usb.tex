@@ -1,0 +1,35 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../ComponentCatalog.tex
+%!TEX root=../ComponentCatalog.tex
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{USB}
+        \multirow{3}{*}{\makecell{Panel}}
+    
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=.1]{pictures/connectors/CAB-15464.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{DigiKey}{CAB-15464} {5V} {0.5A} 
+        
+        \connectorinfo{Codigo}{CAB-15464}{
+            \tabitem \textbf{Fabricante}: Spark Fun
+        }
+        \cline{1 - 2}
+        
+        \connectorblockinfo{Uso}{Usb en cajas}
+        \connectorblockinfo{Ubicacion}{TT-Tren}
+    \end{tabular}
+    \caption{Conectores RJ45}
+    \label{tab:RJ45}
+\end{table}
