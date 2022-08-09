@@ -3,36 +3,6 @@
 % !TeX root = ../ComponentCatalog.tex
 %!TEX root=../ComponentCatalog.tex
 
-%EC11
-\begin{table}[H]
-    \centering
-    \renewcommand\theadfont{\bfseries}
-    \setlength{\tabcolsep}{10pt}
-    \renewcommand{\arraystretch}{1.5}
-
-    \begin{tabular}{|c|c|c|c|c|}
-        \beginConnectorTable{Encoder EC11}
-        \multirow{4}{*}{\makecell{EN11 \\ Suelto}}
-        \connectordata{
-            \begin{scope}
-                \clip (0,0) rectangle  +(2.2,1.5);
-                \node[inner sep=0pt] at (0.2,-0.4)
-                    {\includegraphics[scale=.07]{pictures/JST.jpg}};
-            \end{scope}
-        }{
-            \draw (0,0) rectangle (3,1.5) ;
-        }{Amazon}{EC11} {5V} {10mA} 
-        
-        \connectorinfo{Codigo}{EN11-HSM1BQ30}{
-            \tabitem \textbf{Fabricante}: TR Electronics
-        }
-        \cline{1 - 2}
-        \connectorblockinfo{Uso}{UI Dcc Decoder Config}
-        \connectorblockinfo{Ubicacion}{TR}
-    \end{tabular}
-    \caption{Encoder EC11}
-    \label{tab:EC11}
-\end{table}
 
 %Mouse
 \begin{table}[H]
@@ -63,4 +33,49 @@
     \end{tabular}
     \caption{Encoder EC10}
     \label{tab:EC10}
+\end{table}
+
+%EC11
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Encoder EC11}
+        \multirow{4}{*}{\makecell{EN11 \\ Suelto}}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(2.2,1.5);
+                \node[inner sep=0pt] at (0.2,-0.4)
+                    {\includegraphics[scale=.07]{pictures/JST.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Amazon}{EC11} {5V} {10mA} 
+        
+        \connectorinfo{Codigo}{EN11-HSM1BQ30}{
+            \tabitem \textbf{Fabricante}: TR Electronics
+        }
+        \cline{1 - 2}
+        \connectorblockinfo{Uso}{UI Dcc Decoder Config}
+        \connectorblockinfo{Ubicacion}{TR}
+        \beginConnectorTable{Encoder HW-040 (EC11)}
+        \multirow{4}{*}{\makecell{HW-040 \\ En PCB}}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[inner sep=0pt] at (1.5,0.75)
+                    {\includegraphics[scale=.09]{pictures/EncModulo.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Aliexpress}{HW-0404} {5V} {10mA}
+        \cline{1 - 2}
+        \connectorblockinfo{Uso}{UI Dcc Decoder Config}
+        \connectorblockinfo{Ubicacion}{TT-Tren}
+    \end{tabular}
+    \caption{Encoder EC11}
+    \label{tab:EC11}
 \end{table}
