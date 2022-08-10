@@ -21,7 +21,6 @@
 
 \RequirePackage[dvipsnames,table]{xcolor}
 
-
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
@@ -54,6 +53,7 @@
 %%---------------------
 %% Datos para el Documento DanielBahn
 %%---------------------
+\newcommand{\dbHeaderTitle}[1]{\renewcommand{\dbHeaderTitle}{#1}}
 \newcommand{\dbType}[1]{\renewcommand{\dbType}{#1}}
 \newcommand{\dbCode}[1]{\renewcommand{\dbCode}{#1}}
 \newcommand{\dbDate}[1]{\renewcommand{\dbDate}{#1}}
@@ -114,56 +114,53 @@
 \makeatletter
 \def\@maketitle{%
  %   \dbOldMaketitle
-    \thispagestyle{empty} % Suppress headers and footers on this page
+     % Suppress headers and footers on this page
+
     \begin{pagcompleta}
-        %\begin{addmargin}[4cm]{-1cm}
-            
-            \tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at ([xshift=\marginparsep/2]current page.center){\includegraphics[width=15cm]{example-image}};
-            \centering
-            \hfill\includegraphics[width=2cm]{example-image-1x1} 
-            \parbox[b][2cm][t]{2.5cm}{
-                \vfill
-                \parbox[b][0.25cm][c]{2.5cm}{ }
-                \parbox[b][0.5cm][c]{2.5cm}{
-                    \centering \dbType
-                }
-                \parbox[b][0.5cm][c]{2.5cm}{
-                    \centering {\Large\textbf{\dbDate-\dbCode}}
-                }
-                \parbox[b][0.5cm][c]{2.5cm}{
-                    \centering \dbStatus \ v\dbVersion
-                }
-                \parbox[b][0.25cm][c]{2.5cm}{ }
-                
-            }\par
-            %\setlength{\parindent}{-100pt}
-            \vspace{10\baselineskip}
-            \large \dbType \ {\textbf{\dbDate-\dbCode}}\par
-            {\fontsize{60pt}{64pt}\usefont{T1}{qzc}{m}{it}\@title \par}
-            {\fontsize{40pt}{42pt}\selectfont\subtitle \par}
-
-            {\Large\fontseries{l}\selectfont{\@author}\par}
-            {\small\usefont{T1}{MontserratAlternates-TOsF}{b}{n}(\dbStatus \ v\dbVersion)}\par
-           
-            \iftoggle{dbImagePresent}{ % Conditional logic for the unnumbered sections class options
-	            \vspace{5\baselineskip}
-                \includegraphics{\dbImage}
-            }{
-	            
+        \thispagestyle{empty}
+        \tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at ([xshift=\marginparsep/2]current page.center){\includegraphics[width=15cm]{example-image}};
+        \centering
+        \hfill\includegraphics[height=2cm]{example-image-1x1} 
+        \parbox[b][2cm][t]{2.5cm}{
+            \vfill
+            \parbox[b][0.25cm][c]{2.5cm}{ }
+            \parbox[b][0.5cm][c]{2.5cm}{
+                \centering \dbType
             }
-
+            \parbox[b][0.5cm][c]{2.5cm}{
+                \centering {\Large\textbf{\dbDate-\dbCode}}
+            }
+            \parbox[b][0.5cm][c]{2.5cm}{
+                \centering \dbStatus \ v\dbVersion
+            }
+            \parbox[b][0.25cm][c]{2.5cm}{ }
             
-        %\end{addmargin}
+        }\par
+        %\setlength{\parindent}{-100pt}
+        \vspace{10\baselineskip}
+        \large \dbType \ {\textbf{\dbDate-\dbCode}}\par
+        {\fontsize{60pt}{64pt}\usefont{T1}{qzc}{m}{it}\@title \par}
+        {\fontsize{40pt}{42pt}\selectfont\subtitle \par}
+
+        {\Large\fontseries{l}\selectfont{\@author}\par}
+        {\small\usefont{T1}{MontserratAlternates-TOsF}{b}{n}(\dbStatus \ v\dbVersion)}\par
+        
+        \iftoggle{dbImagePresent}{ % Conditional logic for the unnumbered sections class options
+            \vspace{5\baselineskip}
+            \includegraphics{\dbImage}
+        }{
+            
+        }           
     \end{pagcompleta}
 
     %\dbOldMaketitle
 
     \newpage
+    \thispagestyle{fancy} 
     \vspace*{\fill}
     \doclicenseThis
-    \newpage
- 
- 
+    \pagestyle{fancy}
+    %\newpage
 }
 \makeatother
 
@@ -178,3 +175,21 @@
 	}
 }
 \makeatother
+
+
+%----------------------------------------------------------------------------------------
+%	Cabecera y Pie
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\renewcommand{\headrulewidth}{1.5pt} 
+\fancyhf{}
+
+\fancyhead[L]{\dbType \ \dbDate-\dbCode \ (\dbStatus)} 
+\fancyhead[C]{\dbHeaderTitle\  v\dbVersion} 
+\fancyhead[R]{\includegraphics[height=1cm]{example-image-1x1}} 
+\fancyfoot[L]{} % Left footer
+\fancyfoot[C]{\thepage/\ref{TotPages}} % Center footer
+\fancyfoot[R]{} % Right footer
