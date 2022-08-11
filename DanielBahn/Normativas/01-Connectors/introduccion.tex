@@ -37,13 +37,13 @@ manejar los trenes y recibir informacion de los accesorios.
     \label{fig:ModulosBuses}
 \end{figure}
 
-\subsection{Sentidos de circulacion}
+\subsection{Sentidos de circulacion/polarizacion}
 
 El ultimo apartado es definir el sentido de circulacion de la maqueta.
 La razon de esto es que Analogico se va hacia delante si por el carril derecho
 el voltaje es positivo, por lo que el sentido de circulacion marca la polaridad
 de los cables. En digital, es necesario respetar la polaridad de las fases (cables)
-por lo que definir un sentido facilita esta labor.
+por lo que en este caso más que de circulacion, seria de polarizacion.
 
 Por norma general se considera adelante ir en el mismo sentido de lectura, o que es
 lo mismo de izquierda a derecha, desde el punto de vista del usuario. Pero esto solo
@@ -61,3 +61,6 @@ Esta direciccion de Oeste a Este se conoce como Eastbound en ingles.
     \caption{Sentido de circulacion}
     \label{fig:Sentidos}
 \end{figure}
+
+Esto solo es un sistema para saber luego como cablear la maqueta de tal forma
+que no se produzcan cortos\sidenote{Sin ser un bucle} al pasar el tren 
