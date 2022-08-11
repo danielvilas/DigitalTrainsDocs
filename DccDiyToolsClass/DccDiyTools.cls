@@ -189,7 +189,7 @@
 
 \fancyhead[L]{\dbType \ \dbDate-\dbCode \ (\dbStatus)} 
 \fancyhead[C]{\dbHeaderTitle\  v\dbVersion} 
-\fancyhead[R]{\includegraphics[height=1cm]{example-image-1x1}} 
+\fancyhead[R]{\includegraphics[height=0.75cm]{example-image-1x1}} 
 \fancyfoot[L]{} % Left footer
 \fancyfoot[C]{\thepage/\ref{TotPages}} % Center footer
 \fancyfoot[R]{} % Right footer

@@ -1,13 +1,32 @@
 
 \begin{tikzpicture}
-        \draw [very thin, green]  (0,0) grid (15,15);
-        \foreach \x [] in {0,1,...,15}{  
-            \node[] at (\x,0) {\x} ;
-        }
-        \foreach \y [] in {1,2,...,15}{  
-            \node[] at (0,\y) {\y} ;
-        }
-        \begin{scope}[shift={(2,5)}]
+        % \draw [very thin, green]  (0,0) grid (15,15);
+        % \foreach \x [] in {0,1,...,15}{  
+        %     \node[] at (\x,0) {\x} ;
+        % }
+        % \foreach \y [] in {1,2,...,15}{  
+        %     \node[] at (0,\y) {\y} ;
+        % }
+
+
+        \draw[fill=Melon!15] (1.75,0.5) rectangle +(11.5,10);
+
+        \draw[red, line width=1.5pt] (5.5, 6.25) -- (6.2,6.25) -- (6.2,9.8);
+        \draw[red, line width=1.5pt] (5.5, 5.5) -- (6.4,5.5) -- (6.4,8.8);
+        \draw[red, line width=1.5pt] (5.5, 4.75) -- (6.6,4.75) -- (6.6,7.8);
+        \draw[red, line width=1.5pt] (5.5, 4) -- (7.7,4) -- (7.7,7.8);
+        \draw[red, line width=1.5pt] (5.5, 3.25) -- (7.9,3.25) -- (7.9,8.8);
+
+        
+        
+        \begin{scope}[shift={(2,7)}]
+
+            \draw[line width=1.5pt, YellowGreen, cap=round]
+                (10,-0.5)--(10,-0.4) arc (180:90:.05)
+                -- (10.5,-0.3) arc (-90:90:.1) --(10.15,-0.1)
+                arc(270:180:.05) --(10.1,1.5);
+            
+
             \pic()at(1.5,0.5){RailStraigh=black};
             \pic()at(4.1,0.5){RailStraigh=black};
             \pic()at(6.8,0.5){RailStraigh=black};
@@ -19,10 +38,47 @@
             \pic()at(1.5,2.5){RailStraigh=Sepia};
             \pic()at(4.1,2.5){RailStraigh=Sepia};
             \pic()at(8.1,1.5){Turnout=black};   
+        
+            \draw[fill=white] (9,-1.5) rectangle +(2,1);
+            \node at (10,-1) {Servo};
+            \draw[fill=white] (6.5,-1.5) rectangle +(2,1);
+            \node at (7.5,-1) {Semaforo};
+
+            \draw[fill=red!50] (7,-0.2) circle(.2);
+            \draw[fill=yellow!50] (7.5,-0.2) circle(.2);
+            \draw[fill=green!50] (8,-0.2) circle(.2);
             
         \end{scope}
         
+        \draw[fill=white] (3,3) rectangle +(2,3.5);
+        \node at (4,4.75) {ABC/ToTi};
+        \draw[fill=white] (8.5,3) rectangle +(4.5,1.5);
+        \node at (10.75,3.75) {Dcc Decoder};
 
+        \draw[red, line width=3pt] (1,1) -- (14,1); 
+        \draw[blue, line width=3pt] (1,2) -- (14,2); 
+        \node[draw, fill=yellow!50]at(1,1){DCC};
+        \node[draw, fill=yellow!50]at(14,1){DCC};
+        \node[draw, fill=white]at(14,2){CC};
+        \node[draw, fill=white]at(1,2){CC};
 
+        \draw[red, line width=1.5pt](2.5,1) -- (2.5,4.75);
+        \draw[red, line width=1.5pt] (11.5, 1) -- (11.5,2.75); 
+        \draw[blue, line width=1.5pt] (4.5, 2) -- (4.5,2.75);
+        \draw[blue, line width=1.5pt] (12.5, 2) -- (12.5,2.75);
 
+        \node[white, scale=0.75, draw, fill=black]at(2.5,4.75){Dcc-L};
+
+        \node[white, scale=0.75, draw, fill=black]at(5.5,6.25){Dcc-L};
+        \node[white, scale=0.75, draw, fill=black]at(5.5,5.5){Dcc-L};
+        \node[white, scale=0.75, draw, fill=black]at(5.5,4.75){Dcc-L};
+        \node[white, scale=0.75, draw, fill=black]at(5.5,4){Dcc-L};
+        \node[white, scale=0.75, draw, fill=black]at(5.5,3.25){Dcc-L};
+
+        \node[white, scale=0.75, draw, fill=blue!50]at(4.5,2.75){Cc-L};
+        \node[white, scale=0.75, draw, fill=blue!50]at(12.5,2.75){Cc-L};
+        \node[white, scale=0.75, draw, fill=black]at(11.5,2.75){Dcc-L};
+
+        \draw[Peach, line width=1.5](9.5,4.5)--(9.5,5.5);
+        \draw[Peach, line width=1.5](12,4.5)--(12,5.5);
 \end{tikzpicture}    
