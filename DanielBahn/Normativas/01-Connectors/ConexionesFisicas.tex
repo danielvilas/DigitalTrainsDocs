@@ -4,11 +4,19 @@
 %!TEX root=DB-Conectors.tex
 En la practica para los buses DCC y CC necesitamos dos cables para cada uno y, como transportan potencia, no vale cualquier cable que nos encontremos. Deben ser de un grosor adecuado para la corriente que pueden llegar a llevar y por ende los conectores tienen que ir parejos a dicha corriente. 
 
-Fijandonos en el diagrama de todo el sistema \ref{fig:SegmentosDetail}, podemos ver 5 tipos de conectores:
+Fijandonos en el diagrama de todo el sistema \ref{fig:SegmentosDetail}, podemos ver 5 tipos de conectores y cables:
 \begin{itemize}
 	\item \textbf{LCB Hub}: es el conector para comunicar la central DCC con otros disposivos, como un panel de control (Mimic Panel) o un Mando DCC.
 
 	Este conector depende del sistema LCB a utilizar, en este caso LocoNet.
-	\item \textbf{DCC}: 
+	\item \textbf{DCC}: Forman el bus principal de DCC, que recordemos son dos cables polarizados. Este par es el comunica varios varios modulos entre si y de el cuelgan latiguillos a los diferentes elementos, como tramos de vias o modulos electronicos.
 
+Los conectores DCC son polarizados\footnote{En realidad, podrian no estarlo. Pero las maquinas suelen estar tocando varios puntos de las vias, si esos puntos no estan en fase se produce un corto. Por eso es necesario tener polaridad en las vias DCC para asegurar que una maquina siempre este tocando puntos en fase} por lo que uno es Hembra y otro Macho. Estan en los bordes del modulo para conectarse entre si y dar continuidad a un mismo segmento electrico.\sidenote{Booster o seccion protegida} Se debe esperar que circulen varios amperios, se puede decir que hasta el 80\% de la capacidad del Booster/Central y con picos hasta el 100\%.
+\item \textbf{DCC-L}: Estos conectores y cables portan la señal DCC del bus a un tramo de via. Un tramo de via es la minima seccion de detección, por lo que su tamaño dependera de cada maqueta, pero solo deberia soportar una maquina y como mucho un vagon\sidenote{modificado para poder ser detectado}
+
+Cada modulo o segmento tendra varios tramos. En ejemplo \ref{fig:ModuloDetail}, tenemos 5 tramos, aunque se podria simplificar a 3 segun el tamaño real de las vias.
+
+Estos conectores y cables deben seguir siendo polarizados, pero no necesitaran transportar mucho amperaje.
+
+\item \textbf{CC}: Este bus transporta volaje constante (normalmente 12V) para que los accesorios tengan una fuente de alimentacion independiente del bus DCC. 
 \end{itemize}
