@@ -1,6 +1,7 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = es_ES
 % !TeX root = DB-Conectors.tex
+%!TEX root=DB-Conectors.tex
 Daniel Bahn es una empresa ficticia para una maqueta de trenes personal. Esta empresa simula ser la gestora de la red ferroviaria dispuesta en dicha maqueta.
 Es por tanto el hilo conductor que nos permite entender dicha maqueta.
 
@@ -33,7 +34,7 @@ manejar los trenes y recibir informacion de los accesorios.
 \begin{figure}[H]
     \centering
     \input{tikz/Module.tex}
-    \caption{Modulos y Buses}
+    \caption{Segmentos y Buses}
     \label{fig:ModulosBuses}
 \end{figure}
 
@@ -64,3 +65,59 @@ Esta direciccion de Oeste a Este se conoce como Eastbound en ingles.
 
 Esto solo es un sistema para saber luego como cablear la maqueta de tal forma
 que no se produzcan cortos\sidenote{Sin ser un bucle} al pasar el tren 
+
+\subsection{Glosario - Arquitectura Avanzada}
+Esta maqueta es simple, pero las reglas que aqui se definan deben servir para maquetas más complejas\sidenote{Más vias, más accesorios y/o que requieran varios boosters}. Estas maquetas tendran más segementos que se agruparan en districtos electricos y modulos funcionales. A su vez los districtos electricos se agruparan en sectores que se corresponderan con los boosters. Como tambien los modulos se agruparan para hacer una zona funcional.
+
+Por lo tanto los segmentos se agruparan desde dos puntos de vista, funcional y electrico. Y debemos definir unas nomenclaturas y reglas a aplicar a DanielBahn presente y futuro\sidenote{Que podran ser actualizadas en caso de necesidad}. Partiendo de la agrupacion más grande, ambos modelos convergen en segmento, lo que nos permite considerarlo la unidad atomica. 
+
+Como ejemplo, para explicar los conceptos,  supondremos la version grande de DanielBahn que consta de tres escenas principales (dos estaciones termino y una de paso basa en santo sepulcro de zaragoza)
+
+Nota: Estos conceptos se han definido asi para DanielBahn. Otros autores/fabricantes/\dots tienen su propia nomenclatura para conceptos similares o intercamabian los conceptos (como distrito/sector). En cualquier caso, se definen aqui como se usaran en este documento y posteriores de DanielBahn.
+
+Asi que desde el punto de vista funcional\sidenote{Y de mas grande a pequeño} los conceptos son:
+
+\begin{itemize}
+\item \textbf{Maqueta}: Como se puede imaginar es la maqueta entera, que estara dividida en \textit{salas}, si es muy grande, o, directamente, en \textit{escenarios} 
+\item \textbf{Sala}: Una sala se corresponde con una division por paredes que obligue a los visitantes a hacer un recorrido "<largo"> para seguir viendo la maqueta y que sea suficientemente alta para bloquear la vision. Por lo general las salas se corresponden con habitaciones, pero una separacion con biombos tambien seria posible.
+
+Por lo general solo las máquetas más grandes tendran varias salas, el resto estaran en una sola habitacion. Pero tambien estan apareciendo por internet algunas que tienen una \textit{sala tecnica} en la misma habitacion, simplemente "<escondida"> de los ojos de los visitantes.
+
+Cada sala tendran varios \textit{escenarios}, aunque es posible que nuestra maqueta solo tenga un escenario.
+\item \textbf{Escenario}: Un escenario es un conjunto de \textit{escenas} que comparten un mismo tema. Y son los candidatos a tener un \textit{separador escenico}.
+
+Por ejemplo nuestro tema puede ser una linea costera donde pondremos una estacion termino, un puerto y un tramo de la linea costera.
+\item \textbf{Escena}: Cada una de las partes de un escenario que tienen significado completo por si solas. Cada Escena tendra uno o varios \textit{Modulos funcionales}.
+
+En ejemplo expuesto de la linea costera, las escenas serian la estacion, el puerto y el tramo costero. 
+
+\item \textbf{Modulo Funcional}: Son cada una de las partes [practicamente] independientes, con las que se hacen una escena. Se componen de al menos un \textit{segmento}.
+
+Volviendo al ejemplo, la estacion puede formarse por los modulos funcionales de andenes de pasajeros, playa de vias y darsenas de mercancias.
+
+\item \textbf{Segmento}: Los segementos son los modulos más pequeños de construccion, se corresponden con los segementos ya descritos. 
+
+Tendran varios tramos de via, accesorios\sidenote{} y paisaje.
+\end{itemize}
+
+Otros conceptos funcionales que no dependen de la agrupacion son:
+
+ 
+\begin{itemize}
+\item \textbf{Sala Tecnica}: La sala tecnica, es una parte de nuestra maqueta reservada para operaciones que estan fuera del mundo modelado/simulado. Como por ejemplo el lugar para colocar los vagones o recogelos en su caja.
+
+Por lo general estas salas suelen ser:
+
+\begin{itemize}
+\item La zona de mantenimiento, con la via de programacion, el limpiador de ruedas,\dots
+\item El taller de montaje de edificios
+\item Donde se pone un ordenador con algun software de control
+\item Una playa de vias para esconder composiciones y sacarlas al rato. 
+\item Y tambien para montarlas y desmontarlas
+\item Estan sin decorar.
+\end{itemize}
+
+\item \textbf{Separador escenico}:
+\end{itemize}
+
+ 
