@@ -16,8 +16,8 @@
 \begin{abstract}
 Schematics an formulas from Coursera Courses
 \end{abstract}
-
-\section{Basic Formulas}
+\section{Coursera}
+\subsection{Basic Formulas}
 \begin{tikzpicture}[american]
 \draw(0,0) to[V=V, invert] (0,2) to[short, i=I] (2,2)
 to[resistor, R=R] (2,0) -- (0,0)
@@ -29,7 +29,7 @@ to[resistor, R=R] (2,0) -- (0,0)
 
 Figure 1
 
-\section{Module 1}
+\subsection{Module 1}
 Electric current (I) is the quantity of charge (Q) coulombs that passes through a given area in a specified time (t).
 
 $$i(t)=\frac{dQ(t)}{dt}$$
@@ -52,7 +52,7 @@ $$G=\frac{1}{R}=\frac{\sigma A}{L}$$
 $$\sigma = \frac{1}{\rho}$$
 
 
-\section{Module 2}
+\subsection{Module 2}
 KVL: Sum of the voltages around any loop = zero. If a current enters on - the voltage is negated.
 $$\sum_{i}^{loop} Vi =0 $$
 
@@ -76,7 +76,7 @@ $$Vi=\frac{Ri}{R1+R2}Vs$$
 Current Divider Law. 
 Two resistors in parallel R1 and R2, Ii=current flows through Ri, Rc the other resistor:
 $$Ii=\frac{Rc}{R1+R2}Is$$
-\section{Module 3}
+\subsection{Module 3}
 Mesh Analysis
 
 1. Define mesh currents, one for each noninclusive
@@ -139,7 +139,7 @@ $$Node B := \frac{Vb-Va}{R1}+\frac{Vb-Vc}{R2} +\frac{Vb-Vd}{R3+R6}=0$$
 $$Node C := \frac{Vc-Vb}{R2}+\frac{Vc-Vd}{R5} +\frac{Vc-0}{R4}=0$$
 $$Node D := \frac{Vd-Vc}{R5}+\frac{Vd-Vb}{R3+R6} -Is=0$$
 
-\section{Module 4}
+\subsection{Module 4}
 Thevenin-Norton
 From 2 terminals all circuits can be simplified to simple form:
 
@@ -171,7 +171,7 @@ output to that source.
 2. Repeat this procedure for each source.
 3. Sum the corresponding outputs.
 
-\section{Module 5}
+\subsection{Module 5}
 Capacitors
 Capacitance (C) in Farads relates to the charge (q) in Coulombs and the voltage (v) in volts, according to
 $$q=Cv$$
@@ -220,7 +220,7 @@ $$w(t)=\int_{-\inf}^{t}i(t)v(t)$$
 $$w(t)=\frac{1}{2}C\cdot v(t)^2$$
 $$w(t)=\frac{1}{2}L\cdot i(t)^2$$
 
-\section{Module 6}
+\subsection{Module 6}
 Steady State
 
 Inductors are short circuits $v=0$ i constant. Capacitors are open circuits $i=0$ v constant.
@@ -246,7 +246,7 @@ Time Constant is the seconds where the data changes 1/3 approx. On capacitors $\
 $$Capacitors:=v(t)=Vth+\left(v_0-Vth\right)e^{-t/RthC}$$
 $$Inductors:=i(t)=Ith+\left(i_0-Ith\right)e^{-tRht/L}$$
 
-\section{Module 7}
+\subsection{Module 7}
 Standard Form of Second Order Differential
 
 $$\frac{d^{2}}{d t^2} y(t) +2\alpha\frac{d}{dt} y\left(t\right)+\omega_0^2y(t)=f(t)$$
@@ -289,7 +289,7 @@ $$\frac{d^{2}}{d t^2} y(t) +2\alpha\frac{d}{dt} y\left(t\right)+\omega_0^2y(t)=f
 $$\frac{d^{2}}{d t^2} i(t) +\frac{1}{RC}\frac{d}{dt} i\left(t\right)+\frac{1}{LC}i(t)=\frac{1}{LC}i_s$$
 $$\alpha=\frac{1}{2RC},\ \omega_0^2=\frac{1}{LC}$$
 \newpage
-\section{AC - Module 1}
+\subsection{AC - Module 1}
 Sinusoudal:
 $$
 Default\ Form \longrightarrow V_m \\cos(\omega t + \theta) 
@@ -355,13 +355,13 @@ $$ H(\omega)=\frac{Y}{X}= \frac{A_{out}\angle\theta _{out}}{A_{in}\angle\theta _
 $$ A_{out} = |H(\omega)|\cdot A_{in} $$
 $$ \theta_{out}=\angle(H(\omega)) + \theta_{in}$$
 
-\section{AC - Module 2}
+\subsection{AC - Module 2}
 RC circuit
 $$\omega _c=\frac{1}{RC}$$ 
 RLC
 $$\omega _c=\frac{1}{\sqrt{LC}}$$
 R adjust gain on $\omega _c$ 
-\section{AC - Module 3}
+\subsection{AC - Module 3}
 We can choose $\omega _c$ but no the gain $G = 1$ or $\SI{0}{\decibel}$. As C options are limited choose C as $\SI{1}{\micro \farad}$ or L as $\SI{10}{\milli\henry}$
 
 Before apply Module 2 function, \textbf{convert to Rad/s}.
@@ -371,7 +371,7 @@ $$\omega _ 0 = \frac{1}{\sqrt{LC}}$$
 $$\omega _b = \frac{R}{L}$$
 
 Notch filter or Band Stop Voltage across LC
-\section{AC - Module 4}
+\subsection{AC - Module 4}
 RMS, Root Mean  Square
 $$RMS (f(x)) =\sqrt{(mean(f(x)))^2} $$
 $$RMS_{[co]sine}=\frac{A}{\sqrt{2}}$$
@@ -410,7 +410,7 @@ $$|Z_L|=|Z_{th}|$$
 Power Factor Correction on $Z_l=RL$ adding parallel C
 
 $$C=\frac{L}{R^2+\omega^2L^2}$$
-\section{AC - Module 5}
+\subsection{AC - Module 5}
 Primary coil, where the source is connected
 Secondary coil where the load is connected
 
@@ -425,7 +425,7 @@ linear model for communications applicactions, impedance analysis
 ideal model for power transfer, voltages and number of coil turns.
 
 
-\subsection{Linear model}
+\subsubsection{Linear model}
 Each coils consider as inductors ($j\omega L_1$ and $j\omega L_2$)
 
 %add graphic of variables
@@ -453,7 +453,7 @@ $$I_2= \frac{j\omega M}{(Z_{Th} + j\omega L_1)(Z_L + j\omega L_2)+\omega^2M^2}V_
 $$Z_{eq}=\frac{V_{Th }}{I_1}=Z_{Th}+j\omega L_1 + \frac{\omega^2M^2}{Z_L+j\omega L_2}$$
 $\frac{\omega^2M^2}{Z_L+j\omega L_2}$ is called Reflected inductance
 
-\subsection{Ideal Transformer Model}
+\subsubsection{Ideal Transformer Model}
 
 Mutual induction 
 $$M=k\sqrt{L_1L_2}$$
@@ -471,7 +471,7 @@ $$\frac{v_1}{N_1}=\frac{v_2}{N_2}$$
 $$N_1i_1=N_2i_2 $$
 $N_i$ turns of the coil $i$
 
-\subsection{Linear Variable Differential Transformers LVDT}
+\subsubsection{Linear Variable Differential Transformers LVDT}
 Primary coil at the "centrer" of a ferris core, the core can move.
 Two secondary coils turned in opposite directions.  
 
