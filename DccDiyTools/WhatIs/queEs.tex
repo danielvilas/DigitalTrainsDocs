@@ -3,14 +3,45 @@
 % !TeX root = WhatIs.tex
 %!TEX root=WhatIs.tex
 
-En un principio, como la mayoria de los aficionados al tren en miniatura, la aventura empieza con un niño y su ovalo de vias, un transformador o mando analogico, una maquina y un par de vagones\sidenote{Y en los años 90, en españa con Ibertren}. El tiempo pasa y el niño se hace adulto y deja temporalmente la aficion, la vida pasa. 
+En un principio, como la mayoria de los aficionados al tren en miniatura, la aventura empieza hace unos años con un ovalo de vias,
+un transformador o mando analogico, una maquina y un par de vagones. El sistema digital DCC ya existe pero aun compite con otros\sidenote{Como "delta", MFX,\dots},
+y aun no es muy accesible en terminos economicos. A su vez acaba de aparecer la platafoma de microntroladores Arduino que permite,
+entre otras cosas, generar una señal PWM para controlar motores.
 
-Pero un dia descubre la plataforma arduino y ese joven ve que puede controlar su tren analogico con un movil y una placa de 10€, Y vuelve la su viejo ovalo.
-Durante ese impas, la tecnologia\sidenote{Aplicada al modelismo ferroviario} ha avanzado mucho: Maquinas digitales, control de desvios lentos, Automatizacion, JMRI, DCC, LocoNet, XPress-Net\dots
+Armados con un con Arduino UNO, un Motor-Shield y un adapatador de corriente continua unos valientes comprueban que es posible
+controlar la velocidad de un tren y su direccion digitalmente. A partir de esto ellos mismos se fabrican unos circuitos sencillos
+para dar algo más de funcionalidad, como una placa que usa la corriente de accesorios del transformador analogico, un display
+LCD de 20x02 caracteres, una placa de proteccion ante corto circuitos,\dots
 
-Ese Joven recuerda sus conocimientos de electronica y se hace unas placas electronicas para alguna cosa s de su maqueta. Y el tiempo vuelve a pasar. Madura\dots Lo que quiere decir que ahora tiene algo de dinero, espacio y un poquito mas de sentido comun, para usarlo en la aficion.
+Con el tiempo el sistema DCC se hace más accesible, y a la lista de modulos se amplia cosas DCC, y a su vez los modulos son más
+genericos y reutilizables\sidenote{Sin o con pocas modificaciones}. Han pasado de ser algo muy particular para los problemas de
+una maqueta, a ser herramientas que puden ser usadas en todas las maquetas.
 
-Un dia ve sus diseños, en su maqueta y se da cuenta de que otras personas podrian usarlas en sus maquetas. En ese momento nace Dcc DiY Tools. Un emprendedor diria "<Eureka, ya tengo algo que vender">, pero esa persona no es un emprendedor, es alguien que cree que la ciencia y la informacion debe ser libre.
+En un momento dado se da la posibilidad de hacer una nueva maqueta y se toma la decision de normalizar\sidenote{O standarizar,
+como se prefiera decir} una serie de componentes(Conectores, cables, etc\dots) y con ella de documentar los modulos que se hagan
+como si fuera un producto comercial. Ha nacido DCC DiY Tools.
+\begin{itemize}
+    \item \textit{DCC DiY Tools} es una declaracion de intenciones. De la intencion de hacer las cosas bien.
+    \item Hacer los modulos reutilizables y adaptables a cualquier maqueta, como un producto de una empresa
+    \item Con calidad y repetibilidad. Pudiendo garantizar que se cumplen las especificaciones. 
+    \item Siguiendo una normativa propia, como por ejemplo de conectores, para que los modulos sean similares
+    \item Con los documentos necesarios equivalentes a los que se necesitan en una empresa, tales como manuales de usuario, de 
+    analisis y diseño, esquematicos, \dots
+    \item Basado en la descripcion de Open Source HardWare, o OSHW, con toda la documentacion abierta y libre. Ya no solo la 
+    minima requerida por la OSHW, si no de las decisiones tomadas y su razon.
+    \item Seran educativos. O que puedan servir\sidenote{Aunque sea de lo que no hay que hacer} para entender las cosas.
+    \item Un conjunto de repositorios git o similar.
+\end{itemize}
 
-La transmision libre y publica de informacion hace posible que el mundo avance más rapido.
-Esos diseños existen gracias al OSHW\sidenote{Open Source HardWare} por que gente desinteresada ha documentado y hecho publica informacion para que sea accesible para todo el mundo.
+En resumen \textit{Dcc DiY Tools} es un repositorio de informacion abierta, lo mas completa posible, de modulos OSHW usables
+en maquetas de tren, tanto digitales, como analogicas.
+
+Al ser más inforamacion que otra cosa, la licencia y la garantia de los productos manufacturados es la definida por OSHW, 
+que se puede resumir\sidenote{Mas mal que bien} en  "<haz lo que quieras, sin ninguna garantia">, ver el apartado de
+garantia y licencia para una informacion detallada.
+
+\subsection{¿Que no es?}
+DCC DiY Tools \textbf{no} es una empresa, ni una linea de productos, ni una tienda ni nada mas que un sitio de documentacion. 
+Tampoco es un sitio web con una comunidad\sidenote{Ojala se convierta en ello.} que pueda dar soporte rapido\sidenote{Mientras
+ tanto se dara lo que se pueda}.
+En realidad es una persona intentando documentar sus circuitos de tal forma que les puedan servir a otros.
