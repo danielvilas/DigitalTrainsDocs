@@ -4,18 +4,53 @@
 %!TEX root=../Thermal.tex
 
 \begin{tikzpicture}[american]
-    \draw (0,0) circle[radius=1pt];
+    %\draw (0,0) circle[radius=1pt];
     \begin{scope}[shift={(-5,0)}]
         %\draw (0,0) circle[radius=1pt];
         %\draw (-2.5,-3.5) rectangle +(5,7);
         
         \draw (-2,2.5) to[isource, l=$W$ ] (0.5,2.5)
-            node[right,red]{$\leq \SI{125}{\celsius}$} 
+            node[right,red]{$T_j$} 
             to[R, l2=$R_{thJA}$ and $\si{\degree\kelvin\per\watt}$] (0.5,-0)
-            node[right,red]{$\approx \SI{25}{\celsius}$} 
+            node[right,red]{$T_{amb}$} 
             to[vsource=$T_a$] (0.5,-2.5)
             node[right,red]{$\SI{0}{\celsius}$} 
             node[ground](gnd){};
-        \node at(0,-3.5) {a) General};
+        \node at(0,-3.5) {a) Simplificado};
     \end{scope}
+
+
+    \begin{scope}[shift={(-0,0)}]
+        %\draw (0,0) circle[radius=1pt];
+        %\draw (-2.5,-4.75) rectangle +(5,9.5);
+        
+        \draw (-2,3.75) to[isource, l=$W$ ] (0.5,3.75)
+            node[right,red]{$T_j$} 
+            to[R, l2=$R_{thJC}$ and $\si{\degree\kelvin\per\watt}$] (0.5,1.25)
+            node[right,red]{$T_{case}$} 
+            to[R, l2=$R_{thCA}$ and $\si{\degree\kelvin\per\watt}$] (0.5,-1.25)
+            node[right,red]{$T_{amb}$} 
+            to[vsource=$T_a$] (0.5,-3.75)
+            node[right,red]{$\SI{0}{\celsius}$} 
+            node[ground](gnd){};
+        \node at(0,-4.75) {b) Normal};
+    \end{scope}
+
+    \begin{scope}[shift={(5,0)}]
+        %\draw (0,0) circle[radius=1pt];
+        %\draw (-2.5,-3.5) rectangle +(5,7);
+        
+        \draw (-2,3.75) to[isource, l=$W$ ] (0.5,3.75)
+            node[right,red]{$T_j \leq \SI{125}{\celsius}$} 
+            to[R, l2=$R_{thD}$ and $\si{\degree\kelvin\per\watt}$] (0.5,1.25)
+            node[right,red]{$T_{case} \leq \SI{100}{\celsius}$} 
+            to[R, l2=$R_{thJC}$ and $\si{\degree\kelvin\per\watt}$] (0.5,-1.25)
+        
+            node[right,red]{$T_{amb}\approx \SI{25}{\celsius}$} 
+            to[vsource=$T_a$] (0.5,-3.75)
+            node[right,red]{$\SI{0}{\celsius}$} 
+            node[ground](gnd){};
+        \node at(0,-4.75) {c) Usable};
+    \end{scope}
+
 \end{tikzpicture}
