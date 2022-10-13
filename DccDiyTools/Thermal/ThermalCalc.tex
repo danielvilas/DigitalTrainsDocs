@@ -5,11 +5,22 @@
 
 La forma de modelar/estimar que temperatura alcanzara el silicio en un chip es considerar
 la potencia que disipa como una fuente de corriente y el camino que tiene hasta el aire como
-una resistencia modelo simplificado(a):
+una resistencia modelo simplificado(a)\ref{fig:ThermalEquivalent}:
 
 \begin{figure}[H]
     \centering
     \input{tikz/thermalEquivalent.tex}
     \caption{Circuito Equivalente}
     \label{fig:ThermalEquivalent}
+\end{figure}
+
+En la realidad se puede modelar como dos resistencias, una $R_{thJC}$ : Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la carcasa al ambiente,
+tal y como se representa en el caso (b) \ref{fig:ThermalEquivalent}.
+En este modelo es importante mantener la temperatura del silicio $T_j$ por debajo de $\SI{125}{\celsius}$ lo que se corresponde con $T_c=\SI{100}{\celsius}$ en la carcasa. En la realidad, el modelo es más complejo, con resistencias en paralelo segun el dispador que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R_{thCA}$ por $R_{thHS}$ del disipador\sidenote{HeatSink}. 
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalFull.tex}
+    \caption{Diseño más complejo}
+    \label{fig:ThermalEquivFull}
 \end{figure}

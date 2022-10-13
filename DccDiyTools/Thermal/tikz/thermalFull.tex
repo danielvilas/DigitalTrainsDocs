@@ -1,0 +1,28 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{tikzpicture}[american]
+    %\draw (0,0) circle[radius=1pt];
+    \begin{scope}[shift={(-5,0)}]
+        %\draw (0,0) circle[radius=1pt];
+        %\draw (-3.25,-5.5) rectangle +(6.5,11);
+			
+			\draw (-2.75,4.5)
+				to[isource, l=$W$ ] ++(2.5,0) 
+				node [red, right] {$T_{j}$}
+				to [R,l=$R_{thJC}$] ++(0,-2.5) 
+					coordinate(TC)
+				node[red,left]{$T_{case}$}
+				to [R,l=$R_{thCA}$] ++ (0,-4)
+					coordinate(TA)
+				node[red,left]{$T_{amb}$}
+	to[vsource,v=$T_{amb}$] ++(0,-2.5)
+			node[ground]{};
+			\draw (TC) to[short,*-] ++(2,0)
+				to[R,l=$R_{thS}$] ++(0,-2.)
+				to[R,l=$R_{thHS}$] ++(0,-2.)
+				to[short,-*](TA); 
+     \end{scope}
+\end{tikzpicture}
