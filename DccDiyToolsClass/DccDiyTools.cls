@@ -26,6 +26,8 @@
 \usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{fit}
+\RequirePackage[european]{circuitikz}
+\RequirePackage{siunitx}
 \usepackage{tcolorbox}
 \usepackage{tabularx}
 \usepackage{multirow}

@@ -1,0 +1,21 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{tikzpicture}[american]
+    \draw (0,0) circle[radius=1pt];
+    \begin{scope}[shift={(-5,0)}]
+        %\draw (0,0) circle[radius=1pt];
+        %\draw (-2.5,-3.5) rectangle +(5,7);
+        
+        \draw (-2,2.5) to[isource, l=$W$ ] (0.5,2.5)
+            node[right,red]{$\leq \SI{125}{\celsius}$} 
+            to[R, l2=$R_{thJA}$ and $\unit{\degree\kelvin\per\watt}$] (0.5,-0)
+            node[right,red]{$\approx \SI{25}{\celsius}$} 
+            to[vsource=$T_a$] (0.5,-2.5)
+            node[right,red]{$\SI{0}{\celsius}$} 
+            node[ground](gnd){};
+        \node at(0,-3.5) {a) General};
+    \end{scope}
+\end{tikzpicture}
