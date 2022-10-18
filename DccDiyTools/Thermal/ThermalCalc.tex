@@ -5,7 +5,7 @@
 
 La forma de modelar/estimar que temperatura alcanzara el silicio en un chip es considerar
 la potencia que disipa como una fuente de corriente y el camino que tiene hasta el aire como
-una resistencia modelo simplificado(a)\ref{fig:ThermalEquivalent}:
+una resistencia, segun el modelo simplificado(a)\ref{fig:ThermalEquivalent}:
 
 \begin{figure}[H]
     \centering
@@ -22,7 +22,7 @@ $\SI{125}{\celsius}$ lo que se corresponde con $T_c=\SI{100}{\celsius}$ en la ca
 En la realidad, el modelo es más complejo, con resistencias en paralelo segun el dispador
 que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R_{thCA}$
 por $R_{thHS}$ del disipador\sidenote{HeatSink}.
-
+\subsection{Modelos mas completos}
 Estos modelos los podemos complicar un poco más\sidenote{Acercandose más
 a la realidad}, dependiendo de si usamos un dispador sobre un componente o 
 usamos la propia PCB como disipador. En cuyo caso la resitencia termica es
@@ -37,6 +37,13 @@ fabricacion de la PCB.
     \caption{Diseño más complejo}
     \label{fig:ThermalEquivFull}
 \end{figure}
+
+Donde $R_{thS}$ es la resistencia termica entre la carcasa y el disipador, $R_{thJL}$ es la
+resistencia del silicio a pin (Lead). Asi mismo $R_{thSn}$ es la resistencia entre el pin
+y el plano de cobre PCB, que dependera del estaño (Sn) utilizado. Por otra parte $R_{thFr}$
+denota la resistencia termica del FR4 en una PCB de dos caras. Por ultimo $R_{thXPcb}$ es la
+resistencia termica de las capas de cobre, que depende directamente del tamaño del area.
+Nos faltaria una resistencia del pin a la carcasa ($R_{thLC}$), pero podemos considerar que el fabricante ya lo includio en $R_{thJC}$ y que se puede considerar un circuito abierto.
 
 Ahora es momento de implificar el circutito teniendo en cuenta la regla del 10
 \sidenote{En realidad depende de la tolerancia}. pudiendo eliminar una resistencia
@@ -60,3 +67,12 @@ si hay otra 10 veces mas grande o pequeña segun sea el caso:
     pensando en cuanta corriente se llevan, pero lo normal es que los fabricantes ya
     hayan echo los calculos y no sean necesarios. Como el es el caso de $R_{thLC}$.    
 \end{itemize}
+
+\subsection{Origen del modelo}
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalModelOrigin.tex}
+    \caption{Diseño más complejo}
+    \label{fig:ThermalModelOrigin}
+\end{figure}
