@@ -3,7 +3,7 @@
 % !TeX root = ../Thermal.tex
 %!TEX root=../Thermal.tex
 
-\begin{tikzpicture}[american]
+\begin{tikzpicture}[american, scale=0.9,every node/.style={scale=.9}]
     %\draw (0,0) circle[radius=1pt];
     \begin{scope}[shift={(-3,0)}]
         %\draw (0,0) circle[radius=1pt];
@@ -45,16 +45,16 @@
 				to[R,l=$R_{thJL}$] ++(0,-2.5)
 					coordinate(TL)
 					node[red,right]{$T_l$}
-				to[R,l=$R_{thLC}$] (TC);
-			\draw (TL) to [R,l=$R_{thS}$] ++ (0,-2)
+				 to [R,l=$R_{thSn}$] ++ (0,-2)
 					coordinate(Ttop)
 					node[red,left]{$T_{top}$}
 				to[R,l=$R_{thTopPcb}$]++(0,-2)
 				to[short,-*](TA);
-			\draw (Ttop) to [vsource,v_=$\SI{10}{\degree\kelvin}$] ++(3,0)
-			node[red,right ]{$T_{bott}$}
-			to[R,l=$R_{thBottPcb}$] ++(0,-2)
-			to[short,-*] (TA)
+			\draw[dotted] (TL)to[R,l=$R_{thLC}$] (TC);
+			\draw (Ttop) to [R,l^=$R_{thFr}\approx\SI{10}{\degree\kelvin/\watt}$] ++(3,0)
+				node[red,right ]{$T_{bott}$}
+				to[R,l=$R_{thBottPcb}$] ++(0,-2)
+				to[short,-*] (TA)
 			;
 
 			%\draw (TC) to[short,*-] ++(2,0)
