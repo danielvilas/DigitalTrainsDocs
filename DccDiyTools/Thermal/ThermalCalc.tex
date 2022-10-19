@@ -2,26 +2,16 @@
 % !TeX spellcheck = es_ES
 % !TeX root = Thermal.tex
 %!TEX root=Thermal.tex
+El objetivo de este documento es tener un listado de empaquetados de chips usables segun
+la potencia que pueden disipar. En este apartado exponemos como calcular la temperatura de un
+chip cualquiera.
 
 La forma de modelar/estimar que temperatura alcanzara el silicio en un chip es considerar
 la potencia que disipa como una fuente de corriente y el camino que tiene hasta el aire como
-una resistencia, segun el modelo simplificado(a)\ref{fig:ThermalEquivalent}:
+una resistencia, segun el modelo simplificado(a)\ref{fig:ThermalEquivalent}.
 
-\begin{figure}[H]
-    \centering
-    \input{tikz/thermalEquivalent.tex}
-    \caption{Circuito Equivalente}
-    \label{fig:ThermalEquivalent}
-\end{figure}
+Antes de ver el modelo simplificado y hacer algunos calculos, veamos un modelo más completo.
 
-En la practica se puede modelar como dos resistencias, una $R_{thJC}$ :
-Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la 
-carcasa al ambiente, tal y como se representa en el caso (b) \ref{fig:ThermalEquivalent}.
-En este modelo es importante mantener la temperatura del silicio $T_j$ por debajo de
-$\SI{125}{\celsius}$ lo que se corresponde con $T_c=\SI{100}{\celsius}$ en la carcasa.
-En la realidad, el modelo es más complejo, con resistencias en paralelo segun el dispador
-que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R_{thCA}$
-por $R_{thHS}$ del disipador\sidenote{HeatSink}.
 \subsection{Modelos mas completos}
 Estos modelos los podemos complicar un poco más\sidenote{Acercandose más
 a la realidad}, dependiendo de si usamos un dispador sobre un componente o 
@@ -70,9 +60,49 @@ si hay otra 10 veces mas grande o pequeña segun sea el caso:
 
 \subsection{Origen del modelo}
 
+El modelo aterior\ref{fig:ThermalEquivFull} tiene su orgien en dos tipos de componentes, como ejemplo 
+un TO-220 para through hole y un TO-252-3 para SMD. Se han escogido por ser tener una zona
+para disipar calor (Tab para TO-220 y un pin/lead en 252). Aunque hay muchos otros empaquetados
+que tiene un PAD especifico para disipar calor, normalmente conectado a GND o a otro
+plano de potencia.
+
+En la figura siguiente\ref{fig:ThermalModelOrigin} hemos represenado ambos componentes sobre una PCB
+de dos caras. Y con flechas verdes los caminos del calor. Asi pues cada flecha es una resistencia "<termica">
+
 \begin{figure}[H]
     \centering
     \input{tikz/thermalModelOrigin.tex}
-    \caption{Diseño más complejo}
+    \caption{Origen del modelo a partir de componentes}
     \label{fig:ThermalModelOrigin}
 \end{figure}
+
+Este modelo se ha basado en la explicacion dada por la AN-2020\cite{TiAN2020} de Texas Instruments.
+
+\subsection{Modelo Simplificado}
+El modelo más simplificado es una resistencia, que podremos usarlo cuando este dato nos sea dado
+por el fabricante en el DataSheet.
+El más realista son dos resistencias en serie, una representado la resistencia desde el silicio al
+disipador (ya sea, la carcasa, la pcb o un trozo de metal) y otra de este ultimo al aire.
+
+
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalEquivalent.tex}
+    \caption{Circuito Equivalente}
+    \label{fig:ThermalEquivalent}
+\end{figure}
+
+En la practica es mejor modelar como dos resistencias, una $R_{thJC}$ :
+Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la 
+carcasa al ambiente, tal y como se representa en el caso (b) \ref{fig:ThermalEquivalent}.
+De esta forma podremos variar $R_{thCA}$ con un dispador más grande.
+
+En este modelo es importante mantener la temperatura del silicio $T_j$ por debajo de
+$\SI{125}{\celsius}$ lo que se suele corresponde con $T_c=\SI{100}{\celsius}$ en la carcasa.
+Como hemos visto, en la realidad, el modelo es más complejo, con resistencias en paralelo segun el dispador
+que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R_{thCA}$
+por $R_{thHS}$ del disipador\sidenote{HeatSink}.
+
+
+\subsection{Calculos en la practica} 
