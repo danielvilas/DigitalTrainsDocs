@@ -202,24 +202,27 @@ Siguiendo los siguientes pasos:
     R_{thPcb}(a_{pcb})&=\frac{1}{\frac{1}{R_{thJA}(a_{pcb}) - R_{thJC}} -\frac{1}{R_{thCA}}} &&\text{Aplicando $1/x$}
 \end{align*}
 
-aaa
-% RJA_a	96				
-% RJC	5				
-% RCA	91				
-					% 
-					% 
-% PCB					
-% Area	25	100	400		
-% RJA	67	57	49		
-% RJC	5	5	5		
-% RCA	91	91	91		
-					% 
-% Rp	62	52	44		Valor de las R en paralelo
-% Gp	0,0161290322580645	0,0192307692307692	0,0227272727272727		Conductividad de las R en paralelo
-% Gca	0,010989010989011	0,010989010989011	0,010989010989011		Conductivdad de CA que ya tenemos
-% Gpcb	0,00514002126905353	0,00824175824175824	0,0117382617382617		Conductividad esperada de la PCB
-% Rpcb	194,551724137931	121,333333333333	85,1914893617021		
+Con estas ecuaciones obtenemos los datos que nos faltan:
 
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+                                  &                          &            & \multicolumn{2}{|c|}{Empaquetado}                      \\ \hline
+        desc                      & PadSize                  & Symbol     & TO-220                            & \makecell{TO-252-3 \\ DPAK } \\ \hline
+        Th R, Case-to-Ambient    &                          & $R_{thCA}$ & 60                                 & 91                  \\ \hline
+        Th R, Case-to-Ambient    & 5x5\si{\square\mm}                         & $R_{thCA}$ & -                                 & 195                  \\ \hline
+        Th R, Case-to-Ambient    & 10x10\si{\square\mm}                         & $R_{thCA}$ &-                                  & 122                  \\ \hline
+        Th R, Case-to-Ambient    & 20x20\si{\square\mm}                         & $R_{thCA}$ &-                                  & 86            \\ \hline
+
+	\end{tabular}
+
+    \caption{Datos suministrados por el DataSheet}
+    \label{tab:MC7800_ds_thermal_data}
+\end{table}
 
 
 \subsubsection{Maxima Potencia}
