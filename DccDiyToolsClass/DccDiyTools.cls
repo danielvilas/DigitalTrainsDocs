@@ -99,7 +99,9 @@
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc} 
 
-\usepackage{mathpazo} 
+\usepackage{mathpazo}
+\usepackage[leqno]{amsmath}
+\numberwithin{equation}{section}
 
 \usepackage[sfdefault]{plex-sans} 
 \usepackage{plex-serif} 

@@ -14,10 +14,10 @@ Antes de ver el modelo simplificado y hacer algunos calculos, veamos un modelo m
 
 \subsection{Modelos mas completos}
 Estos modelos los podemos complicar un poco más\sidenote{Acercandose más
-a la realidad}, dependiendo de si usamos un dispador sobre un componente o 
+    a la realidad}, dependiendo de si usamos un dispador sobre un componente o
 usamos la propia PCB como disipador. En cuyo caso la resitencia termica es
 de $\SI{100}{\degree\kelvin/\square{inch}}$ o $\SI{645.16}{\degree\kelvin/\square\cm}$.
-Aunque estos valores dependeran en gran medida de los materiales usados en la 
+Aunque estos valores dependeran en gran medida de los materiales usados en la
 fabricacion de la PCB.
 
 
@@ -39,28 +39,28 @@ Ahora es momento de implificar el circutito teniendo en cuenta la regla del 10
 \sidenote{En realidad depende de la tolerancia}. pudiendo eliminar una resistencia
 si hay otra 10 veces mas grande o pequeña segun sea el caso:
 \begin{itemize}
-    \item \textbf{En serie}: Si $R_p$ es 10 menor que $R_g$, podemos eliminarla puesto que 
-    $R_p$ se esconderia en la tolerancia de $R_g$.
+    \item \textbf{En serie}: Si $R_p$ es 10 menor que $R_g$, podemos eliminarla puesto que
+          $R_p$ se esconderia en la tolerancia de $R_g$.
 
-    En nuestro caso sucede con $R_{thS}$,$R_{thSn}$, siendo, repsecivamente, estas la pasta
-    termica que se pone entre un chip y el dispador, y el estaño que une un pad a la PCB.
-    ambas cercanas a \SI{1}{\degree\kelvin/\watt}
+          En nuestro caso sucede con $R_{thS}$,$R_{thSn}$, siendo, repsecivamente, estas la pasta
+          termica que se pone entre un chip y el dispador, y el estaño que une un pad a la PCB.
+          ambas cercanas a \SI{1}{\degree\kelvin/\watt}
     \item \textbf{En paralelo}: Si $R_g$ es los suficientemente grande, su valor se esconderia
-    en la tolerancia de $R_p$, por lo que puede eleminarse. Para el calculo de temperaturas, donde nuestro
-    origen es una fuente de calor representada como fuente de corriente, lo que hace es "<robar">
-    un poco de corriente a $R_p$, por lo que al eleminar $R_g$ tendremos un error al alza. 
-    Habiendo calculado una temperatura superior a la real, y si esta es segura, la real tambien.
-    
-    Asi pues con un disipador correcto ($R_{thHS}$, o la red que representa la PCB), podremos quitar
-    $R_{thCA}$.
+          en la tolerancia de $R_p$, por lo que puede eleminarse. Para el calculo de temperaturas, donde nuestro
+          origen es una fuente de calor representada como fuente de corriente, lo que hace es "<robar">
+          un poco de corriente a $R_p$, por lo que al eleminar $R_g$ tendremos un error al alza.
+          Habiendo calculado una temperatura superior a la real, y si esta es segura, la real tambien.
+
+          Asi pues con un disipador correcto ($R_{thHS}$, o la red que representa la PCB), podremos quitar
+          $R_{thCA}$.
     \item \textbf{Otras}: Como la conexion en delta, se pueden llegar a simplifcar
-    pensando en cuanta corriente se llevan, pero lo normal es que los fabricantes ya
-    hayan echo los calculos y no sean necesarios. Como el es el caso de $R_{thLC}$.    
+          pensando en cuanta corriente se llevan, pero lo normal es que los fabricantes ya
+          hayan echo los calculos y no sean necesarios. Como el es el caso de $R_{thLC}$.
 \end{itemize}
 
 \subsection{Origen del modelo}
 
-El modelo aterior\ref{fig:ThermalEquivFull} tiene su orgien en dos tipos de componentes, como ejemplo 
+El modelo aterior\ref{fig:ThermalEquivFull} tiene su orgien en dos tipos de componentes, como ejemplo
 un TO-220 para through hole y un TO-252-3 para SMD. Se han escogido por ser tener una zona
 para disipar calor (Tab para TO-220 y un pin/lead en 252). Aunque hay muchos otros empaquetados
 que tiene un PAD especifico para disipar calor, normalmente conectado a GND o a otro
@@ -94,7 +94,7 @@ disipador (ya sea, la carcasa, la pcb o un trozo de metal) y otra de este ultimo
 \end{figure}
 
 En la practica es mejor modelar como dos resistencias, una $R_{thJC}$ :
-Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la 
+Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la
 carcasa al ambiente, tal y como se representa en el caso (b) \ref{fig:ThermalEquivalent}.
 De esta forma podremos variar $R_{thCA}$ con un dispador más grande.
 
@@ -105,4 +105,122 @@ que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R
 por $R_{thHS}$ del disipador\sidenote{HeatSink}.
 
 
-\subsection{Calculos en la practica} 
+\subsection{Calculos en la practica}
+Generalmente querremos saber si nuestro diseño es viable, pero podemos concretar
+en que queremos responder una de estas preguntas:
+\begin{itemize}
+    \item ¿Cuanta es la potencia maxima que podemos usar en este componente?
+    \item ¿Que temperatura alcanzara el componente con la potencia que va a pasar?
+          o cada parte (carcasa, pcb, \dots)
+    \item ¿Cual es el disipador minimo que tenemos que poner? o que es lo mismo
+          ¿Que resistencia maxima debe tener el disipador?
+    \item ¿Que area minima debemos usar en la PCB para disipar X potencia?
+\end{itemize}
+
+La mejor forma de conseguir esto es diseñar una PCB pequeña, de tamaño similiar
+al standart JESD51 de JEDEC, pero modificada para que se parezca a nuestra PCB
+final y probar con una fuente de laboratorio y una camara de infrarojos. La segunda
+mejor forma es sobre nuestras PCB.
+
+Aunque hoy por hoy es barato obtener una PCB, es mucho mas rapido hacer unos pocos
+calculos y luego comprobarlos sobre la PCB. Los componentes siguen teniendo un precio
+
+Para cualquier pregunta, deberemos trabjar con el modelo de una o dos resistencias.
+Para ello trabajaremos solo con un camino de disipacion y obviaremos el otro.
+
+En el caso de los componentes through hole solo tenemos dos opciones, con o sin
+disipador. Si no tenemos dispador solo tendremos el camino por la carcasa al
+aire, pero si ponemos un disipador tenemos  dos caminos. En este caso podemos
+eliminar el camino que va por la carcasa.
+
+En cambio, para los componentes SMD, siempre tendremos la disipacion por PCB,
+aunque no añamos diseñado la PCB como disipador. Si no hemos diseñado la PCB
+a conciencia\sidenote{Podria ser que sin querer sea un buen disipador} solo
+tenedremos en cuenta la disipacion por la carcasa. Y si nuestra intencion es
+usar la PCB como disipador, es mejor descartar la carcasa y diseñar la PCB
+como unica opcion de disipador.
+
+Al omitir un camino lo que conseguimos es un error al alza en la temperatura
+por lo que si nuestro diseño es seguro\sidenote{$T_j< \SI{125}{\celsius}$}
+segun los calculos lo sera en la realidad.
+
+Como ejemplo vamos usar un chip 78XX de onsemi, MC7800 cuyo datasheet nos dice
+lo siguiente:
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+                                  &                          &            & \multicolumn{2}{|c|}{Empaquetado}                      \\ \hline
+        desc                      & PadSize                  & Symbol     & TO-220                            & \makecell{TO-252-3 \\ DPAK } \\ \hline
+        Th R, Junction-to-Case    &                          & $R_{thJC}$ & 5                                 & 5                  \\ \hline
+        Th R, Junction-to-Ambient &                          & $R_{thJA}$ & 65                                & 96                 \\ \hline
+        Th R, Junction-to-Ambient & $5*\SI{5}{\square\mm}$   & $R_{thJA}$ & -                                 & 67                 \\ \hline
+        Th R, Junction-to-Ambient & $10*\SI{10}{\square\mm}$ & $R_{thJA}$ & -                                 & 56                 \\ \hline
+        Th R, Junction-to-Ambient & $20*\SI{20}{\square\mm}$ & $R_{thJA}$ & -                                 & 49                 \\ \hline
+        Max Junction Temperature  &                          & $T_j$      & 150                               & 150                \\
+        \hline
+    \end{tabular}
+    \caption{Datos suministrados por el DataSheet}
+    \label{tab:MC7800_ds_thermal_data}
+\end{table}
+
+Como podemos ver no nos dice $R_{thCA}$ ni $R_{thPCB}$ y tenemos diferentes $R_{thJA}$
+segun el tamaño del pad. Con esta informacion podemos averiguar los datos que nos faltan
+usando las siguentes formulas.
+
+
+\begin{subequations}
+    \label{eq:basicRth}
+    \begin{align}
+        \label{eq:RthSinDisipador} R_{thJA}&=R_{thJC}+R_{thCA} &&\text{Sin disipador } \\
+        \label{eq:RthConDisipador} R_{thJA}(a_{pcb})&=R_{thJC}+R_{thCA}||R_{thPCB}(a_{pcb}) &&\text{Con disipador(PCB)} 
+    \end{align}
+\end{subequations}
+
+De las cuales podemos deducir las siguientes ecuaciones:
+
+\begin{subequations}
+    \label{eq:ResRth}
+    \begin{align}
+        \label{eq:RthJA} R_{thCA}&=R_{thJA}-R_{thJC}  \\
+        \label{eq:RthPcb} R_{thPcb}(a_{pcb})&=\frac{1}{\frac{1}{R_{thJA}(a_{pcb}) - R_{thJC}} -\frac{1}{R_{thCA}}}
+    \end{align}
+\end{subequations}
+
+Siguiendo los siguientes pasos:
+
+\begin{align*}
+    R_{thCA}&=R_{thJA}-R_{thJC} &&\text{Despejando de \ref{eq:RthSinDisipador}} \\
+    \\ 
+    R_{thJA}(a_{pcb})&=R_{thJC}+\frac{1}{\frac{1}{R_{thCA}}+\frac{1}{R_{thPcb}(a_{pcb})}} &&\text{Applicando  || en  \ref{eq:RthConDisipador}} \\
+    R_{thJA}(a_{pcb}) - R_{thJC} &=\frac{1}{\frac{1}{R_{thCA}}+\frac{1}{R_{thPcb}(a_{pcb})}} && \text{Despejando} \\ 
+    \frac{1}{R_{thJA}(a_{pcb}) - R_{thJC}} &= \frac{1}{R_{thCA}}+\frac{1}{R_{thPcb}(a_{pcb})} && \text{Aplicando $1/x$}\\
+    \frac{1}{R_{thPcb}(a_{pcb})}&=\frac{1}{R_{thJA}(a_{pcb}) - R_{thJC}} -\frac{1}{R_{thCA}} && \text{Despejando}\\
+    R_{thPcb}(a_{pcb})&=\frac{1}{\frac{1}{R_{thJA}(a_{pcb}) - R_{thJC}} -\frac{1}{R_{thCA}}} &&\text{Aplicando $1/x$}
+\end{align*}
+
+aaa
+% RJA_a	96				
+% RJC	5				
+% RCA	91				
+					% 
+					% 
+% PCB					
+% Area	25	100	400		
+% RJA	67	57	49		
+% RJC	5	5	5		
+% RCA	91	91	91		
+					% 
+% Rp	62	52	44		Valor de las R en paralelo
+% Gp	0,0161290322580645	0,0192307692307692	0,0227272727272727		Conductividad de las R en paralelo
+% Gca	0,010989010989011	0,010989010989011	0,010989010989011		Conductivdad de CA que ya tenemos
+% Gpcb	0,00514002126905353	0,00824175824175824	0,0117382617382617		Conductividad esperada de la PCB
+% Rpcb	194,551724137931	121,333333333333	85,1914893617021		
+
+
+
+\subsubsection{Maxima Potencia}
+
