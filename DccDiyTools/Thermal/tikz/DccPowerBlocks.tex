@@ -4,14 +4,32 @@
 %!TEX root=../Thermal.tex
 
 \begin{tikzpicture}[]
-
+\begin{scope}[shift={(0,2.5)}]
     \pic[](DccBr) at (2,0){DiodeBrigde};
-    \node[above] at (DccBr-up){KMB26STR};
+    %\node[above] at (DccBr-up){KMB26STR};
 
     %\draw (1,0) to[short,o-] (DccBr-up);
     \draw (DccBr-ac.north -| 0,0)to[short,o-](DccBr-ac.north);
     \draw (DccBr-ac.south -| 0,0)to[short,o-](DccBr-ac.south);
-    \draw (DccBr-cc.center) to [D,l=GS1510FL] (6,0) 
-        node[pigfetd,anchor=S, rotate=90, bodydiode,tr circle](DccSw){}
-        (DccSw.bulk) node[anchor=north] {BSS308};
+    \draw (DccBr-cc.center) to [D,l=GS1510FL,n=DccD] (6,0) 
+        node[pigfetd,anchor=S, rotate=90, bodydiode,](DccSw){}
+		(DccSw.east |- DccD.north) node[above = 1mm] {BSS308} (DccSw.D) to[short] (9,0)
+		coordinate(DccVdrive);
+\node[left]at (0,0) {Señal DCC};
+
+\end{scope}
+
+\begin{scope}[shift={(0,0)}]
+
+\node[left]at (0,0) {Entrada CC};
+
+	\draw (0,0) to[short,o-] (DccSw.S |- 0,0)
+			to [D,l=GS1510FL] (DccSw.D |- 0,0)
+			to[short] (DccVdrive |- (0,0)
+			coordinate(CcVdrive)
+			(DccD.center |- 0,1) node {Controla};
+	\draw[dashed,-stealth] (DccD.center |- 0,0) |- (DccSw.G); 
+\end{scope}
+
+
 \end{tikzpicture}
