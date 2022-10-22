@@ -1,0 +1,17 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{tikzpicture}[]
+
+    \pic[](DccBr) at (2,0){DiodeBrigde};
+    \node[above] at (DccBr-up){KMB26STR};
+
+    %\draw (1,0) to[short,o-] (DccBr-up);
+    \draw (DccBr-ac.north -| 0,0)to[short,o-](DccBr-ac.north);
+    \draw (DccBr-ac.south -| 0,0)to[short,o-](DccBr-ac.south);
+    \draw (DccBr-cc.center) to [D,l=GS1510FL] (6,0) 
+        node[pigfetd,anchor=S, rotate=90, bodydiode,tr circle](DccSw){}
+        (DccSw.bulk) node[anchor=north] {BSS308};
+\end{tikzpicture}

@@ -1,0 +1,23 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = Thermal.tex
+%!TEX root=Thermal.tex
+
+Como caso practico de estudio vamos a usar la placa DccDiyTools DccPowerDistributor y los elementos que
+pueden disipar suficiente potencia como para dañar el componente. En dicha placa los 
+componetes que cumplen ese requisito son:
+\begin{itemize}
+    \item Dos diodos GS1510FL
+    \item Un Mosfet BSS308
+    \item Un puente de diodos KMB26STR
+    \item Un Controlador de Buck Converter
+    \item Una Bobina del Buck Converter
+    \item Un Regulador LDO AMS1117-3.3
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/DccPowerBlocks.tex}
+    \caption{Diseño de bloques}
+    \label{fig:Bloques}
+\end{figure}
