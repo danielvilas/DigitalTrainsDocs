@@ -14,10 +14,54 @@ componetes que cumplen ese requisito son:
     \item Una Bobina del Buck Converter SRP1038A-220M
     \item Un Regulador LDO AMS1117-3.3
 \end{itemize}
-
+A grandes rasgos la potencia entra o bien por la señal DCC o bien por un conector jack y luego pasa por un convertidor buck y un regulador LDO. Como podemos ver en la figura siguiente\ref{fig:Bloques}
 \begin{figure}[H]
     \centering
     \input{tikz/DccPowerBlocks.tex}
     \caption{Diseño de bloques}
     \label{fig:Bloques}
 \end{figure}
+
+Como se aprecia la potencia DCC pasar por un Diodo GS1510FL y por un Mosfet BSS308. La mision de dicho mosfet es bloquear\sidenote{No se muestra
+la circuiteria} la potencia si la entrada CC esta presente. El mosfet esta siempre abierto o cerrado.
+
+Si esta el jack de CC esta conectado, se bloqueara el mosfet y solo pasara la corriente por un Didodo GS1510FL.
+
+A partir de aqui se genera el rail VDrive del que se conectan ya las cargas que necesiten unos 12V o similar y un Convertidor Buck para sacar 5V.
+
+De los 5V se utilizar un Regulador LDO para tener un rail 3.3V.
+
+Se debera llenar la siguiente tabla para cada opcion
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \hline
+         test & $V_{load}$ & $I_{load}$& $V_{src}$& $I_{src}$ & $P_{load}$&$P_{src}$&$Eff$ &$T_{Calc}$ &$T_{real}$ \\ \hline
+			50\% & & \SI{500}{\milli\ampere}& \SI{12}{\volt}&& & & & XX &\\ \hline
+
+100\% & & \SI{1000}{\milli\ampere}& \SI{12}{\volt}&& & & & XX &\\ \hline
+
+120\% & & \SI{1200}{\milli\ampere}& \SI{12}{\volt}&& & & & XX &\\ \hline
+
+Limite & & \SI{1500}{\milli\ampere}& \SI{12}{\volt}&& & & & XX &\\
+
+			\hline
+
+	\end{tabular}
+
+    \caption{Tabla a rellenar por cada prueba}
+    \label{tab:exampleDataLab}
+\end{table}
+
+
+\subsection{Diseño de las pruebas}
+El objetivo de las pruebas es triple, por una parte verificar las ecuaciones, otra verificar que funciona con los requisitios decididos y la eficiencia del sistema.
+\subsubsection{Rail DCC}
+El rail DCC se probara poniendo una carga programable en la salida del rail VDrive y una fuente de laboratorio configurada a 12V y limite 1.5A
+
+
+
