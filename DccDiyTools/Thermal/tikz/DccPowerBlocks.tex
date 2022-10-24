@@ -4,32 +4,94 @@
 %!TEX root=../Thermal.tex
 
 \begin{tikzpicture}[]
-\begin{scope}[shift={(0,2.5)}]
-    \pic[](DccBr) at (2,0){DiodeBrigde};
-    \node[above] at (DccBr-up){KMB26STR};
 
-    %\draw (1,0) to[short,o-] (DccBr-up);
-    \draw (DccBr-ac.north -| 0,0)to[short,o-](DccBr-ac.north);
-    \draw (DccBr-ac.south -| 0,0)to[short,o-](DccBr-ac.south);
-    \draw (DccBr-cc.center) to [D,l=GS1510FL,n=DccD] (6,0) 
-        node[pigfetd,anchor=S, rotate=90, bodydiode,](DccSw){}
-		(DccSw.east |- DccD.north) node[above = 1mm] {BSS308} (DccSw.D) to[short] (9,0)
-		coordinate(DccVdrive);
-\node[left]at (0,0) {Señal DCC};
 
-\end{scope}
+	\begin{scope}[shift={(0,5)}]
+		\node[gray, right] at (-6.25,2){Entrada};
+		\draw[dashed,gray](-6.25,-2.25) rectangle +(12.5,4.5);
+		\begin{scope}[shift={(-4.25,1)}]
+			\pic[](DccBr) at (2,0){DiodeBrigde};
+			\node[above] at (DccBr-up){KMB26STR};
 
-\begin{scope}[shift={(0,0)}]
+			%\draw (1,0) to[short,o-] (DccBr-up);
+			\draw (DccBr-ac.north -| 0,0)to[short,o-](DccBr-ac.north);
+			\draw (DccBr-ac.south -| 0,0)to[short,o-](DccBr-ac.south);
+			\draw (DccBr-cc.center) to [D,l=GS1510FL,n=DccD] (6,0)
+			node[pigfetd,anchor=S, rotate=90, bodydiode,](DccSw){}
+			(DccSw.east |- DccD.north) node[above = 1mm] {BSS308} (DccSw.D)
+			to[short] (8,0)
+			coordinate(DccVdrive);
+			\node[left]at (0,0) {Señal DCC};
 
-\node[left]at (0,0) {Entrada CC};
+		\end{scope}
 
-	\draw (0,0) to[short,o-] (DccSw.S |- 0,0)
+		\begin{scope}[shift={(-4.25,-1.5)}]
+
+			\node[left]at (0,0) {Entrada CC};
+
+			\draw (0,0) to[short,o-] (DccSw.S |- 0,0)
 			to [D,l=GS1510FL] (DccSw.D |- 0,0)
 			to[short] (DccVdrive |- (0,0)
 			coordinate(CcVdrive)
 			(DccD.center |- 0,1) node {Controla};
-	\draw[dashed,-stealth] (DccD.center |- 0,0) |- (DccSw.G); 
-\end{scope}
+			\draw[dashed,-stealth] (DccD.center |- 0,0) |- (DccSw.G);
+			\draw (DccVdrive) to[short,-*] (CcVdrive) to[short,-o] +(1,0)
+			coordinate(OutVdrive)
+			node[right]{VDrive};
+		\end{scope}
+	\end{scope}
+	%\draw[red](-6.25,-2.25) rectangle +(12.5,4.5);
+	\begin{scope}[shift={(0,0)}]
+		\node[gray, right] at (-3,1.25){Buck Converter};
+		\draw[dashed,gray](-3,-1.5) rectangle +(6,3);
 
+		\begin{scope}[shift={(-1.5,-0.25)}]
+			\draw (-1,0.5) coordinate(BuckIn)
+				to[short,-o] (-0.7,0.5)
+				node[scale=0.5,right]{$V_{in}$};
+			\draw (1,0.5) coordinate(BuckOut)
+				to[short,-o] (0.7,0.5)
+				node[scale=0.5,left]{$P_h$};
+			\draw (1,-0.5) coordinate(BuckFb)
+				to[short,-o] (0.7,-0.5)
+				node[scale=0.5,left]{$F_b$};
+			\node[scale=0.75] at (0,0){TPS54331D};
+			\draw (-0.9,-0.75) rectangle + (1.8,1.5);
+		\end{scope}
+		\draw (BuckOut) to[cute inductor,l=SRP1038A-220M] +(3,0)
+			coordinate(BuckInductor)
+			to[short,-o] (BuckInductor -| OutVdrive)
+			node[right]{+5V};
+		\draw[dashed,-stealth] (BuckInductor) |- (BuckFb);
+		
+	\end{scope}
+
+	\draw (CcVdrive) |- +(-7.5,-1.5) coordinate(PwrRef) |- (BuckIn);
+
+	\begin{scope}[shift={(0,-4.25)}]
+		\node[gray, right] at (-3,1.25){LDO};
+		\draw[dashed,gray](-3,-1.5) rectangle +(6,3);
+
+		\begin{scope}[shift={(0,.25)}]
+			\draw (-1,0.5) coordinate(LdoIn)
+				to[short,-o] (-0.7,0.5)
+				node[scale=0.5,right]{$V_{in}$};
+			\draw (1,0.5) coordinate(LdoOut)
+				to[short,-o] (0.7,0.5)
+				node[scale=0.5,left]{$P_h$};
+			\draw (0,-0.85) coordinate(LdoAdj)
+				to[short,-o] (0,-0.55)
+				node[scale=0.5,above]{$A_{dj}$};
+			\node[scale=0.75] at (0,0){AMS1117-3.3};
+			\draw (-0.9,-0.75) rectangle + (1.8,1.5);
+		\end{scope}
+		\node[ground] at(LdoAdj){};
+		\draw (LdoOut) to[short,-o] (LdoOut -| OutVdrive)
+		node[right]{+3.3V};
+
+	\end{scope}
+
+	\draw (CcVdrive |- BuckOut) |- +(-7.5,-2.5) |- (LdoIn);
+	\node[draw=gray,text width=3.5cm, scale=0.75] at (-5,-5) {* Se han omitido componentes extra como Condensadores};
 
 \end{tikzpicture}
