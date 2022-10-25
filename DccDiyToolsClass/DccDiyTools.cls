@@ -109,6 +109,7 @@
 
 \setlength{\parskip}{6pt}
 
+\usepackage{pdflscape}
 
 %%---------------------
 %% Titulo, nueva pagina y personalizacion
