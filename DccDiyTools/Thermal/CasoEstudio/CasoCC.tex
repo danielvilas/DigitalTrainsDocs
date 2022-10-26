@@ -1,0 +1,28 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+Para el Rail CC las pruebas son similares, la diferencia es que solo tenemos que
+preocuparnos por un Diodo GS1510FL, por lo que la prueba que se realizara es
+conectar la fuente de laboratorio a \SI{12}{\volt} y ajustar la carga en $V_{drive}$
+a los valores necesario para completar la siguiente tabla.
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{96}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{173}{\celsius} &            \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{213}{\celsius} &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       & \SI{272}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba CC}
+    \label{tab:CcDataTable}
+\end{table}
+

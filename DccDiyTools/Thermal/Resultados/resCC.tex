@@ -1,0 +1,24 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{96}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{173}{\celsius} &            \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{213}{\celsius} &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       & \SI{272}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados CC}
+    \label{tab:CcResTable}
+\end{table}
+

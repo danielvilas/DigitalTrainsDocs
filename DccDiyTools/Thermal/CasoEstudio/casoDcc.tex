@@ -1,0 +1,96 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+El rail DCC se probara poniendo una carga programable en la salida del rail VDrive y una
+fuente de laboratorio configurada a 12V y limite 1.5A y se realizaran tres pruebas:
+
+\begin{itemize}
+    \item Fuente de Alimentacion conectado directamente al puerto DCC
+    \item Lo mismo pero intercambiando + y -
+    \item Fuente de alimentacion conectada a la central DCC
+\end{itemize}
+
+En cada uno de estos casos mediremos la temperatura de los tres Componentes
+afecados y registramos los datos que nos dara la fuente y la carga. Con ello
+podremos calcular la potencia de entrada y de salida, y por lo
+tanto su eficiencia.
+
+Con los datos actuales podemos calcular los \si{\watt} esperados para
+cada componente
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+        \hline
+              &                         & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                          \\ \hline
+        test  & $I$                     & $V_{Drop}$                     & $P=I\cdot V_{drop}$            & $V_{drop}$                   & $P=I\cdot V_{drop}$
+              & $R_{on}$                & $P=I^2\cdot R_{on}$                                                                                                     \\ \hline
+        50\%  & \SI{500}{\milli\ampere} & \SI{0.55}{\volt}               & \SI{275}{\milli\watt}          & \SI{0.85}{\volt}             & \SI{425}{\milli\watt}
+              & \SI{80}{\milli\ohm}     & \SI{20}{\milli\watt}                                                                                                    \\ \hline
+        100\% & \SI{1}{\ampere}         & \SI{0.6}{\volt}                & \SI{600}{\milli\watt}          & \SI{0.9}{\volt}              & \SI{900}{\milli\watt}
+              & \SI{80}{\milli\ohm}     & \SI{80}{\milli\watt}                                                                                                    \\ \hline
+        120\% & \SI{1.2}{\ampere}       & \SI{0.65}{\volt}               & \SI{780}{\milli\watt}          & \SI{0.95}{\volt}             & \SI{1140}{\milli\watt}
+              & \SI{80}{\milli\ohm}     & \SI{115.2}{\milli\watt}                                                                                                 \\ \hline
+        limit & \SI{1.5}{\ampere}       & \SI{0.7}{\volt}                & \SI{1050}{\milli\watt}         & \SI{1}{\volt}                & \SI{1500}{\milli\watt}
+              & \SI{80}{\milli\ohm}     & \SI{180}{\milli\watt}                                                                                                   \\ \hline
+
+
+        \hline
+    \end{tabular}
+
+    \caption{Componentes DCC - Watt}
+    \label{tab:DccWatt}
+\end{table}
+
+
+\begin{landscape}
+    \begin{table}[H]
+        \centering
+        \renewcommand\theadfont{\bfseries}
+        \setlength{\tabcolsep}{10pt}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{8}{|c|}{Fuente directa}    & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+
+            \noalign{\vskip 5mm}
+            \hline
+            \multicolumn{8}{|c|}{Fuente Invertida}  & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+
+            \noalign{\vskip 5mm}
+            \hline
+            \multicolumn{8}{|c|}{Usando la central} & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+        \end{tabular}
+
+        \caption{Tablas DCC}
+        \label{tab:Tablas DCC}
+    \end{table}
+
+    Nota: No se tiene en cuenta posibles dispaciones en la PCB, por lo que los calulos son con:
+    $T_{KMB26STR} =\SI{25}{\celsius}+\SI{80}{\celsius/\watt}\cdot P_{KMB26STR}$,
+    $T_{GS1510FL} =\SI{25}{\celsius}+\SI{200}{\celsius/\watt}\cdot P_{GS1510FL}$ y
+    $T_{BSS308} =\SI{25}{\celsius}+\SI{200}{\celsius/\watt}\cdot P_{BSS308}$
+
+\end{landscape}

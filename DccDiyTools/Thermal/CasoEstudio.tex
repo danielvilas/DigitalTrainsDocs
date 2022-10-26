@@ -2,125 +2,36 @@
 % !TeX spellcheck = es_ES
 % !TeX root = Thermal.tex
 %!TEX root=Thermal.tex
-
-Como caso practico de estudio vamos a usar la placa DccDiyTools DccPowerDistributor y los elementos que
-pueden disipar suficiente potencia como para dañar el componente. En dicha placa los
-componetes que cumplen ese requisito son:
-\begin{itemize}
-    \item Dos diodos GS1510FL
-    \item Un Mosfet BSS308
-    \item Un puente de diodos KMB26STR
-    \item Un Controlador de Buck Converter TPS54331D
-    \item Una Bobina del Buck Converter SRP1038A-220M
-    \item Un Regulador LDO AMS1117-3.3
-\end{itemize}
-A grandes rasgos la potencia entra o bien por la señal DCC o bien por un conector jack y luego pasa por un convertidor buck y un regulador LDO. Como podemos ver en la figura siguiente\ref{fig:Bloques}
-\begin{figure}[H]
-    \centering
-    \input{tikz/DccPowerBlocks.tex}
-    \caption{Diseño de bloques}
-    \label{fig:Bloques}
-\end{figure}
-
-Como se aprecia la potencia DCC pasar por un Diodo GS1510FL y por un Mosfet BSS308. La mision de dicho mosfet es bloquear\sidenote{No se muestra
-    la circuiteria} la potencia si la entrada CC esta presente. El mosfet esta siempre abierto o cerrado.
-
-Si esta el jack de CC esta conectado, se bloqueara el mosfet y solo pasara la corriente por un Didodo GS1510FL.
-
-A partir de aqui se genera el rail VDrive del que se conectan ya las cargas que necesiten unos 12V o similar y un Convertidor Buck para sacar 5V.
-
-De los 5V se utilizara un Regulador LDO para tener un rail 3.3V.
+\input{CasoEstudio/casoIntro.tex}
 
 \subsection{Diseño de las pruebas}
-El objetivo de las pruebas es triple, por una parte verificar las ecuaciones, otra verificar que funciona con los requisitios decididos y la eficiencia del sistema.
-Se debera llenar la siguiente tabla\sidenote{O similar} para cada opcion
-
-\begin{table}[H]
-    \centering
-    \renewcommand\theadfont{\bfseries}
-    \setlength{\tabcolsep}{10pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-        \hline
-        test   & $V_{load}$ & $I_{load}$               & $V_{src}$      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$ & $T_{real}$ \\ \hline
-        50\%   &            & \SI{500}{\milli\ampere}  & \SI{12}{\volt} &                          &            &           &       & XX         &            \\ \hline
-
-        100\%  &            & \SI{1000}{\milli\ampere} & \SI{12}{\volt} &                          &            &           &       & XX         &            \\ \hline
-
-        120\%  &            & \SI{1200}{\milli\ampere} & \SI{12}{\volt} &                          &            &           &       & XX         &            \\ \hline
-
-        Limite &            &                          & \SI{12}{\volt} & \SI{1500}{\milli\ampere} &            &           &       & XX         &            \\
-
-        \hline
-    \end{tabular}
-
-    \caption{Tabla a rellenar por cada prueba}
-    \label{tab:exampleDataLab}
-\end{table}
+\input{CasoEstudio/diseIntro.tex}
 
 
 \subsubsection{Rail DCC}
-El rail DCC se probara poniendo una carga programable en la salida del rail VDrive y una
-fuente de laboratorio configurada a 12V y limite 1.5A y se realizaran tres pruebas:
+\input{CasoEstudio/casoDcc.tex}
 
-\begin{itemize}
-    \item Fuente de Alimentacion conectado directamente al puerto DCC
-    \item Lo mismo pero intercambiando + y -
-    \item Fuente de alimentacion conectada a la central DCC
-\end{itemize}
+\subsubsection{Rail DC}
+\input{CasoEstudio/CasoCC.tex}
 
 
-\begin{landscape}
-    \begin{table}[H]
-        \centering
-        \renewcommand\theadfont{\bfseries}
-        \setlength{\tabcolsep}{10pt}
-        \renewcommand{\arraystretch}{1.5}
-        \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-            \hline
-            \multicolumn{8}{|c|}{Fuente directa}    & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308} & \multicolumn{2}{|c|}{KMB26STR}                                                                                                                                           \\ \hline
-            test                                    & $V_{load}$                     & $I_{load}$                   & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}      & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
+\subsubsection{Rail +5V}
+\input{CasoEstudio/Caso5V.tex}
 
-            100\%                                   &                                & \SI{1000}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
+\subsubsection{Rail +3.3V}
+\input{CasoEstudio/Caso33V.tex}
 
-            120\%                                   &                                & \SI{1200}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
+\subsection{Resultados}
+\input{Resultados/resIntro.tex}
+\subsubsection{Rail DCC}
+\input{Resultados/resDcc.tex}
 
-            Limite                                  &                                &                              & \SI{12}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & XX         &            &            &            &            &            \\
-            \hline
-
-            \noalign{\vskip 5mm}
-            \hline
-            \multicolumn{8}{|c|}{Fuente Invertida}  & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308} & \multicolumn{2}{|c|}{KMB26STR}                                                                                                                                           \\ \hline
-            test                                    & $V_{load}$                     & $I_{load}$                   & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}      & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            100\%                                   &                                & \SI{1000}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            120\%                                   &                                & \SI{1200}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            Limite                                  &                                &                              & \SI{12}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & XX         &            &            &            &            &            \\
-
-            \hline
-
-            \noalign{\vskip 5mm}
-            \hline
-            \multicolumn{8}{|c|}{Usando la central} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308} & \multicolumn{2}{|c|}{KMB26STR}                                                                                                                                           \\ \hline
-            test                                    & $V_{load}$                     & $I_{load}$                   & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ & $T_{Calc}$ & $T_{real}$ \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}      & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            100\%                                   &                                & \SI{1000}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            120\%                                   &                                & \SI{1200}{\milli\ampere}     & \SI{12}{\volt}                 &                          &            &           &       & XX         &            &            &            &            &            \\ \hline
-
-            Limite                                  &                                &                              & \SI{12}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & XX         &            &            &            &            &            \\
-            \hline
-        \end{tabular}
-
-        \caption{Tablas DCC}
-        \label{tab:Tablas DCC}
-    \end{table}
-\end{landscape}
+\subsubsection{Rail DC}
+\input{Resultados/resCC.tex}
 
 
+\subsubsection{Rail +5V}
+\input{Resultados/res5V.tex}
 
+\subsubsection{Rail +3.3V}
+\input{Resultados/res33V.tex}

@@ -1,0 +1,65 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}}                                                                                 \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados 3.3V en 5V}
+    \label{tab:33VResTable}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente al Jack CC}}                                                                        \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados 3.3V en JackCC}
+    \label{tab:33VResTableJack}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando a una central}}                                                                               \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados desde la Central}
+    \label{tab:33VResTableCentral}
+\end{table}
+

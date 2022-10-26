@@ -1,0 +1,49 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+En la pagina siguiente
+
+\begin{landscape}
+    \begin{table}[H]
+        \centering
+        \renewcommand\theadfont{\bfseries}
+        \setlength{\tabcolsep}{10pt}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{8}{|c|}{Fuente directa}    & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+
+            \noalign{\vskip 5mm}
+            \hline
+            \multicolumn{8}{|c|}{Fuente Invertida}  & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+
+            \noalign{\vskip 5mm}
+            \hline
+            \multicolumn{8}{|c|}{Usando la central} & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
+            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
+            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
+            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            \hline
+        \end{tabular}
+
+        \caption{Resultados DCC}
+        \label{tab:ResTablas DCC}
+    \end{table}
+
+
+\end{landscape}

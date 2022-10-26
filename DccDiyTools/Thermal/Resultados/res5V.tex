@@ -1,0 +1,65 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados 5V en $V_{drive}$}
+    \label{tab:5VResTable}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente al Jack CC}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados 5V en JackCC}
+    \label{tab:5VResTableJack}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando a una central}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{14}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Resultados 5V desde la central}
+    \label{tab:5VResTableCentral}
+\end{table}
+

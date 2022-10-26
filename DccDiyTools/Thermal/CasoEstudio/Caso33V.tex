@@ -1,0 +1,80 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+El Rail $+3.3V$ solo tiene un LDO que debe bajar el voltaje de $+5V$ a $+3.3V$.
+En este caso el LDO esta escogido para una corriente tipica de \SI{250}{\milli\ampere}
+siendo el limite de este es de \SI{500}{\milli\ampere}
+
+Las pruebas que se realizaran, seran tres:
+\begin{itemize}
+    \item Conectar la fuente a \SI{12}{\volt} directamente a $+5V$, La eficiencia sera
+          la del propio buck converter
+    \item Conectar la fuente a \SI{12}{\volt} pero por el jack de CC: Asi la eficiencia
+          calculada sera la de la placa.
+    \item Conectar la fuente a una central DCC, de esta forma la eficiencia sera la
+          esperada en un sistema más real.
+\end{itemize}
+
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}}                                                                                 \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 3.3V en 5V}
+    \label{tab:33VDataTable}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente al Jack CC}}                                                                        \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 3.3V en JackCC}
+    \label{tab:33VDataTableJack}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando a una central}}                                                                               \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
+        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
+        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
+        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 3.3V desde la centralC}
+    \label{tab:33VDataTableCentral}
+\end{table}
+

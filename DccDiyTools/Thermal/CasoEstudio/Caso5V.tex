@@ -1,0 +1,82 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+Para el Rail $+5V$ se debe probar ambos componentes del rail. Tanto el controlador
+TPS54331D como la bobina de salida, como se espera poca temperatura no se han
+includo los valores esperados. Pero el mosfet interno tiene la misma resistencia
+que el BSS308 $R_{on}=\SI{80}{\milli\ohm}$, por lo que las temperaturas seran
+similares a dicho mosfet.
+
+Las pruebas que se realizaran, seran tres:
+\begin{itemize}
+    \item Conectar la fuente a \SI{12}{\volt} directamente a $V_{drive}$, La eficiencia sera
+    la del propio buck converter
+    \item Conectar la fuente a \SI{12}{\volt} pero por el jack de CC: Asi la eficiencia
+    calculada sera la de la placa.
+    \item Conectar la fuente a una central DCC, de esta forma la eficiencia sera la 
+    esperada en un sistema más real.
+\end{itemize}
+
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 5V en $V_{drive}$}
+    \label{tab:5VDataTable}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando la fuente al Jack CC}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 5V en JackCC}
+    \label{tab:5VDataTableJack}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{10}{c}{\thead{Conectando a una central}} \\
+        \hline
+        test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
+        50\%   &            & \SI{0.5}{\ampere} & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        100\%  &            & \SI{1}{\ampere}   & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        120\%  &            & \SI{1.2}{\ampere} & \SI{14}{\volt} &                   &            &           &       &                 &         \\ \hline
+        Limite &            &                   & \SI{14}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
+        \hline
+    \end{tabular}
+
+    \caption{Tabla a rellenar para la prueba 5V desde la central}
+    \label{tab:5VDataTableCentral}
+\end{table}
+
