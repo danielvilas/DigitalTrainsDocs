@@ -226,4 +226,20 @@ Con estas ecuaciones obtenemos los datos que nos faltan:
 
 
 \subsubsection{Maxima Potencia}
+Para calcular la potencia maxima que se puede disipar para una configuracion dada conviene
+calcular la $R_{thJA}$ equivalente, ya sea realizando toda la simplificacion o empiricamente.
+Una vez calculada dicha Resistencia es cuestion de despejar:
+
+\begin{align*}
+	T_j=T_{amb}+W_{max} \cdot R_{thJA} & & \text{Original} \\
+	125&=25+W_{max} \cdot R_{thJA} & & \text{Sustituimos limite} \\
+\frac{125-25}{R_{thJA}}&=W_{max} & & \text{Despejamos}
+\end{align*}
+Con lo que llegamos a la ecuacion \ref{eq:ResMaxWatt}:
+\begin{equation}
+\label{eq:ResMaxWatt}
+W_{max}=\frac{100}{R_{thJA}}
+\end{equation}
+
+\subsubsection{Temperatura de cada elemento}
 
