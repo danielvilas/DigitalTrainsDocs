@@ -1,0 +1,28 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+El modelo más simplificado es una resistencia, que podremos usarlo cuando este dato nos sea dado
+por el fabricante en el DataSheet.
+El más realista son dos resistencias en serie, una representado la resistencia desde el silicio al
+disipador (ya sea, la carcasa, la pcb o un trozo de metal) y otra de este ultimo al aire.
+
+
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalEquivalent.tex}
+    \caption{Circuito Equivalente}
+    \label{fig:ThermalEquivalent}
+\end{figure}
+
+En la practica es mejor modelar como dos resistencias, una $R_{thJC}$ :
+Junction\sidenote{El silicio} a la case\sidenote{Carcasa} y $R_{thCA}$ de la
+carcasa al ambiente, tal y como se representa en el caso (b) \ref{fig:ThermalEquivalent}.
+De esta forma podremos variar $R_{thCA}$ con un dispador más grande.
+
+En este modelo es importante mantener la temperatura del silicio $T_j$ por debajo de
+$\SI{125}{\celsius}$ lo que se suele corresponde con $T_c=\SI{100}{\celsius}$ en la carcasa.
+Como hemos visto, en la realidad, el modelo es más complejo, con resistencias en paralelo segun el dispador
+que se ponga, pero se simplifica por la diferencia valores y se puede ignorar $R_{thCA}$
+por $R_{thHS}$ del disipador\sidenote{HeatSink}.

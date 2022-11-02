@@ -1,0 +1,69 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+Estos modelos los podemos complicar un poco más\sidenote{Acercandose más
+    a la realidad}, dependiendo de si usamos un dispador sobre un componente o
+usamos la propia PCB como disipador. En cuyo caso la resitencia termica es
+de $\SI{100}{\degree\kelvin/\square{inch}}$ o $\SI{645.16}{\degree\kelvin/\square\cm}$.
+Aunque estos valores dependeran en gran medida de los materiales usados en la
+fabricacion de la PCB.
+
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalFull.tex}
+    \caption{Diseño más complejo}
+    \label{fig:ThermalEquivFull}
+\end{figure}
+
+Donde $R_{thS}$ es la resistencia termica entre la carcasa y el disipador, $R_{thJL}$ es la
+resistencia del silicio a pin (Lead). Asi mismo $R_{thSn}$ es la resistencia entre el pin
+y el plano de cobre PCB, que dependera del estaño (Sn) utilizado. Por otra parte $R_{thFr}$
+denota la resistencia termica del FR4 en una PCB de dos caras. Por ultimo $R_{thXPcb}$ es la
+resistencia termica de las capas de cobre, que depende directamente del tamaño del area.
+Nos faltaria una resistencia del pin a la carcasa ($R_{thLC}$), pero podemos considerar que el fabricante ya lo includio en $R_{thJC}$ y que se puede considerar un circuito abierto.
+
+Ahora es momento de implificar el circutito teniendo en cuenta la regla del 10
+\sidenote{En realidad depende de la tolerancia}. pudiendo eliminar una resistencia
+si hay otra 10 veces mas grande o pequeña segun sea el caso:
+\begin{itemize}
+    \item \textbf{En serie}: Si $R_p$ es 10 menor que $R_g$, podemos eliminarla puesto que
+          $R_p$ se esconderia en la tolerancia de $R_g$.
+
+          En nuestro caso sucede con $R_{thS}$,$R_{thSn}$, siendo, repsecivamente, estas la pasta
+          termica que se pone entre un chip y el dispador, y el estaño que une un pad a la PCB.
+          ambas cercanas a \SI{1}{\degree\kelvin/\watt}
+    \item \textbf{En paralelo}: Si $R_g$ es los suficientemente grande, su valor se esconderia
+          en la tolerancia de $R_p$, por lo que puede eleminarse. Para el calculo de temperaturas, donde nuestro
+          origen es una fuente de calor representada como fuente de corriente, lo que hace es "<robar">
+          un poco de corriente a $R_p$, por lo que al eleminar $R_g$ tendremos un error al alza.
+          Habiendo calculado una temperatura superior a la real, y si esta es segura, la real tambien.
+
+          Asi pues con un disipador correcto ($R_{thHS}$, o la red que representa la PCB), podremos quitar
+          $R_{thCA}$.
+    \item \textbf{Otras}: Como la conexion en delta, se pueden llegar a simplifcar
+          pensando en cuanta corriente se llevan, pero lo normal es que los fabricantes ya
+          hayan echo los calculos y no sean necesarios. Como el es el caso de $R_{thLC}$.
+\end{itemize}
+
+\subsubsection{Origen del modelo}
+
+El modelo aterior\ref{fig:ThermalEquivFull} tiene su orgien en dos tipos de componentes, como ejemplo
+un TO-220 para through hole y un TO-252-3 para SMD. Se han escogido por ser tener una zona
+para disipar calor (Tab para TO-220 y un pin/lead en 252). Aunque hay muchos otros empaquetados
+que tiene un PAD especifico para disipar calor, normalmente conectado a GND o a otro
+plano de potencia.
+
+En la figura siguiente\ref{fig:ThermalModelOrigin} hemos represenado ambos componentes sobre una PCB
+de dos caras. Y con flechas verdes los caminos del calor. Asi pues cada flecha es una resistencia "<termica">
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalModelOrigin.tex}
+    \caption{Origen del modelo a partir de componentes}
+    \label{fig:ThermalModelOrigin}
+\end{figure}
+
+Este modelo se ha basado en la explicacion dada por la AN-2020\cite{TiAN2020} de Texas Instruments.
