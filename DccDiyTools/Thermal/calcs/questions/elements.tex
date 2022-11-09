@@ -2,7 +2,16 @@
 % !TeX spellcheck = es_ES
 % !TeX root = ../../Thermal.tex
 %!TEX root=../../Thermal.tex
-Para calcular la temperatura de diversos puntos del chip, como la carcasa, la
-parte superior de la pcb,\dots se debe escoger el modelo que más se adecue a
+Algunas veces conviene pararnos a pensar si nuestro diseño actual es seguro
+para el chip, debemos ver a que temperatura llega cada parte del diseño. 
+
+Asi que para calcular la temperatura de diversos puntos del chip, como la carcasa, la
+parte superior de la pcb,\dots, se debe escoger el modelo que más se adecue a
 los puntos a calcular y resolver.
 
+Partiremos siempre de la premisa de que la placa se ha diseñado para disipar
+calor ya sea por tener un dispador o por suficiente superficie en la placa
+que sea disipadora. Y a partir de ahi simplifcar el circuito termico. Todo
+aquello que no se haya pensado como dispador, debe ser excluido del modelo.
+
+La primera simplificacion.

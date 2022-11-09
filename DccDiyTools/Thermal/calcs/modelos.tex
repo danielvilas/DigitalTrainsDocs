@@ -67,3 +67,137 @@ de dos caras. Y con flechas verdes los caminos del calor. Asi pues cada flecha e
 \end{figure}
 
 Este modelo se ha basado en la explicacion dada por la AN-2020\cite{TiAN2020} de Texas Instruments.
+
+
+\subsubsection{Modelo completo}
+A partir del modelo anterior podemos añadir un dispipador encima del chip y otro por debajo de la PCB con lo que el modelo quedaria:
+
+\begin{figure}[H]
+    \centering
+    \input{tikz/thermalModelFull.tex}
+    \caption{Modelo más complicado a usar}
+    \label{fig:ThermalModelFull}
+\end{figure}
+
+Este modelo es el mas complicado que debemos tener en cuenta para un proyecto hobby que entre dentro
+del paraguas Dcc Diy Tools. Si necesitamos complicarlo más habria que considerar usar software
+profesional\sidenote{Que lo hay}.
+
+En general los valores de las resistencias son:
+
+\begin{subequations}
+    \label{eq:ResRthVal}
+    \begin{align}
+		\label{eq:RJunctionToCase}
+			R_{thJC}	\simeq R_{thJL} & \approx 15 &&   10<R_{thJC/L} <20 \\
+		\label{eq:RThermalPaste}
+			R_{thCHs} \simeq R_{thPbHsB} &\approx 0.8 && 0.5\leq R_{thTP} \leq 1\\
+		\label{eq:RPcb}
+			R_{thPt}\simeq R_{thB}&=\frac{\alpha}{Area} && R_{th}(a)=\frac{100}{a_{Inch^2}} = \frac{100}{a_{cm^2}/6}=\frac{600}{a_{cm^2}}\\
+   	\label{eq:ResTopBottom}
+			R_{thPtPb}&=f(mat,vias) && R_{thPtPb}(fr4,0) \approx 10 \\
+		\label{eq:ResSnValue}
+			R_{Sn}& \approx 0.1 && 0< R_{sn} <1
+	\end{align}
+\end{subequations}
+\begin{center}
+Valores tipicos
+\end{center}
+
+La equacion \ref{eq:RJunctionToCase} se refiere a que la resistencia del Silicio a un pin es similar
+a la resistencia del mismo carcasa, siendo 15 un valor tipico que nos encontraremos. 
+Y en todo caso estara en el rango de 10 a 20.
+
+Las restencias de las pastas termicas \ref{eq:RThermalPaste} seran todas similares,
+seguramente 0,8. 
+
+Ademas la resistencia de una zona de cobre, es inversamente proporcinal a su area, con un valor de 
+\SI{100}{\celsius\per\watt} cada incha cuadrada o 6 centimetros cuadrados. Ademas la resistencia
+termica entre la capa supererior e inferior depende del material de la placa y de las vias utilizadas,
+Si no hay vias, una placa de fr4 de \SI{1.6}{\mm} tiene un valor de \SI{10}{\celsius\per\watt}.
+
+Por ultimo el estaño que une el pin al pad de cobre, tiene una resitencia minima, casi cercana
+a 0.
+
+Teniendo en cuenta los valores y su proporcion con otras Resistencias se puede simplificar este
+circuito, de forma general y especifica segun se usen disipadores o no.
+
+\begin{subequations}
+    \label{eq:ResRth}
+    \begin{align}
+		\label{eq:RCaseToLead}
+			R_{thLC}\gg R_{thJC} & & & R_{thLC}\approx \infty \\
+		\label{eq:RThermalHst}
+			R_{thCHs}\ll R_{thHst}&  && R_{thCHs}\approx 0\\
+		\label{eq:RThermalHsb}
+			R_{thPbHsb}\ll R_{thHsb}&  && R_{thPbHsb}\approx 0 \\
+		\label{eq:RSolder}
+			R_{thSn}\ll R_{thJL} & & & R_{thSn} \approx 0
+   \end{align}
+\begin{center}
+Simplificaciones globales
+\end{center}
+\end{subequations}
+
+Por otra parte \ref{eq:RCaseToLead}, $R_{thLC}$ respecto a las otras resistencias es lo suficientemente grande
+como para considerar que es un circuito abierto o de valor infinito.
+
+El valor de la pasta termica sera pequeño comparado con la del disipador al que
+acompañan que pueden obviarse. Ya sea encima del componente \ref{eq:RThermalHst} o por debajo
+de la pcb \ref{eq:RThermalHsb}. 
+
+Algo paracido pasa con la Resitencia del estaño usado para unir el chip a la PCB.
+Es tan pequeño respecto a otras resistencias que se puede obviar \ref{eq:RSolder}
+
+Finalmente se suelen seguir una serie de reglas de diseño que pueden simplificar aun más el diseño.
+Para empezar cuando se decide disipar el calor. Se escoge un solo camino de los siguientes:
+
+\begin{itemize}
+	\item \textbf{Disipador Superior}: En este caso se busca un Disipador cuya $R_{th}$ sea tan pequeña
+que deprede todas las demas. La PCB no se diseña para disipar calor.
+
+\begin{subequations}
+    \begin{align}
+		\label{eq:RCaseVsLead}
+			R_{thRamaCase}&\ll R_{thRamaLead} & & R_{thRamaLead}\approx \infty\\
+		\label{eq:RthHsOverridesCA} R_{thCHs} + R_{thHs} &\ll R_{thCA} & & R_{thCA} \approx \infty \\
+		\label{eq:RthDispidadorSuperior}
+			R_{thJA}=R_{thJC}&+R_{th_CHs}+R_{thHs} && R_{thJA}=R_{thJC}+R_{thHs}
+   \end{align}
+\begin{center}
+Simplificaciones Disipador Superior
+\end{center}
+\end{subequations}
+En este caso, al no haberse diseñado la pcb como disipador, la resitencia por la rama de la misma sera muy alta (en comparacion con la rama del dispador), tanto que se puede considerar que no
+exista \ref{eq:RCaseVsLead}. Lo mismo pasa con la disipacion de la carcasa. Una buena eleccion del
+dispador hace que podamos ignorar la disipacion por la carcasa \ref{eq:RthHsOverridesCA}  y nos queda una ecuacion de tres
+resistencias, \ref{eq:RthDispidadorSuperior} y a tenor de sus valores \ref{eq:RThermalHst} podemos resumir en la ecuacion con solo dos resitencias
+
+\item \textbf{Disipador Inferior}: Otra forma de disipar el calor en componentes SMD es usar un
+dispador por la cara opuesta donde esta montando el chip. Esta solucion requiere ocupar con cobre
+descubierto en la capa inferior del mismo tamaño que el disipador. Y en la capa supererior que los 
+pads "termales" \sidenote{Mirar el datasheet} sean lo suficentemente grandes como para poner las
+vias adecuadas, asi las capas superior e inferior tiene una buena conductividad termica.
+
+\begin{subequations}
+    \begin{align}
+		\label{eq:RCaseVsLead2}
+			R_{thRamaLead}&\ll R_{thRamaCase} & & R_{thRamaCase}\approx \infty\\
+		\label{eq:RthPtPbGood}
+			R_{thPtPb}&=R_{th}(fr4,OptimunVias) && R_{thPtPb}\approx 0 \\
+		\label{eq:BottomHSOverrides}
+			R_{thHsb} &\ll R_{thPt} || R_{thPb} && R_{thPt} \sim R_{thPb} \approx\infty \\ \label{eq:RthDispidadorSuperior}
+			R_{thJA}=R_{thJL}&+R_{th_PbHsb}+R_{thHsb} && R_{thJA}=R_{thJL}+R_{thHsb}
+   \end{align}
+\begin{center}
+Simplificaciones Disipador Superior
+\end{center}
+\end{subequations}
+
+
+
+A pesar de que la superficie de cobre mejorara la disipacion de calor, es el disipador quien hara el trabajo, con un valor mucho menor .
+\end{itemize}
+ 
+
+

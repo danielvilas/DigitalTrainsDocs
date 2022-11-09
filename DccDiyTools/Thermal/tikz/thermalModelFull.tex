@@ -1,0 +1,66 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ../Thermal.tex
+%!TEX root=../Thermal.tex
+
+\begin{tikzpicture}[american]
+
+\begin{scope}[shift={(0,0)}]
+			%\draw (-6,-6.5) rectangle +(12,13);
+			
+			\draw (-5.25,5.5)
+				to[isource, l=$W$ ] ++(2.5,0)
+					coordinate(TJ) 
+				node [red, above] {$T_{j}$}
+				to [R,l=$R_{thJC}$] ++(0,-2.5) 
+					coordinate(TC)
+				node[red,above left]{$T_{case}$}
+				to [R,l=$R_{thCA}$] ++ (0,-6)
+					coordinate(TA)
+				node[red,above left]{$T_{amb}$}
+				to[vsource,v=$T_{amb}$] ++(0,-2.5)
+				node[ground]{};
+			
+			\draw[gray] (TC) to[short,*-] ++(-2.5,0)
+				to[R,l=$R_{thCHs}$,-*,color=gray] ++(0,-3)
+				coordinate(THst)
+				node[red, left]{$T_{Hst}$}
+				to[R,l=$R_{thHst}$, color=gray] ++(0,-3)
+				to[short,-*](TA);
+
+			\draw (TJ) to[short,*-] ++(2.5,0)
+				to[R,l=$R_{thJL}$] ++(0,-2.5)
+					coordinate(TL)
+					node[red,right]{$T_l$}
+				 to [R,l=$R_{thSn}$] ++ (0,-2)
+					coordinate(Ttop)
+					node[red,left]{$T_{top}$}
+				to[R,l=$R_{thPt}$,-*]++(0,-4)
+				to[short,-*](TA);
+			
+			\draw[dotted] (TL)to[R,l=$R_{thLC}$,*-] (TC);
+			\draw (Ttop) to [R,l^=$R_{thPtPb}$,*-] ++(3,0)
+				coordinate(TPb)
+				node[red,above ]{$T_{bott}$}
+				to[R,l=$R_{thPb}$,-*] ++(0,-4)
+				coordinate(TAr)
+				to[short,-*] (TA)
+			;
+
+			\draw[gray] (TPb) to[short,*-] ++(2.5,0)
+				to[R,l=$R_{thPbHsb}$,-*, color=gray] ++(0,-2)
+				coordinate(THsb)
+				node[red,right]{$T_{Hsb}$}
+				to[R,l=$R_{thHsb}$, color=gray] ++(0,-2)
+				to[short] (TAr);
+
+			%\draw (TC) to[short,*-] ++(2,0)
+			%	to[R,l=$R_{thS}$] ++(0,-2.)
+			%	to[R,l=$R_{thHS}$] ++(0,-2.)
+			%	to[short,-*](TA);
+			
+     \end{scope}
+
+\end{tikzpicture}
+
+
