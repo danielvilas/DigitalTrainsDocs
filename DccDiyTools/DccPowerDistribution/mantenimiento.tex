@@ -7,6 +7,9 @@ Una vez instalado y al menos una vez al trimestre conviene realizar una serie de
 
 \subsection{Antes de montar en la maqueta}
 Una vez soldados los componentes, nos aseguraremos que no hay cortos y funciona como se espera.
+
+Se recomienda hacer estas comprobaciones antes de realizar los cortes/cortos en los Jumpers que correspondan a la configuracion deseada. Y repetir las pruebas que correspondan una vez configurada la placa.
+
 \begin{itemize}
 	\item Apagado y con un tester de continuidad asegurase que de no hay corto circuitos entre los siguientes puntos:
 
@@ -16,7 +19,64 @@ Una vez soldados los componentes, nos aseguraremos que no hay cortos y funciona 
 \item Entre los pines del conector DCC
 \end{itemize}
 
-\item Con la alimentacion solo jack
+\item Connectar y alimentar la placa mediante el Jack DC y medir los voltajes de cada salida:
+	\begin{itemize}
+	\item \textbf{No realizar} si la placa esta configurada como DCC solo. 
+	\item \textbf{VDrive}: Debe ser el voltaje del alimentador menos 0.7V aproximadamente, o la misma si esta configurada como CC solo.
+	\item \textbf{+5V}: Debe estar cercano a 5V
+	\item \textbf{+3.3V}: Igualmente debe ser cercano a 3.3V.
+	\item Revisar que se enciendan los LEDs indicadores. Salvo que sus correspondientes Jumpers (JP5, JP6 y JP7) no esten cortados.
+	\item Revisar temperatura de D3, U1, U2 y L1. Tocar un dedo, deben estar templados, si queman revisar pistas por cortos.
+	\end{itemize}
+\item Desconectar el Jack DC y conectar la señal DCC.
+	\begin{itemize}
+
+	\item \textbf{No realizar} si la placa esta configurada como CC solo. O si alguno de los  jumpers JP1, JP2, JP3 o JP4 estan cortados.
+
+	\item Repetir las mediciones, \textbf{+5V} y \textbf{+3.3V} deben ser las mismas (o muy similares) a como estaban. La señal \textbf{VDrive} sera aproximadamente 1.5V menos que el adapador para DCC\sidenote{O si la central lo soporta, el voltaje configurado en esta}
+	\item Revisar que se enciendan los LEDs indicadores. Salvo que sus correspondientes Jumpers (JP5, JP6 y JP7) no esten cortados.
+\item Medir el voltaje entre Gate (TPx) y Source (TPx) de Q4, este debe aproximadamente VDrive. Tambien se puede medir entre Gate y GND, siendo en este caso practicamente 0.
+
+\item Revisar temperatura de D2, Q4, U1, U2 y L1. Tocar un dedo, deben estar templados, si queman revisar pistas por cortos.
+
+	\end{itemize}
+\item Conectar ahora el Jack DC y la señal DCC
+	\begin{itemize}
+		\item \textbf{Solo} si la placa esta configurada como "<auto"> y si los jumpers JP1, JP2, JP3 y JP4 estan conectados
+
+\item Repetir las mediciones, \textbf{+5V} y \textbf{+3.3V} deben ser las mismas (o muy similares) a como estaban. La señal \textbf{VDrive} sera aproximadamente 0.7V menos que el adaptador CC
+
+\item Revisar que se enciendan los LEDs indicadores. Salvo que sus correspondientes Jumpers (JP5, JP6 y JP7) no esten cortados.
+\item Medir el voltaje entre Gate (TPx) y Source (TPx) de Q4, este debe aproximadamente 0V. Tambien se puede medir entre Gate y GND, siendo en este caso practicamente VDcc.
+
+\item Revisar temperatura de D3,D2, Q4, U1, U2 y L1. Tocar un dedo, deben estar templados, si queman revisar pistas por cortos.
+
+	\end{itemize}
+
+\item Conectar un modulo DCC al conector y la entrada DCC a la señal de via.
+\begin{itemize}
+\item  Para que funcione es necesario que JP1 y JP2 esten conectados. Si se quiere probar ACK, es necesario tener JP3 y JP4 conectados igualmente.
+\item Se puede usar un arduino con la libreria DCC y el ejemplo de Turnout. Se recomienda "<modificarlo">\sidenote{Habilitar, que ya esta en el ejemplo} para que muestre log DCC e informacion de programacion en la salida UART del mismo.
+\item \textbf{Si JP8} esta conectado, el decoder recibira alimentacion mediante conector Salida Dcc.
+\item Enviar comandos DCC y ver que el decoder actua en consecuencia. Si se usa el ejemplo que muestra la informacion en la terminal.
+\item Cambiar la entrada DCC a la via de programacion y enviar un comando de lectura de CV9 y ver que en la consola del arduino se muestra informacion coherente 
 
 \end{itemize}
+
+
+\begin{tcolorbox}
+   \item Añadir Test Points, de voltaje (Drive, 5, 3.3V, VDcc, deco5 y decoGnd) 
+	\item Añadir Tespoints de Gate Q4
+	\item Que se vean los Ux en el silk
+	\item Cambiar los Diodos, por unos mejores (th)
+	\item aislar decoGND
+	\item Mejorar ERC (NetTies)
+	\item Añadir Led VCc, VDcc y VDcc out(se esta usando Dcc).
+	\item Añadir Filtro Pi a Vdrive (asi se aplica a los dos)
+	\item revisar si se puede tener CC only y DCC a la vez
+	\item ¿Mover Jp3 y Jp4 despues del ACK y antes de los condensadores...?
+\end{tcolorbox}
+\end{itemize}
+\subsection{Despues de Montar en la maqueta}
+Cuando tengamos la placa DccPowerDistribution instalada en la maqueta, 
 
