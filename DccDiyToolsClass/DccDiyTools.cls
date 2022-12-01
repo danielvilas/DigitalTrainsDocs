@@ -123,9 +123,9 @@
 
     \begin{pagcompleta}
         \thispagestyle{empty}
-        \tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at ([xshift=\marginparsep/2]current page.center){\includegraphics[width=15cm]{example-image}};
+        \tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at ([xshift=\marginparsep/2]current page.center){\includegraphics[width=15cm]{DccDiyTools/Fondo.png}};
         \centering
-        \hfill\includegraphics[height=2cm]{example-image-1x1} 
+        \hfill\includegraphics[height=2cm]{DccDiyTools/LogoLargo.png} 
         \parbox[b][2cm][t]{2.5cm}{
             \vfill
             \parbox[b][0.25cm][c]{2.5cm}{ }
@@ -194,7 +194,7 @@
 
 \fancyhead[L]{\dbType \ \dbDate-\dbCode \ (\dbStatus)} 
 \fancyhead[C]{\dbHeaderTitle\  v\dbVersion} 
-\fancyhead[R]{\includegraphics[height=0.75cm]{example-image-1x1}} 
+\fancyhead[R]{\includegraphics[height=0.75cm]{DccDiyTools/LogoLargo.png}} 
 \fancyfoot[L]{} % Left footer
 \fancyfoot[C]{\thepage/\ref{TotPages}} % Center footer
 \fancyfoot[R]{} % Right footer

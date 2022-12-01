@@ -63,7 +63,6 @@ Se recomienda hacer estas comprobaciones antes de realizar los cortes/cortos en 
 
 \end{itemize}
 
-
 \begin{tcolorbox}
    \item Añadir Test Points, de voltaje (Drive, 5, 3.3V, VDcc, deco5 y decoGnd) 
 	\item Añadir Tespoints de Gate Q4
@@ -78,5 +77,33 @@ Se recomienda hacer estas comprobaciones antes de realizar los cortes/cortos en 
 \end{tcolorbox}
 \end{itemize}
 \subsection{Despues de Montar en la maqueta}
-Cuando tengamos la placa DccPowerDistribution instalada en la maqueta, 
+Cuando tengamos la placa DccPowerDistribution instalada en la maqueta se nos habra complicado
+el poder realizar unas pruebas exhaustivas, pero en general se intentaran realizar todas las posibles.
+
+Periodicamente se deberan realizar los siguientes pasos:
+\begin{itemize}
+\item \textbf{Limpieza}: Quitar el polvo con un trapo, pasandolo suavenmente sobre la placa o con un aspirador adecuado para la maqueta.
+Si hay suciedad resistente se puede humedecer ligeramente el trapo con algun limpiador apto para
+componentes electronicos. La limpieza se debe hacer \textbf{sin estar alimentada}
+
+\item \textbf{Observar}: Por si hay alguna descoloracion aparante. Por el efecto de calor y/o del tiempo puede llegar apreciarse cambios
+en el color de los componentes. Si se aprecia un cambio significativo desde la ultimo mantenimiento,
+hay que rehacer todo el proceso de pruebas, para asegurar que sigue funcionado correctamente siendo
+lo más exahaustivo posible\sidenote{Desmontala si es preciso}. 
+
+Si \textit{solo es un ligero oscurecimiento hacia el amarillo}, puede darse en los primeros usos y
+luego quedarse fijo, siendo no más una cuestion estetica. Pero hay que controlar que sea estable y
+no afecte a las pistas a la placa misma. En caso de duda, cambiarla por una placa nueva\sidenote{Si
+se repite una vez más, revisa que no se la sobrecarga}
+
+Cualquier otro defecto visual (pistas quemadas, componentes rotos,\dots) quitar la placa y cambiarla por una nueva.
+\item \textbf{Test rapido}: Una vez que la placa esta limpia y sin defectos aparentes, conviene
+realizar toda la bateria de pruebas. Pero debido a que ya esta instalada, puede no ser posible asi
+que como minimo hay que combrobar:
+\begin{itemize}
+\item Que no haya corto en la entrada CC ni DCC. Con un multimetro comprobar que no hay continuidad entre los dos pines de DCC (entre si) ni en los de CC (entre si)
+\item Que no haya corto entre GND y las salidas Vdrive, +5V y 3.3V
+\end{itemize}
+
+\end{itemize}
 
