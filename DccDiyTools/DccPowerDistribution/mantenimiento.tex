@@ -25,7 +25,7 @@ Se recomienda hacer estas comprobaciones antes de realizar los cortes/cortos en 
 	\item \textbf{VDrive}: Debe ser el voltaje del alimentador menos 0.7V aproximadamente, o la misma si esta configurada como CC solo.
 	\item \textbf{+5V}: Debe estar cercano a 5V
 	\item \textbf{+3.3V}: Igualmente debe ser cercano a 3.3V.
-	\item Revisar que se enciendan los LEDs indicadores. Salvo que sus correspondientes Jumpers (JP5, JP6 y JP7) no esten cortados.
+	\item Revisar que se enciendan los LEDs indicadores. Salvo que sus correspondientes Jumpers (JP5, JP6 y JP7) esten cortados.
 	\item Revisar temperatura de D3, U1, U2 y L1. Tocar un dedo, deben estar templados, si queman revisar pistas por cortos.
 	\end{itemize}
 \item Desconectar el Jack DC y conectar la señal DCC.
@@ -90,7 +90,9 @@ realizar toda la bateria de pruebas. Pero debido a que ya esta instalada, puede 
 que como minimo hay que combrobar:
 \begin{itemize}
 \item Que no haya corto en la entrada CC ni DCC. Con un multimetro comprobar que no hay continuidad entre los dos pines de DCC (entre si) ni en los de CC (entre si)
-\item Que no haya corto entre GND y las salidas Vdrive, +5V y 3.3V
+\item Que no haya corto entre GND y las salidas Vdrive, +5V y 3.3V-
+\item \textbf{En caso de corto} quitar los cables que se hayan conectado para verificar si esta en la placa o en el dispositivo conectado por los cables, si el corto sigue sera necesario cambiar la placa.
+\item \textbf{Si no hay cortos}, procederemos a alimentar la placa y comprobaremos el voltaje, primeramente si se encienden las luces y posteriormente verificaremos el voltaje de salida con el polimetro.
 \end{itemize}
 
 \end{itemize}
