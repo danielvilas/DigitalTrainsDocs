@@ -12,38 +12,25 @@ En la pagina siguiente
         \setlength{\tabcolsep}{10pt}
         \renewcommand{\arraystretch}{1.5}
         \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-            \hline
-            \multicolumn{8}{|c|}{Fuente directa}    & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
-            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
-            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
-            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
-            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
-            \hline
 
-            \noalign{\vskip 5mm}
             \hline
-            \multicolumn{8}{|c|}{Fuente Invertida}  & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
-            test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
-            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
-            120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
-            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
-            \hline
+           \multicolumn{8}{|c|}{Usando la central} & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
 
-            \noalign{\vskip 5mm}
-            \hline
-            \multicolumn{8}{|c|}{Usando la central} & \multicolumn{2}{|c|}{KMB26STR} & \multicolumn{2}{|c|}{GS1510FL} & \multicolumn{2}{|c|}{BSS308}                                                                                                                                                                   \\ \hline
-            50\%                                    &                                & \SI{500}{\milli\ampere}        & \SI{14}{\volt}                 &                          &            &           &       & \SI{43}{\celsius} &            & \SI{96}{\celsius}  &            & \SI{29}{\celsius} &            \\ \hline
-            100\%                                   &                                & \SI{1000}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{64}{\celsius} &            & \SI{173}{\celsius} &            & \SI{39}{\celsius} &            \\ \hline
+          test                                    & $V_{load}$                     & $I_{load}$                     & $V_{src}$                      & $I_{src}$                & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$        & $T_{real}$ & $T_{Calc}$         & $T_{real}$ & $T_{Calc}$        & $T_{real}$ \\
+           \hline
+
+            50\%                                    & \textcolor{red}{\SI{12,8}{\volt}} & \SI{500}{\milli\ampere}        & \SI{16}{\volt}                 &  \textcolor{red}{\SI{578}{\milli\ampere}}& \textcolor{blue}{\SI{6,4}{\watt}}     & \textcolor{blue}{\SI{9,248}{\watt}}& \textcolor{blue}{69,20\%}       & \SI{43}{\celsius} & \textcolor{red}{\SI{43,5}{\celsius}}& \SI{96}{\celsius}  & \textcolor{red}{\SI{49,5}{\celsius}}& \SI{29}{\celsius} & \textcolor{red}{\SI{44}{\celsius}}\\ \hline
+            
+
+100\%                                    & \textcolor{red}{\SI{11,2}{\volt}} & \SI{1000}{\milli\ampere}        & \SI{16}{\volt}                 &  \textcolor{red}{\SI{1079}{\milli\ampere}}& \textcolor{blue}{\SI{11,2}{\watt}}     & \textcolor{blue}{\SI{17,264}{\watt}}& \textcolor{blue}{64,87\%}       & \SI{64}{\celsius} & \textcolor{red}{\SI{71,2}{\celsius}}& \SI{173}{\celsius}  & \textcolor{red}{\SI{71}{\celsius}}& \SI{39}{\celsius} & \textcolor{red}{\SI{102}{\celsius}}\\ \hline
+
             120\%                                   &                                & \SI{1200}{\milli\ampere}       & \SI{14}{\volt}                 &                          &            &           &       & \SI{76}{\celsius} &            & \SI{213}{\celsius} &            & \SI{45}{\celsius} &            \\ \hline
-            Limite                                  &                                &                                & \SI{14}{\volt}                 & \SI{1500}{\milli\ampere} &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
+            Limite                                  &                                & \SI{1500}{\milli\ampere}                               & \SI{14}{\volt}                 &  &            &           &       & \SI{94}{\celsius} &            & \SI{272}{\celsius} &            & \SI{55}{\celsius} &            \\
             \hline
         \end{tabular}
 
         \caption{Resultados DCC}
         \label{tab:ResTablas DCC}
     \end{table}
-
-
+En este caso al llegar el mosfet BSS308 a una temperatura peligrosa, decidimos parar las pruebas del carril DCC
 \end{landscape}

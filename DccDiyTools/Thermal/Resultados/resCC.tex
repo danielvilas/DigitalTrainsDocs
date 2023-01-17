@@ -11,10 +11,12 @@
     \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
         \hline
         test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{Calc}$         & $T_{real}$ \\ \hline
-        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{96}{\celsius}  &            \\ \hline
-        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{173}{\celsius} &            \\ \hline
-        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{213}{\celsius} &            \\ \hline
-        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       & \SI{272}{\celsius} &            \\
+        50\%   & \textcolor{red}{\SI{11,13}{\volt}}& \SI{0.5}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{578}{\milli\ampere}}                   & \textcolor{blue}{\SI{5,565}{\watt}}                       & \textcolor{blue}{\SI{5,565}{\watt}} & \textcolor{blue}{88,33\%}       & \SI{96}{\celsius}  & \textcolor{red}{\SI{50}{\celsius}}\\ \hline
+
+        100\%   & \textcolor{red}{\SI{11}{\volt}}& \SI{1}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{1037}{\milli\ampere}}                   & \textcolor{blue}{\SI{11}{\watt}}                       & \textcolor{blue}{\SI{12,444}{\watt}} & \textcolor{blue}{88,40\%}       & \SI{173}{\celsius}  & \textcolor{red}{\SI{66}{\celsius}}\\ \hline
+
+        120\%   & \textcolor{red}{\SI{11}{\volt}}& \SI{1.2}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{1221}{\milli\ampere}}                   & \textcolor{blue}{\SI{13,2}{\watt}}                       & \textcolor{blue}{\SI{14,652}{\watt}} & \textcolor{blue}{90,09\%}       & \SI{213}{\celsius}  & \textcolor{red}{\SI{71}{\celsius}}\\ \hline
+       Limite &            & \SI{1.5}{\ampere}                 & \SI{12}{\volt} & &            &           &       & \SI{272}{\celsius} &            \\
         \hline
     \end{tabular}
 
@@ -22,3 +24,4 @@
     \label{tab:CcResTable}
 \end{table}
 
+En este caso tambien evitamos realizar la prueba de maxima corriente, para evitar posibles daños al diodo GS1510FL.

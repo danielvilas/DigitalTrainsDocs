@@ -12,11 +12,13 @@
         \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}} \\
         \hline
         test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{TPS}$ & $T_{L}$ \\ \hline
-        50\%   &            & \SI{0.5}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
-        100\%  &            & \SI{1}{\ampere}   & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
-        120\%  &            & \SI{1.2}{\ampere} & \SI{12}{\volt} &                   &            &           &       &                 &         \\ \hline
-        Limite &            &                   & \SI{12}{\volt} & \SI{1.5}{\ampere} &            &           &       &                 &         \\
-        \hline
+        50\%   & \textcolor{red}{\SI{4,962}{\volt}}& \SI{0.5}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{238}{\milli\ampere}}                  & \textcolor{blue}{\SI{2,481}{\watt}}& \textcolor{blue}{\SI{2,856}{\watt}}  & \textcolor{blue}{86,87\%}& \textcolor{red}{\SI{29,4}{\celsius}}  & \textcolor{red}{\SI{27,4}{\celsius}}        \\ \hline
+
+        100\%   & \textcolor{red}{\SI{4,96}{\volt}}& \SI{1}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{467}{\milli\ampere}}                  & \textcolor{blue}{\SI{4,96}{\watt}}& \textcolor{blue}{\SI{5,604}{\watt}}  & \textcolor{blue}{88,51\%}& \textcolor{red}{\SI{31}{\celsius}}  & \textcolor{red}{\SI{28,5}{\celsius}}        \\ \hline
+
+        120\%   & \textcolor{red}{\SI{4,963}{\volt}}& \SI{1.2}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{562}{\milli\ampere}}                  & \textcolor{blue}{\SI{5,955}{\watt}}& \textcolor{blue}{\SI{6,744}{\watt}}  & \textcolor{blue}{88,31\%}& \textcolor{red}{\SI{32}{\celsius}}  & \textcolor{red}{\SI{30.3}{\celsius}}        \\ \hline
+
+        Limite\%   & \textcolor{red}{\SI{4,962}{\volt}}& \SI{1.5}{\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{701}{\milli\ampere}}                  & \textcolor{blue}{\SI{7,443}{\watt}}& \textcolor{blue}{\SI{8,412}{\watt}}  & \textcolor{blue}{88,48\%}& \textcolor{red}{\SI{36,3}{\celsius}}  & \textcolor{red}{\SI{33}{\celsius}}        \\ \hline
     \end{tabular}
 
     \caption{Resultados 5V en $V_{drive}$}
