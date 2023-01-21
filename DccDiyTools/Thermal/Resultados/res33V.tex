@@ -9,15 +9,16 @@
     \setlength{\tabcolsep}{10pt}
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-        \multicolumn{10}{c}{\thead{Conectando la fuente a $V_{drive}$}}                                                                                 \\
+        \multicolumn{8}{c}{\thead{Conectando la fuente a $V_{drive}$}} & \multicolumn{2}{|c|}{\thead{ASM1117-3.3}} \\
         \hline
         test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
-        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
-        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
-        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
-        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
-        \hline
-    \end{tabular}
+        50\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{120}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{70}{\milli\ampere}} & \textcolor{blue}{\SI{0,4008}{\watt}} & \textcolor{blue}{\SI{0,84}{\watt}} & \textcolor{blue}{47.71\%} & \SI{50}{\celsius}  & \textcolor{red}{\SI{34.2}{\celsius}}            \\ \hline
+
+100\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{250}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{130}{\milli\ampere}} & \textcolor{blue}{\SI{0,835}{\watt}} & \textcolor{blue}{\SI{1,56}{\watt}} & \textcolor{blue}{53.53\%} & \SI{74}{\celsius}  & \textcolor{red}{\SI{39.2}{\celsius}}            \\ \hline
+
+120\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{300}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{148}{\milli\ampere}} & \textcolor{blue}{\SI{1,002}{\watt}} & \textcolor{blue}{\SI{1,776}{\watt}} & \textcolor{blue}{56.42\%} & \SI{87}{\celsius}  & \textcolor{red}{\SI{42}{\celsius}}            \\ \hline
+Limite   &\textcolor{red}{\SI{3,3}{\volt}}& \SI{500}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{240}{\milli\ampere}} & \textcolor{blue}{\SI{1,65}{\watt}} & \textcolor{blue}{\SI{2,88}{\watt}} & \textcolor{blue}{57.29\%} & \SI{112}{\celsius}  & \textcolor{red}{\SI{51,3}{\celsius}}            \\ \hline
+   \end{tabular}
 
     \caption{Resultados 3.3V en 5V}
     \label{tab:33VResTable}
@@ -29,15 +30,17 @@
     \setlength{\tabcolsep}{10pt}
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-        \multicolumn{10}{c}{\thead{Conectando la fuente al Jack CC}}                                                                        \\
+        \multicolumn{8}{c}{\thead{Conectando la fuente al Jack CC}} & \multicolumn{2}{|c|}{\thead{ASM1117-3.3}} \\
         \hline
         test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
-        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
-        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
-        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
-        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
-        \hline
-    \end{tabular}
+50\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{120}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{74}{\milli\ampere}} & \textcolor{blue}{\SI{0,4008}{\watt}} & \textcolor{blue}{\SI{0,888}{\watt}} & \textcolor{blue}{45.14\%} & \SI{50}{\celsius}  & \textcolor{red}{\SI{35}{\celsius}}            \\ \hline
+
+100\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{250}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{134}{\milli\ampere}} & \textcolor{blue}{\SI{0,835}{\watt}} & \textcolor{blue}{\SI{1,608}{\watt}} & \textcolor{blue}{51.93\%} & \SI{74}{\celsius}  & \textcolor{red}{\SI{40}{\celsius}}            \\ \hline
+
+120\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{300}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{161}{\milli\ampere}} & \textcolor{blue}{\SI{1,002}{\watt}} & \textcolor{blue}{\SI{1,932}{\watt}} & \textcolor{blue}{51.86\%} & \SI{87}{\celsius}  & \textcolor{red}{\SI{43}{\celsius}}            \\ \hline
+
+Limite   &\textcolor{red}{\SI{3,31}{\volt}}& \SI{500}{\milli\ampere} & \SI{12}{\volt} & \textcolor{red}{\SI{255}{\milli\ampere}} & \textcolor{blue}{\SI{1,655}{\watt}} & \textcolor{blue}{\SI{3,06}{\watt}} & \textcolor{blue}{54.08\%} & \SI{122}{\celsius}  & \textcolor{red}{\SI{50.5}{\celsius}}            \\ \hline
+   \end{tabular}
 
     \caption{Resultados 3.3V en JackCC}
     \label{tab:33VResTableJack}
@@ -49,14 +52,16 @@
     \setlength{\tabcolsep}{10pt}
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-        \multicolumn{10}{c}{\thead{Conectando a una central}}                                                                               \\
+        \multicolumn{8}{c}{\thead{Conectando a una central}} & \multicolumn{2}{|c|}{\thead{ASM1117-3.3}} \\
         \hline
         test   & $V_{load}$ & $I_{load}$        & $V_{src}$      & $I_{src}$         & $P_{load}$ & $P_{src}$ & $Eff$ & $T_{calc}$         & $T_{real}$ \\ \hline
-        50\%   &            & \SI{0.125}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{50}{\celsius}  &            \\ \hline
-        100\%  &            & \SI{0.25}{\ampere}   & \SI{12}{\volt} &                   &            &           &       & \SI{74}{\celsius}  &            \\ \hline
-        120\%  &            & \SI{0.3}{\ampere} & \SI{12}{\volt} &                   &            &           &       & \SI{87}{\celsius}  &            \\ \hline
-        Limite &            &                   & \SI{12}{\volt} & \SI{0.5}{\ampere} &            &           &       & \SI{122}{\celsius} &            \\
-        \hline
+50\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{120}{\milli\ampere} & \SI{16}{\volt} & \textcolor{red}{\SI{126}{\milli\ampere}} & \textcolor{blue}{\SI{0,4008}{\watt}} & \textcolor{blue}{\SI{2,016}{\watt}} & \textcolor{blue}{19.88\%} & \SI{50}{\celsius}  & \textcolor{red}{\SI{36.3}{\celsius}}            \\ \hline
+
+100\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{250}{\milli\ampere} & \SI{16}{\volt} & \textcolor{red}{\SI{179}{\milli\ampere}} & \textcolor{blue}{\SI{0,835}{\watt}} & \textcolor{blue}{\SI{2,864}{\watt}} & \textcolor{blue}{29.16\%} & \SI{74}{\celsius}  & \textcolor{red}{\SI{37.6}{\celsius}}            \\ \hline
+
+120\%   &\textcolor{red}{\SI{3,34}{\volt}}& \SI{300}{\milli\ampere} & \SI{16}{\volt} & \textcolor{red}{\SI{197}{\milli\ampere}} & \textcolor{blue}{\SI{1,002}{\watt}} & \textcolor{blue}{\SI{3,152}{\watt}} & \textcolor{blue}{31.79\%} & \SI{87}{\celsius}  & \textcolor{red}{\SI{39.7}{\celsius}}            \\ \hline
+
+Limite   &\textcolor{red}{\SI{3,3}{\volt}}& \SI{500}{\milli\ampere} & \SI{16}{\volt} & \textcolor{red}{\SI{280}{\milli\ampere}} & \textcolor{blue}{\SI{1,65}{\watt}} & \textcolor{blue}{\SI{4,48}{\watt}} & \textcolor{blue}{36.83\%} & \SI{122}{\celsius}  & \textcolor{red}{\SI{45.5}{\celsius}}            \\ \hline
     \end{tabular}
 
     \caption{Resultados desde la Central}
