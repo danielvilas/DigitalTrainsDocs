@@ -1,0 +1,30 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{TrackDesingTools}
+% \baseboard{(start)}{(size)}{name}
+\newcommand{\baseBoard}[3]{
+    \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
+}
+\begin{document}
+\begin{tikzpicture}
+    %The base boards
+    \coordinate (boardCurveSize) at (60,60);
+    \coordinate (boardModuleSize) at (47,30);
+
+    \baseBoard{(0,0)}{+(boardCurveSize)}{boardCSW}
+    \baseBoard{(boardCSW.south east)}{(boardModuleSize)}{boardMSW}
+    \baseBoard{(boardMSW.south east)}{(boardModuleSize)}{boardMS}
+    \baseBoard{(boardMS.south east)}{(boardModuleSize)}{boardMSE}
+    \baseBoard{(boardMSE.south east)}{(boardCurveSize)}{boardCSE}
+
+    \baseBoard{(boardCSW.north west)}{(boardCurveSize)}{boardCNW}
+    \baseBoard{(boardCNW.east)}{(boardModuleSize)}{boardMNW}
+    \baseBoard{(boardMNW.south east)}{(boardModuleSize)}{boardMN}
+    \baseBoard{(boardMN.south east)}{(boardModuleSize)}{boardMNE}
+    \baseBoard{(boardCSE.north west)}{(boardCurveSize)}{boardCNE}
+
+    \coordinate(centerEast) at (boardCSE.north west);
+    \coordinate(centerWest) at (boardCSW.north east);
+\end{tikzpicture}
+\end{document}

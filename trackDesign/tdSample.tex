@@ -1,13 +1,33 @@
 \documentclass[margin=10pt]{standalone}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
-\usepackage{TrackDesingTools}
+\usepackage[debug]{TrackDesingTools}
 % \baseboard{(start)}{(size)}{name}
 \newcommand{\baseBoard}[3]{
     \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
 }
 
-
+\tikzset{
+  main/.style={
+    color=black,
+    line width=10pt
+  }
+}
+\tikzset{
+  yard/.style={
+    color=blue
+  }
+}
+\tikzset{
+  sideTrack/.style={
+    color=red
+  }
+}
+\tikzset{
+  terminal/.style={
+    color=green
+  }
+}
 
 
 \begin{document}
@@ -31,100 +51,76 @@
     \coordinate(centerEast) at (boardCSE.north west);
     \coordinate(centerWest) at (boardCSW.north east);
 
-    %\pointDebug{(centerEast)}
-    %\pointDebug{(centerWest)}
-
-    %\CurveAtCenter[color=red]{2}{(centerEast)}{0}{360}{r3-000}
-    %\CurveAtCenter[color=red]{1}{(centerEast)}{0}{360}{r3-000}
-
-    \CurveAtCenter[]{2}{(60,60)}{90}{30}{r2-000}
-    %\pointDebug{(r2-000-A)}
-    \CurveAtA{2}{(r2-000-B)}{120}{30}{r2-001}
-    \CurveAtA{2}{(r2-001-B)}{150}{30}{r2-002}
-    \CurvedTurnOutLeftAtA{2}{(r2-002-B)}{180}{30}{ctol-000}
-
-    \CurveAtA{2}{(ctol-000-B)}{210}{30}{r2-003}
-    \CurveAtA{2}{(r2-003-B)}{240}{30}{r2-004}
-
-    \CurveAtA{2}{(ctol-000-C)}{210}{30}{r2-005}
-    \CurveAtA{2}{(r2-005-B)}{240}{30}{r2-006}
-
-    \TurnoutLeftAtA{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000}
-    \TurnoutRightAtA{(tol-000-C)}{23.9}{23.5}{\baseDR/2}{15}{285}{tor-000}
+    %Starting MainLine
+    \CurveAtCenter[main]{2}{(60,60)}{90}{30}{r2-000}
+    \CurveAtA[main]{2}{(r2-000-B)}{120}{30}{r2-001}
+    \CurveAtA[main]{2}{(r2-001-B)}{150}{30}{r2-002}
+    \CurvedTurnOutLeftAtA[main]{2}{(r2-002-B)}{180}{30}{ctol-000}
+    \CurveAtA[main]{2}{(ctol-000-B)}{210}{30}{r2-003}
+    \CurveAtA[main]{2}{(r2-003-B)}{240}{30}{r2-004}
+    \TurnoutLeftAtA[main]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000}
+    \TrackStraight[main]{(tol-000-B)}{23.1}{270}{ts-000}
+    \TrackStraight[main]{(ts-000-B)}{23.9}{270}{ts-001}
+    \TrackStraight[main]{(ts-001-B)}{23.1}{270}{ts-002}
+    \TurnoutRightAtA[main]{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}
+    \TrackStraight[main]{(tor-001-B)}{23.1}{270}{ts-003}
+    \CurveAtCW[main]{2}{(ts-003-B)}{90}{30}{r2-007}
+    \CurveAtCW[main]{2}{(r2-007-B)}{60}{30}{r2-008}
+    \CurveAtCW[main]{2}{(r2-008-B)}{30}{30}{r2-009}
+    \CurvedTurnOutRightAtA[main]{2}{(r2-009-B)}{180}{30}{ctor-000}
+    \CurveAtCW[main]{2}{(ctor-000-B)}{330}{30}{r2-010}
+    \CurveAtCW[main]{2}{(r2-010-B)}{300}{30}{r2-011}
+    \TurnoutRightAtA[main]{(r2-011-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-002}
+    \TrackStraight[main]{(tor-002-B)}{23.1}{90}{ts-005}
+    \TrackStraight[main]{(ts-005-B)}{23.9}{90}{ts-006}
+    \TrackStraight[main]{(ts-006-B)}{23.1}{90}{ts-007}
+    \TrackStraight[main]{(ts-007-B)}{23.9}{90}{ts-008}
+    \TrackStraight[main]{(ts-008-B)}{23.1}{90}{ts-009}
     
-    \TrackStraight{(tol-000-B)}{23.1}{270}{ts-000}
-    \TrackStraight{(ts-000-B)}{23.9}{270}{ts-001}
-    \TrackStraight{(ts-001-B)}{23.1}{270}{ts-002}
-    \TurnoutRightAtA{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}
-    \CurveAtA{9.855}{(tor-001-C)}{255}{15}{r9-000}
-    \TrackStraight{(tor-001-B)}{23.1}{270}{ts-003}
-    \CurveAtCW{1}{(r9-000-B)}{90}{30}{r1-000}
-    \CurveAtCW{1}{(r1-000-B)}{60}{30}{r1-001}
-    \CurveAtCW{1}{(r1-001-B)}{30}{30}{r1-002}
-    \CurveAtCW{1}{(r1-002-B)}{00}{30}{r1-003}
-    \CurveAtCW{1}{(r1-003-B)}{330}{30}{r1-004}
-    \CurveAtCW{1}{(r1-004-B)}{300}{30}{r1-005}
-    \TrackStraight{(r1-005-B)}{23.1}{90}{ts-004}
-    
-    \CurveAtCW{2}{(ts-003-B)}{90}{30}{r2-007}
-    \CurveAtCW{2}{(r2-007-B)}{60}{30}{r2-008}
-    \CurveAtCW{2}{(r2-008-B)}{30}{30}{r2-009}
-    \CurvedTurnOutRightAtA{2}{(r2-009-B)}{180}{30}{ctor-000}
-    \CurveAtCW{2}{(ctor-000-B)}{330}{30}{r2-010}
-    \CurveAtCW{2}{(r2-010-B)}{300}{30}{r2-011}
-    \CurveAtCW{2}{(ctor-000-C)}{330}{30}{r2-012}
-    \CurveAtCW{2}{(r2-012-B)}{300}{30}{r2-013}
-    \TurnoutRightAtA{(r2-011-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-002}
-    \TrackStraight{(tor-002-B)}{23.1}{90}{ts-005}
-    \TrackStraight{(ts-005-B)}{23.9}{90}{ts-006}
-    \TrackStraight{(ts-006-B)}{23.1}{90}{ts-007}
-    \TrackStraight{(ts-007-B)}{23.9}{90}{ts-008}
-    \TrackStraight{(ts-008-B)}{23.1}{90}{ts-009}
-    
-    \TrackStraight{(r2-013-B)}{23.9}{90}{ts-010}
-    \TrackStraight{(ts-010-B)}{23.1}{90}{ts-011}
-    \TrackStraight{(ts-011-B)}{23.9}{90}{ts-012}
-    \TrackStraight{(ts-012-B)}{23.1}{90}{ts-013}
-    \TrackStraight{(ts-013-B)}{23.9}{90}{ts-014}
-    \TrackStraight{(ts-014-B)}{23.1}{90}{ts-015}
+    %Station
+    \CurveAtA[sideTrack]{2}{(ctol-000-C)}{210}{30}{r2-005}
+    \CurveAtA[sideTrack]{2}{(r2-005-B)}{240}{30}{r2-006}
+    \CurveAtCW[sideTrack]{2}{(ctor-000-C)}{330}{30}{r2-012}
+    \CurveAtCW[sideTrack]{2}{(r2-012-B)}{300}{30}{r2-013}
+    \TrackStraight[sideTrack]{(r2-013-B)}{23.9}{90}{ts-010}
+    \TrackStraight[sideTrack]{(ts-010-B)}{23.1}{90}{ts-011}
+    \TrackStraight[sideTrack]{(ts-011-B)}{23.9}{90}{ts-012}
+    \TrackStraight[sideTrack]{(ts-012-B)}{23.1}{90}{ts-013}
+    \TrackStraight[sideTrack]{(ts-013-B)}{23.9}{90}{ts-014}
+    \TrackStraight[sideTrack]{(ts-014-B)}{23.1}{90}{ts-015}
 
     %YARD
+    \TurnoutRightAtA[yard]{(tol-000-C)}{23.9}{23.5}{\baseDR/2}{15}{285}{tor-000}
+    \TrackStraight[yard]{(tor-000-C)}{23.9}{270}{ts-016}
+    \TrackStraight[yard]{(ts-016-B)}{23.1}{270}{ts-017}
+    \TrackStraight[yard]{(ts-017-B)}{23.9}{270}{ts-018}
+    \TrackStraight[yard]{(ts-018-B)}{23.1}{270}{ts-019}
+    \TrackStraight[yard]{(ts-019-B)}{23.9}{270}{ts-020}
+    \TrackStraight[yard]{(ts-020-B)}{23.1}{270}{ts-021}
+    \TurnoutLeftAtC[yard]{(tor-000-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tol-001}
+    \TrackStraight[yard]{(tol-001-B)}{23.1}{90}{ts-024}
+    \TrackStraight[yard]{(ts-024-B)}{23.1}{90}{ts-025}
+    \TrackStraight[yard]{(tol-001-A)}{23.9}{270}{ts-026}
+    \TrackStraight[yard]{(ts-026-B)}{23.9}{270}{ts-027}
+    \TrackStraight[yard]{(ts-027-B)}{23.1}{270}{ts-028}
+    \TrackStraight[yard]{(ts-028-B)}{23.9}{270}{ts-029}
+    \TrackStraight[yard]{(ts-029-B)}{23.1}{270}{ts-030}
 
-    \TrackStraight[]{(tor-000-C)}{23.9}{270}{ts-016}
-    \TrackStraight{(ts-016-B)}{23.1}{270}{ts-017}
-    \TrackStraight[]{(ts-017-B)}{23.9}{270}{ts-018}
-    \TrackStraight{(ts-018-B)}{23.1}{270}{ts-019}
-    \TrackStraight[]{(ts-019-B)}{23.9}{270}{ts-020}
-    \TrackStraight{(ts-020-B)}{23.1}{270}{ts-021}
+
+    % Terminal station
+    \CurveAtA[terminal]{9.855}{(tor-001-C)}{255}{15}{r9-000}
+    \CurveAtCW[terminal]{1}{(r9-000-B)}{90}{30}{r1-000}
+    \CurveAtCW[terminal]{1}{(r1-000-B)}{60}{30}{r1-001}
+    \CurveAtCW[terminal]{1}{(r1-001-B)}{30}{30}{r1-002}
+    \CurveAtCW[terminal]{1}{(r1-002-B)}{00}{30}{r1-003}
+    \CurveAtCW[terminal]{1}{(r1-003-B)}{330}{30}{r1-004}
+    \CurveAtCW[terminal]{1}{(r1-004-B)}{300}{30}{r1-005}
+    \TrackStraight[terminal]{(r1-005-B)}{23.1}{90}{ts-004}
+    \TurnoutRightAtC[terminal]{(tor-002-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-003}
+    \TrackStraight[terminal]{(tor-003-A)}{23.9}{90}{ts-022}
+    \TrackStraight[terminal]{(ts-022-B)}{23.1}{90}{ts-023}
     
-    \TurnoutRightAtC{(tor-002-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-003}
-    \TrackStraight[]{(tor-003-A)}{23.9}{90}{ts-022}
-    \TrackStraight{(ts-022-B)}{23.1}{90}{ts-023}
-    
-    \TurnoutLeftAtC{(tor-000-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tol-001}
-    \TrackStraight[]{(tol-001-B)}{23.1}{90}{ts-024}
-    \TrackStraight{(ts-024-B)}{23.1}{90}{ts-025}
-    \TrackStraight[]{(tol-001-A)}{23.9}{270}{ts-026}
-    \TrackStraight{(ts-026-B)}{23.9}{270}{ts-027}
-    \TrackStraight[]{(ts-027-B)}{23.1}{270}{ts-028}
-    \TrackStraight{(ts-028-B)}{23.9}{270}{ts-029}
-    \TrackStraight[]{(ts-029-B)}{23.1}{270}{ts-030}
-
-    %\CurveAtA{2}{(r2-000-B)}{90}{30}{r2-001}
-    %\CurveAtCenter{1}{(60,60)}{90}{30}{r1-000}
-    %\pointDebug[fill=green]{(r2-000-B)}
-    %\draw[step=30cm,color=gray] (0, 0) grid (120,120);;
-
-    %\TurnoutLeftAtA[color=red]{(75,45)}{23.9}{23.5}{\baseDR/2}{15}{0}{tolTest}
-    %\TurnoutLeftAtA[color=red]{(76,45)}{23.9}{23.5}{\baseDR/2}{15}{270}{tolTest}
-    
-    %\TurnoutRightAtA[color=red]{(75,45)}{23.9}{23.5}{\baseDR/2}{15}{0}{tolTest}
-    %\TurnoutRightAtA[color=green]{(76,45)}{23.9}{23.5}{\baseDR/2}{15}{270}{tolTest}
-
-   
-    %\pointDebug{(tolTest-A)}
-    %\pointDebug{(tolTest-B)}
-    %\pointDebug{(tolTest-C)}
-    %\CurveAtA[color=green]{9.855}{(tor-002-C)}{255}{15}{r9-001}
+    %grid
+    %\draw [step=30, gray] (boardCSW.south west) grid (boardCNE.north east);
 \end{tikzpicture}
 \end{document}

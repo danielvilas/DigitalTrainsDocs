@@ -1,9 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{TrackDesingTools}[2023/02/01 Track Desing Tools Package v0.1]
+\usepackage{etoolbox}
 
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \usetikzlibrary{math}
+
+
+
+\newtoggle{debug} 
+\settoggle{debug}{false}
+\DeclareOption{debug}{\settoggle{debug}{true}}
+\ProcessOptions\relax 
+
 % Tkiz unit is 1cm
 % Start with DanielBhan
 % Four square boards for curves and three(six) (30cm x (231+239mm)) for stations
@@ -72,6 +81,11 @@
         \baseMarker[#1]{#6-A}{#4}
         \baseMarker[#1]{#6-B}{\r2}
     \end{scope}
+    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#6-A)}
+        \pointDebug[color=blue]{(#6-B)}
+        \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
+    }{}
 
 }
 \newcommand{\CurveAtCW}[6][]{
@@ -115,6 +129,12 @@
         \coordinate(#6-C) at (#6-int-B);
         \baseMarker[#1]{#6-C}{#4+#5}
     \end{scope}
+    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#6-A)}
+        \pointDebug[color=blue]{(#6-B)}
+        \pointDebug[color=green]{(#6-C)}
+        %\node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
+    }{}
 }
 
 \newcommand{\CurvedTurnOutRightAtA}[6][]{
@@ -125,6 +145,12 @@
         \coordinate(#6-C) at (#6-int-B);
         \baseMarker[#1]{#6-C}{#4-#5}
     \end{scope}
+    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#6-A)}
+        \pointDebug[color=blue]{(#6-B)}
+        \pointDebug[color=green]{(#6-C)}
+        %\node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
+    }{}
 }
 
 
@@ -154,6 +180,12 @@
     \baseMarker[#1]{#8-A}{#7}
     \baseMarker[#1]{#8-B}{#7}
     \baseMarker[#1]{#8-C}{#7 + #6}
+    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#8-A)}
+        \pointDebug[color=blue]{(#8-B)}
+        \pointDebug[color=green]{(#8-C)}
+        \node[above, color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#8-A)!0.5!0:(#8-B)$){#8}; 
+    }{}
 }
 
 %TurnoutRightAtA
@@ -169,6 +201,11 @@
     \draw[#1] (#5-A) -- (#5-B);
     \baseMarker[#1]{#5-A}{#4}
     \baseMarker[#1]{#5-B}{#4}
+    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#5-A)}
+        \pointDebug[color=blue]{(#5-B)}
+        \node[above, color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#5}; 
+    }{}
 }
 
 %\TurnoutLeftAtC[draw]{(StPos)}{ClosedLength}{thSep}{thLengh}{thSep}{outAngle}{angle}{id}
