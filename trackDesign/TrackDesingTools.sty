@@ -1,0 +1,184 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{TrackDesingTools}[2023/02/01 Track Desing Tools Package v0.1]
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+% Tkiz unit is 1cm
+% Start with DanielBhan
+% Four square boards for curves and three(six) (30cm x (231+239mm)) for stations
+% statations modules are 300 * 470
+%
+\usetikzlibrary{fit}
+\makeatletter
+\tikzset{
+  fitting node/.style={
+    inner sep=0pt,
+    fill=none,
+    draw=none,
+    reset transform,
+    fit={(\pgf@pathminx,\pgf@pathminy) (\pgf@pathmaxx,\pgf@pathmaxy)}
+  },
+  reset transform/.code={\pgftransformreset}
+}
+\makeatother
+
+\newcommand{\pointDebug}[2][fill=red]{\draw[#1] #2 circle(20pt);}
+
+%\baseR=36; %R1 Radius
+%\baseDR=6.19; % Rx - R(x-1) Delta for each Radius
+%\baseMinRect=2; % Min rect length in out in TO and flexible
+%\baseMinControl=3; %Min control point lengh
+
+\tikzmath{
+    \baseR=36; 
+    \baseDR=6.19; 
+    \baseMinRect=.2;
+    \baseMinControl=8; 
+}
+
+% \CoordinateFromCenter*{point}{r}{angle}{id}
+\newcommand{\CoordinateFromCenter}[4]{
+    \begin{scope}
+        \tikzmath{
+            \r1=\baseR+(#2-1)*\baseDR;
+        }
+        %\pointDebug{#1}
+
+        \coordinate (#4-0) at ($#1 + (\r1,0)$);
+        \coordinate (#4) at ($ #1!1!#3:(#4-0)$);        
+    \end{scope}
+}
+
+% \CurveAtCenter[]{Radius}{center}{start}{angle}{id}
+% \CurveAtCenter[color=red]{2}{(60,60)}{90}{30}{r2-000}
+\newcommand{\CurveAtCenter}[6][]{
+    \CoordinateFromCenter{#3}{#2}{#4}{#6-A}
+    \begin{scope}
+        %\pointDebug{(#6-A)}
+        \CurveAtA[#1]{#2}{(#6-A)}{#4}{#5}{#6}
+    \end{scope}
+
+    %\pointDebug{(#5-A0)}
+    %\pointDebug{(#5-A)}
+}
+
+% \CurveAtA[draw]{Radius}{ptA}{start}{angle}{id}
+% \CurveAtA[]{2}{(r2-000-B)}{9}{30}{r2-001}
+% CCW (like tkiz)
+\newcommand{\CurveAtA}[6][]{
+    \begin{scope}
+        \baseCurveAtA{#1}{#2}{#3}{#4}{#5}{#6}
+        \baseMarker[#1]{#6-A}{#4}
+        \baseMarker[#1]{#6-B}{\r2}
+    \end{scope}
+
+}
+\newcommand{\CurveAtCW}[6][]{
+    \CurveAtA[#1]{#2}{#3}{#4}{-#5}{#6}
+}
+
+% \baseProjectPoint[dir]{(start)}{angle}{dist}{id}
+\newcommand{\baseProjectPoint}[5][1]{
+    %($ (#2)!-1!#3:($ (#2) + (0.5,0)$)$)
+    %($(#2) + (0.5,0)$) 
+    \coordinate (#5) at ($#2!#1!#3:($ #2 + #4 $)$);
+}
+
+% \baseMarker[draw]{pointName}{angle}
+\newcommand{\baseMarker}[3][]{
+    \baseProjectPoint{(#2)}{#3}{(0.5,0)}{#2u}
+    \baseProjectPoint[-1]{(#2)}{#3}{(0.5,0)}{#2d}
+    \draw [#1] (#2) -- (#2u);
+    \draw [#1] (#2) -- (#2d);
+}
+
+% \baseCurveAtA[draw]{Radius}{ptA}{start}{angle}{id}
+% \baseCurveAtA[]{2}{(r2-000-B)}{9}{30}{r2-001}
+% CCW (like tkiz)
+\newcommand{\baseCurveAtA}[6]{
+    \tikzmath{
+        \r1=\baseR+(#2-1)*\baseDR;
+        \r2=#4 + #5;
+    }
+    %\pointDebug{#2}
+    \coordinate (#6-A) at #3;
+    \draw[#1] (#6-A) arc (#4:\r2:\r1) coordinate (#6-B);
+}
+
+%Piko Rx to R(x+1)
+\newcommand{\CurvedTurnOutLeftAtA}[6][]{
+    \begin{scope}
+        \CurveAtA[#1]{#2}{#3}{#4}{#5}{#6}
+        \draw [#1] #3 -- ($ #3!1!#4:($ #3 + (0,\baseDR) $)$) coordinate(#6-int-st);
+        \baseCurveAtA{#1}{#2}{(#6-int-st)}{#4}{#5}{#6-int}
+        \coordinate(#6-C) at (#6-int-B);
+        \baseMarker[#1]{#6-C}{#4+#5}
+    \end{scope}
+}
+
+\newcommand{\CurvedTurnOutRightAtA}[6][]{
+    \begin{scope}
+        \CurveAtCW[#1]{#2}{#3}{#4+180}{#5}{#6}
+        \draw [#1] #3 -- ($ #3!1!#4:($ #3 + (0,\baseDR) $)$) coordinate(#6-int-st);
+        \baseCurveAtA{#1}{#2}{(#6-int-st)}{#4+180}{-#5}{#6-int}
+        \coordinate(#6-C) at (#6-int-B);
+        \baseMarker[#1]{#6-C}{#4-#5}
+    \end{scope}
+}
+
+
+
+%TurnoutLeft
+%\TurnoutLeftAtA[draw]{(StPos)}{ClosedLength}{thSep}{thLengh}{thSep}{outAngle}{angle}{id}
+\newcommand{\TurnoutLeftAtA}[8][]{
+    \coordinate (#8-A) at #2;
+    \draw[#1] #2 -- ($ #2!1!#7:($ #2 +(0,#3)$)$) coordinate (#8-B);
+    \coordinate (#8-C) at ($ #2!1!#7:($ #2 +(-#5,#4)$)$);
+    \baseProjectPoint{(#8-C)}{#7+#6}{(0,-\baseMinRect)}{#8-Crt}
+    \baseProjectPoint{(#8-A)}{#7}{(0,\baseMinRect)}{#8-Art}
+
+    \baseProjectPoint{(#8-Crt)}{#7+#6}{(0,-\baseMinControl)}{#8-Cct}
+    \baseProjectPoint{(#8-Art)}{#7}{(0,\baseMinControl)}{#8-Act}
+
+
+    \draw[#1] (#8-A) -- (#8-Art)
+        .. controls (#8-Act) and (#8-Cct) .. 
+         (#8-Crt) -- (#8-C);
+    % \draw[color=blue] (#8-C) -- (#8-Crt);
+    % \draw[color=green] (#8-Crt) -- (#8-Cct);
+    % \draw[color=blue] (#8-A) -- (#8-Art);
+    % \draw[color=green] (#8-Art) -- (#8-Act);
+    % \draw[color=gray] (#8-Art) -- (#8-Crt);
+    
+    \baseMarker[#1]{#8-A}{#7}
+    \baseMarker[#1]{#8-B}{#7}
+    \baseMarker[#1]{#8-C}{#7 + #6}
+}
+
+%TurnoutRightAtA
+%\TurnoutRightAtA[draw]{(StPos)}{ClosedLength}{thLengh}{thSep}{outAngle}{angle}{id}
+\newcommand{\TurnoutRightAtA}[8][]{
+    \TurnoutLeftAtA[#1]{#2}{#3}{#4}{-#5}{-#6}{#7}{#8}
+}
+
+%\TrackStraight[draw]{(start)}{length}{angle}{id}
+\newcommand{\TrackStraight}[5][]{
+    \coordinate (#5-A) at #2;
+    \baseProjectPoint{(#5-A)}{#4}{(0,#3)}{#5-B}
+    \draw[#1] (#5-A) -- (#5-B);
+    \baseMarker[#1]{#5-A}{#4}
+    \baseMarker[#1]{#5-B}{#4}
+}
+
+%\TurnoutLeftAtC[draw]{(StPos)}{ClosedLength}{thSep}{thLengh}{thSep}{outAngle}{angle}{id}
+\newcommand{\TurnoutLeftAtC}[8][]{
+    \baseProjectPoint{#2}{#7}{(#5,-#4)}{#8-A}
+    \TurnoutLeftAtA[#1]{(#8-A)}{#3}{#4}{#5}{#6}{#7}{#8}
+}
+
+%\TurnoutRightAtC[draw]{(StPos)}{ClosedLength}{thSep}{thLengh}{thSep}{outAngle}{angle}{id}
+\newcommand{\TurnoutRightAtC}[8][]{
+    \baseProjectPoint{#2}{#7}{(-#5,-#4)}{#8-A}
+    \TurnoutRightAtA[#1]{(#8-A)}{#3}{#4}{#5}{#6}{#7}{#8}
+}
