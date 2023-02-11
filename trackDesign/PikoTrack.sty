@@ -1,0 +1,61 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{PikoTrack}[2023/02/01 Piko Track Desing Tools Package v0.1]
+
+\RequirePackage{TrackDesingTools}
+\RequirePackage{etoolbox}
+
+
+\tikzmath{
+    \baseR=36; 
+    \baseDR=6.19; 
+    \baseMinRect=.2;
+    \baseMinControl=8;
+    \roadBedSize=41:
+    \trackSize=32;
+}
+
+\newcommand{\pikoCurveToData}[1]{
+    \ifstrequal{R1}{#1}{
+        \tikzmath{
+            \curvRadius=36;
+            \curvAngle=30;
+        }
+    }{}
+    \ifstrequal{R2}{#1}{
+        %\CurveAtCenter[#1]{42.188}{#3}{#4}{30}{#5}
+        \tikzmath{
+            \curvRadius=42.188;
+            \curvAngle=30;
+        }
+    } {}
+    \ifstrequal{R3}{#1}{
+        %\CurveAtCenter[#1]{48.375}{#3}{#4}{30}{#5}
+        \tikzmath{
+            \curvRadius=48.375;
+            \curvAngle=30;
+        }
+    }{}
+    \ifstrequal{R4}{#1}{
+        %\CurveAtCenter[#1]{54.563}{#3}{#4}{30}{#5}
+        \tikzmath{
+            \curvRadius=54.563;
+            \curvAngle=30;
+        }
+    }{}
+    \ifstrequal{R9}{#1}{
+        %\CurveAtCenter[#1]{90.797}{#3}{#4}{15}{#5}
+        \tikzmath{
+            \curvRadius=90.797;
+            \curvAngle=15;
+        }
+    }{}
+
+}
+
+%\PikoR2AtCenter[style]{(60,60)}{90}{r2-000}
+\newcommand{\PikoCurveAtCenter}[5][]{
+    \pikoCurveToData{#2}
+    \CurveAtCenter[#1]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
+
+
+}

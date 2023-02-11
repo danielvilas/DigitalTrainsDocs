@@ -40,8 +40,6 @@
 %\baseMinControl=3; %Min control point lengh
 
 \tikzmath{
-    \baseR=36; 
-    \baseDR=6.19; 
     \baseMinRect=.2;
     \baseMinControl=8; 
 }
@@ -49,12 +47,7 @@
 % \CoordinateFromCenter*{point}{r}{angle}{id}
 \newcommand{\CoordinateFromCenter}[4]{
     \begin{scope}
-        \tikzmath{
-            \r1=\baseR+(#2-1)*\baseDR;
-        }
-        %\pointDebug{#1}
-
-        \coordinate (#4-0) at ($#1 + (\r1,0)$);
+        \coordinate (#4-0) at ($#1 + (#2,0)$);
         \coordinate (#4) at ($ #1!1!#3:(#4-0)$);        
     \end{scope}
 }
@@ -112,43 +105,43 @@
 % CCW (like tkiz)
 \newcommand{\baseCurveAtA}[6]{
     \tikzmath{
-        \r1=\baseR+(#2-1)*\baseDR;
         \r2=#4 + #5;
     }
     %\pointDebug{#2}
     \coordinate (#6-A) at #3;
-    \draw[#1] (#6-A) arc (#4:\r2:\r1) coordinate (#6-B);
+    \draw[#1] (#6-A) arc (#4:\r2:#2) coordinate (#6-B);
 }
 
 %Piko Rx to R(x+1)
-\newcommand{\CurvedTurnOutLeftAtA}[6][]{
+%\CurvedTurnOutLeftAtA[main]{42.188}{\baseDR}{(r2-002-B)}{180}{30}{ctol-000}
+\newcommand{\CurvedTurnOutLeftAtA}[7][]{
     \begin{scope}
-        \CurveAtA[#1]{#2}{#3}{#4}{#5}{#6}
-        \draw [#1] #3 -- ($ #3!1!#4:($ #3 + (0,\baseDR) $)$) coordinate(#6-int-st);
-        \baseCurveAtA{#1}{#2}{(#6-int-st)}{#4}{#5}{#6-int}
-        \coordinate(#6-C) at (#6-int-B);
-        \baseMarker[#1]{#6-C}{#4+#5}
+        \CurveAtA[#1]{#2}{#4}{#5}{#6}{#7}
+        \draw [#1] #4 -- ($ #4!1!#5:($ #4 + (0,#3) $)$) coordinate(#7-int-st);
+        \baseCurveAtA{#1}{#2}{(#7-int-st)}{#5}{#6}{#7-int}
+        \coordinate(#7-C) at (#7-int-B);
+        \baseMarker[#1]{#7-C}{#5+#6}
     \end{scope}
     \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
-        \pointDebug[color=red]{(#6-A)}
-        \pointDebug[color=blue]{(#6-B)}
-        \pointDebug[color=green]{(#6-C)}
+        \pointDebug[color=red]{(#7-A)}
+        \pointDebug[color=blue]{(#7-B)}
+        \pointDebug[color=green]{(#7-C)}
         %\node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
     }{}
 }
 
-\newcommand{\CurvedTurnOutRightAtA}[6][]{
+\newcommand{\CurvedTurnOutRightAtA}[7][]{
     \begin{scope}
-        \CurveAtCW[#1]{#2}{#3}{#4+180}{#5}{#6}
-        \draw [#1] #3 -- ($ #3!1!#4:($ #3 + (0,\baseDR) $)$) coordinate(#6-int-st);
-        \baseCurveAtA{#1}{#2}{(#6-int-st)}{#4+180}{-#5}{#6-int}
-        \coordinate(#6-C) at (#6-int-B);
-        \baseMarker[#1]{#6-C}{#4-#5}
+        \CurveAtCW[#1]{#2}{#4}{#5+180}{#6}{#7}
+        \draw [#1] #4 -- ($ #4!1!#5:($ #4 + (0,#3) $)$) coordinate(#7-int-st);
+        \baseCurveAtA{#1}{#2}{(#7-int-st)}{#5+180}{-#6}{#7-int}
+        \coordinate(#7-C) at (#7-int-B);
+        \baseMarker[#1]{#7-C}{#5-#6}
     \end{scope}
     \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
-        \pointDebug[color=red]{(#6-A)}
-        \pointDebug[color=blue]{(#6-B)}
-        \pointDebug[color=green]{(#6-C)}
+        \pointDebug[color=red]{(#7-A)}
+        \pointDebug[color=blue]{(#7-B)}
+        \pointDebug[color=green]{(#7-C)}
         %\node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
     }{}
 }

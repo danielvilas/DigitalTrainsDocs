@@ -2,6 +2,8 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
 \usepackage{TrackDesingTools}
+\usepackage[]{PikoTrack}
+
 % \baseboard{(start)}{(size)}{name}
 \newcommand{\baseBoard}[3]{
     \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
@@ -26,5 +28,13 @@
 
     \coordinate(centerEast) at (boardCSE.north west);
     \coordinate(centerWest) at (boardCSW.north east);
+
+    %MainLine
+    %\CurveAtCenter[]{2}{(60,60)}{90}{30}{r2-000}
+    \PikoCurveAtCenter{R2}{(60,60)}{90}{r2-000}
+
+    \TurnoutLeftAtA[]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000}
+    \TrackStraight[]{(tol-000-B)}{23.1}{270}{ts-000}
+    
 \end{tikzpicture}
 \end{document}

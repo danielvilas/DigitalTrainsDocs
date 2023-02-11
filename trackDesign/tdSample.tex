@@ -29,6 +29,10 @@
   }
 }
 
+\tikzmath{
+    \baseDR=6.19; 
+}
+
 
 \begin{document}
 \begin{tikzpicture}
@@ -52,24 +56,24 @@
     \coordinate(centerWest) at (boardCSW.north east);
 
     %Starting MainLine
-    \CurveAtCenter[main]{2}{(60,60)}{90}{30}{r2-000}
-    \CurveAtA[main]{2}{(r2-000-B)}{120}{30}{r2-001}
-    \CurveAtA[main]{2}{(r2-001-B)}{150}{30}{r2-002}
-    \CurvedTurnOutLeftAtA[main]{2}{(r2-002-B)}{180}{30}{ctol-000}
-    \CurveAtA[main]{2}{(ctol-000-B)}{210}{30}{r2-003}
-    \CurveAtA[main]{2}{(r2-003-B)}{240}{30}{r2-004}
+    \CurveAtCenter[main]{42.188}{(60,60)}{90}{30}{r2-000}
+    \CurveAtA[main]{42.188}{(r2-000-B)}{120}{30}{r2-001}
+    \CurveAtA[main]{42.188}{(r2-001-B)}{150}{30}{r2-002}
+    \CurvedTurnOutLeftAtA[main]{42.188}{\baseDR}{(r2-002-B)}{180}{30}{ctol-000}
+    \CurveAtA[main]{42.188}{(ctol-000-B)}{210}{30}{r2-003}
+    \CurveAtA[main]{42.188}{(r2-003-B)}{240}{30}{r2-004}
     \TurnoutLeftAtA[main]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000}
     \TrackStraight[main]{(tol-000-B)}{23.1}{270}{ts-000}
     \TrackStraight[main]{(ts-000-B)}{23.9}{270}{ts-001}
     \TrackStraight[main]{(ts-001-B)}{23.1}{270}{ts-002}
     \TurnoutRightAtA[main]{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}
     \TrackStraight[main]{(tor-001-B)}{23.1}{270}{ts-003}
-    \CurveAtCW[main]{2}{(ts-003-B)}{90}{30}{r2-007}
-    \CurveAtCW[main]{2}{(r2-007-B)}{60}{30}{r2-008}
-    \CurveAtCW[main]{2}{(r2-008-B)}{30}{30}{r2-009}
-    \CurvedTurnOutRightAtA[main]{2}{(r2-009-B)}{180}{30}{ctor-000}
-    \CurveAtCW[main]{2}{(ctor-000-B)}{330}{30}{r2-010}
-    \CurveAtCW[main]{2}{(r2-010-B)}{300}{30}{r2-011}
+    \CurveAtCW[main]{42.188}{(ts-003-B)}{90}{30}{r2-007}
+    \CurveAtCW[main]{42.188}{(r2-007-B)}{60}{30}{r2-008}
+    \CurveAtCW[main]{42.188}{(r2-008-B)}{30}{30}{r2-009}
+    \CurvedTurnOutRightAtA[main]{42.188}{\baseDR}{(r2-009-B)}{180}{30}{ctor-000}
+    \CurveAtCW[main]{42.188}{(ctor-000-B)}{330}{30}{r2-010}
+    \CurveAtCW[main]{42.188}{(r2-010-B)}{300}{30}{r2-011}
     \TurnoutRightAtA[main]{(r2-011-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-002}
     \TrackStraight[main]{(tor-002-B)}{23.1}{90}{ts-005}
     \TrackStraight[main]{(ts-005-B)}{23.9}{90}{ts-006}
@@ -78,10 +82,10 @@
     \TrackStraight[main]{(ts-008-B)}{23.1}{90}{ts-009}
     
     %Station
-    \CurveAtA[sideTrack]{2}{(ctol-000-C)}{210}{30}{r2-005}
-    \CurveAtA[sideTrack]{2}{(r2-005-B)}{240}{30}{r2-006}
-    \CurveAtCW[sideTrack]{2}{(ctor-000-C)}{330}{30}{r2-012}
-    \CurveAtCW[sideTrack]{2}{(r2-012-B)}{300}{30}{r2-013}
+    \CurveAtA[sideTrack]{42.188}{(ctol-000-C)}{210}{30}{r2-005}
+    \CurveAtA[sideTrack]{42.188}{(r2-005-B)}{240}{30}{r2-006}
+    \CurveAtCW[sideTrack]{42.188}{(ctor-000-C)}{330}{30}{r2-012}
+    \CurveAtCW[sideTrack]{42.188}{(r2-012-B)}{300}{30}{r2-013}
     \TrackStraight[sideTrack]{(r2-013-B)}{23.9}{90}{ts-010}
     \TrackStraight[sideTrack]{(ts-010-B)}{23.1}{90}{ts-011}
     \TrackStraight[sideTrack]{(ts-011-B)}{23.9}{90}{ts-012}
@@ -108,13 +112,13 @@
 
 
     % Terminal station
-    \CurveAtA[terminal]{9.855}{(tor-001-C)}{255}{15}{r9-000}
-    \CurveAtCW[terminal]{1}{(r9-000-B)}{90}{30}{r1-000}
-    \CurveAtCW[terminal]{1}{(r1-000-B)}{60}{30}{r1-001}
-    \CurveAtCW[terminal]{1}{(r1-001-B)}{30}{30}{r1-002}
-    \CurveAtCW[terminal]{1}{(r1-002-B)}{00}{30}{r1-003}
-    \CurveAtCW[terminal]{1}{(r1-003-B)}{330}{30}{r1-004}
-    \CurveAtCW[terminal]{1}{(r1-004-B)}{300}{30}{r1-005}
+    \CurveAtA[terminal]{90.797}{(tor-001-C)}{255}{15}{r9-000}
+    \CurveAtCW[terminal]{36}{(r9-000-B)}{90}{30}{r1-000}
+    \CurveAtCW[terminal]{36}{(r1-000-B)}{60}{30}{r1-001}
+    \CurveAtCW[terminal]{36}{(r1-001-B)}{30}{30}{r1-002}
+    \CurveAtCW[terminal]{36}{(r1-002-B)}{00}{30}{r1-003}
+    \CurveAtCW[terminal]{36}{(r1-003-B)}{330}{30}{r1-004}
+    \CurveAtCW[terminal]{36}{(r1-004-B)}{300}{30}{r1-005}
     \TrackStraight[terminal]{(r1-005-B)}{23.1}{90}{ts-004}
     \TurnoutRightAtC[terminal]{(tor-002-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-003}
     \TrackStraight[terminal]{(tor-003-A)}{23.9}{90}{ts-022}
