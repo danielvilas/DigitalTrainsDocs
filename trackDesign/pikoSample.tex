@@ -1,15 +1,15 @@
 \documentclass[margin=10pt]{standalone}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
-\usepackage{TrackDesingTools}
-\usepackage[]{PikoTrack}
+\usepackage[]{TrackDesingTools}
+\usepackage[debug,railbed]{PikoTrack}
 
 % \baseboard{(start)}{(size)}{name}
 \newcommand{\baseBoard}[3]{
     \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
 }
 \begin{document}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1]
     %The base boards
     \coordinate (boardCurveSize) at (60,60);
     \coordinate (boardModuleSize) at (47,30);
@@ -30,11 +30,30 @@
     \coordinate(centerWest) at (boardCSW.north east);
 
     %MainLine
-    %\CurveAtCenter[]{2}{(60,60)}{90}{30}{r2-000}
     \PikoCurveAtCenter{R2}{(60,60)}{90}{r2-000}
+    \PikoCurveAtA{R2}{(r2-000-B)}{120}{r2-001}
+    \PikoCurveAtA{R2}{(r2-001-B)}{150}{r2-002}
+    \CurvedTurnOutLeftAtA[]{42.188}{\baseDR}{(r2-002-B)}{180}{30}{ctol-000} %Change
+    \PikoCurveAtA{R2}{(ctol-000-B)}{210}{r2-003}
+    \PikoCurveAtA{R2}{(r2-003-B)}{240}{r2-004}
 
-    \TurnoutLeftAtA[]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000}
-    \TrackStraight[]{(tol-000-B)}{23.1}{270}{ts-000}
-    
+    \TurnoutLeftAtA[]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000} %Change
+    \TrackStraight[]{(tol-000-B)}{23.1}{270}{ts-000} %Change
+    \TrackStraight[]{(ts-000-B)}{23.9}{270}{ts-001}%Change
+    \TrackStraight[]{(ts-001-B)}{23.1}{270}{ts-002}%Change
+    \TurnoutRightAtA[]{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-000}%Change
+    \TrackStraight[]{(tor-000-B)}{23.1}{270}{ts-003}%Change
+    \PikoCurveAtB{R2}{(ts-003-B)}{90}{r2-005}
+    \PikoCurveAtB{R2}{(r2-005-B)}{60}{r2-006}
+    \PikoCurveAtB{R2}{(r2-006-B)}{30}{r2-007}
+
+    %Terminal
+    \PikoCurveAtA{R9}{(tor-000-C)}{255}{r9-000}
+    \PikoCurveAtB{R1}{(r9-000-B)}{90}{r1-000}
+    \PikoCurveAtB{R1}{(r1-000-B)}{60}{r1-001}
+    \PikoCurveAtB{R1}{(r1-001-B)}{30}{r1-002}
+    \PikoCurveAtB{R1}{(r1-002-B)}{0}{r1-003}
+    \PikoCurveAtB{R1}{(r1-003-B)}{330}{r1-004}
+    \PikoCurveAtB{R1}{(r1-004-B)}{300}{r1-005}
 \end{tikzpicture}
 \end{document}

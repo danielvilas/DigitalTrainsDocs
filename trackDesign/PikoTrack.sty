@@ -5,13 +5,24 @@
 \RequirePackage{etoolbox}
 
 
+\newtoggle{pikoNames} 
+\settoggle{pikoNames}{true}
+\DeclareOption{noNames}{\settoggle{pikoNames}{false}}
+\newtoggle{pikoDebug} 
+\settoggle{pikoDebug}{false}
+\DeclareOption{debug}{\settoggle{pikoDebug}{true}}
+\newtoggle{pikoRailBed} 
+\settoggle{pikoRailBed}{false}
+\DeclareOption{railbed}{\settoggle{pikoRailBed}{true}}
+\ProcessOptions\relax 
+
 \tikzmath{
     \baseR=36; 
     \baseDR=6.19; 
     \baseMinRect=.2;
     \baseMinControl=8;
-    \roadBedSize=41:
-    \trackSize=32;
+    \railBedSize=4.1/2;
+    \trackSize=3.2/2;
 }
 
 \newcommand{\pikoCurveToData}[1]{
@@ -20,6 +31,7 @@
             \curvRadius=36;
             \curvAngle=30;
         }
+        \def \curvColor{SkyBlue}
     }{}
     \ifstrequal{R2}{#1}{
         %\CurveAtCenter[#1]{42.188}{#3}{#4}{30}{#5}
@@ -27,6 +39,7 @@
             \curvRadius=42.188;
             \curvAngle=30;
         }
+        \def \curvColor{Cerulean}
     } {}
     \ifstrequal{R3}{#1}{
         %\CurveAtCenter[#1]{48.375}{#3}{#4}{30}{#5}
@@ -34,6 +47,7 @@
             \curvRadius=48.375;
             \curvAngle=30;
         }
+        \def \curvColor{RoyalBlue}
     }{}
     \ifstrequal{R4}{#1}{
         %\CurveAtCenter[#1]{54.563}{#3}{#4}{30}{#5}
@@ -41,6 +55,7 @@
             \curvRadius=54.563;
             \curvAngle=30;
         }
+        \def \curvColor{MidnightBlue}
     }{}
     \ifstrequal{R9}{#1}{
         %\CurveAtCenter[#1]{90.797}{#3}{#4}{15}{#5}
@@ -48,14 +63,79 @@
             \curvRadius=90.797;
             \curvAngle=15;
         }
+        \def \curvColor{BlueViolet}
+    }{}
+    \tikzmath{
+        \curvBedInnerRadius=\curvRadius - \railBedSize/2;
+        \curvBedExtRadius=\curvRadius + \railBedSize/2;
+        \curvTrkInnerRadius=\curvRadius - \trackSize/2;
+        \curvTrkExtRadius=\curvRadius + \trackSize/2;
+    }
+}
+
+
+\newcommand{\calcTrackPoints}[1]{
+    \coordinate (#1tu) at ($(#1)!\trackSize cm!0:(#1u)$);
+    \coordinate (#1td) at ($(#1)!\trackSize cm!0:(#1d)$);
+    \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+        \coordinate (#1bu) at ($(#1)!\railBedSize!0:(#1u)$);
+        \coordinate (#1bd) at ($(#1)!\railBedSize!0:(#1d)$);
+    }{}
+}
+
+
+\newcommand{\PikoPaintCurve}[5][]{
+    \calcTrackPoints{#5-A}
+    \calcTrackPoints{#5-B}
+
+    \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+        \draw[fill=lightgray] (#5-Abu) -- (#5-Abd)
+        arc (#4:(#4+\curvAngle):\curvBedInnerRadius)
+        -- (#5-Bbd) -- (#5-Bbu)
+        arc ((#4+\curvAngle):#4:\curvBedExtRadius)
+        -- (#5-Abu);
     }{}
 
+    \draw[fill=\curvColor] (#5-Atu) -- (#5-Atd)
+    arc (#4:(#4+\curvAngle):\curvTrkInnerRadius)
+    -- (#5-Btd) -- (#5-Btu)
+    arc ((#4+\curvAngle):#4:\curvTrkExtRadius)
+    -- (#5-Atu);
+
+    \iftoggle{pikoNames}{
+        \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#2}; 
+    }{}
+
+    \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#5-Atu)}
+        \pointDebug[color=blue]{(#5-Atd)}
+        \pointDebug[color=red]{(#5-Btu)}
+        \pointDebug[color=blue]{(#5-Btd)}
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \pointDebug[color=red]{(#5-Abu)}
+            \pointDebug[color=blue]{(#5-Abd)}
+            \pointDebug[color=red]{(#5-Bbu)}
+            \pointDebug[color=blue]{(#5-Bbd)}
+        }{}
+    }{}
 }
 
 %\PikoR2AtCenter[style]{(60,60)}{90}{r2-000}
 \newcommand{\PikoCurveAtCenter}[5][]{
     \pikoCurveToData{#2}
-    \CurveAtCenter[#1]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
-
-
+    \CurveAtCenter[]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
+    \PikoPaintCurve[#1]{#2}{#3}{#4}{#5}
+}
+\newcommand{\PikoCurveAtA}[5][]{
+    \pikoCurveToData{#2}
+    \CurveAtA[]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
+    \PikoPaintCurve[#1]{#2}{#3}{#4}{#5}
+}
+\newcommand{\PikoCurveAtB}[5][]{
+    \pikoCurveToData{#2}
+    \tikzmath{
+        \curvAngle=-\curvAngle;
+    }
+    \CurveAtA[]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
+    \PikoPaintCurve[#1]{#2}{#3}{#4}{#5}
 }

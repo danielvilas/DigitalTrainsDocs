@@ -8,9 +8,9 @@
 
 
 
-\newtoggle{debug} 
-\settoggle{debug}{false}
-\DeclareOption{debug}{\settoggle{debug}{true}}
+\newtoggle{trkDebug} 
+\settoggle{trkDebug}{false}
+\DeclareOption{debug}{\settoggle{trkDebug}{true}}
 \ProcessOptions\relax 
 
 % Tkiz unit is 1cm
@@ -74,7 +74,7 @@
         \baseMarker[#1]{#6-A}{#4}
         \baseMarker[#1]{#6-B}{\r2}
     \end{scope}
-    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#6-A)}
         \pointDebug[color=blue]{(#6-B)}
         \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#6-A)!0.5!0:(#6-B)$){#6}; 
@@ -122,7 +122,7 @@
         \coordinate(#7-C) at (#7-int-B);
         \baseMarker[#1]{#7-C}{#5+#6}
     \end{scope}
-    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#7-A)}
         \pointDebug[color=blue]{(#7-B)}
         \pointDebug[color=green]{(#7-C)}
@@ -138,7 +138,7 @@
         \coordinate(#7-C) at (#7-int-B);
         \baseMarker[#1]{#7-C}{#5-#6}
     \end{scope}
-    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#7-A)}
         \pointDebug[color=blue]{(#7-B)}
         \pointDebug[color=green]{(#7-C)}
@@ -173,7 +173,7 @@
     \baseMarker[#1]{#8-A}{#7}
     \baseMarker[#1]{#8-B}{#7}
     \baseMarker[#1]{#8-C}{#7 + #6}
-    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#8-A)}
         \pointDebug[color=blue]{(#8-B)}
         \pointDebug[color=green]{(#8-C)}
@@ -194,7 +194,7 @@
     \draw[#1] (#5-A) -- (#5-B);
     \baseMarker[#1]{#5-A}{#4}
     \baseMarker[#1]{#5-B}{#4}
-    \iftoggle{debug}{ % Conditional logic for the unnumbered sections class options
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#5-A)}
         \pointDebug[color=blue]{(#5-B)}
         \node[above, color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#5}; 
