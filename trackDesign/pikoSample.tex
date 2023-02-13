@@ -4,12 +4,14 @@
 \usepackage[]{TrackDesingTools}
 \usepackage[debug,railbed]{PikoTrack}
 
+
 % \baseboard{(start)}{(size)}{name}
 \newcommand{\baseBoard}[3]{
     \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
 }
 \begin{document}
-\begin{tikzpicture}[scale=1]
+\begin{tikzpicture}
+    \PikoScaleDraw{1}
     %The base boards
     \coordinate (boardCurveSize) at (60,60);
     \coordinate (boardModuleSize) at (47,30);
@@ -33,28 +35,28 @@
     \PikoCurveAtCenter{R2}{(60,60)}{90}{r2-000}
     \PikoCurveAtA{R2}{(r2-000-B)}{120}{r2-001}
     \PikoCurveAtA{R2}{(r2-001-B)}{150}{r2-002}
-    \CurvedTurnOutLeftAtA[]{42.188}{\baseDR}{(r2-002-B)}{180}{30}{ctol-000} %Change
+    \PikoTurnout[]{BWL}{(r2-002-B)}{180}{ctol-000}
     \PikoCurveAtA{R2}{(ctol-000-B)}{210}{r2-003}
     \PikoCurveAtA{R2}{(r2-003-B)}{240}{r2-004}
 
     \TurnoutLeftAtA[]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000} %Change
-    \TrackStraight[]{(tol-000-B)}{23.1}{270}{ts-000} %Change
-    \TrackStraight[]{(ts-000-B)}{23.9}{270}{ts-001}%Change
-    \TrackStraight[]{(ts-001-B)}{23.1}{270}{ts-002}%Change
+    \PikoStraight[]{G231}{(tol-000-B)}{270}{ts-000}
+    \PikoStraight[]{G239}{(ts-000-B)}{270}{ts-001}
+    \PikoStraight[]{G231}{(ts-001-B)}{270}{ts-002}
     \TurnoutRightAtA[]{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-000}%Change
-    \TrackStraight[]{(tor-000-B)}{23.1}{270}{ts-003}%Change
+    \PikoStraight[]{G231}{(tor-000-B)}{270}{ts-003}
     \PikoCurveAtB{R2}{(ts-003-B)}{90}{r2-005}
     \PikoCurveAtB{R2}{(r2-005-B)}{60}{r2-006}
     \PikoCurveAtB{R2}{(r2-006-B)}{30}{r2-007}
-    \CurvedTurnOutRightAtA[]{42.188}{\baseDR}{(r2-007-B)}{180}{30}{ctor-000} %Change
+    \PikoTurnout[]{BWR}{(r2-007-B)}{180}{ctor-000}
     \PikoCurveAtB{R2}{(ctor-000-B)}{330}{r2-008}
     \PikoCurveAtB{R2}{(r2-008-B)}{300}{r2-009}
     \TurnoutRightAtA[]{(r2-009-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-001}%Change
-    \TrackStraight[]{(tor-001-B)}{23.1}{90}{ts-003}%Change
-    \TrackStraight[]{(ts-003-B)}{23.9}{90}{ts-004}%Change
-    \TrackStraight[]{(ts-004-B)}{23.1}{90}{ts-005}%Change
-    \TrackStraight[]{(ts-005-B)}{23.9}{90}{ts-006}%Change
-    \TrackStraight[]{(ts-006-B)}{23.1}{90}{ts-007}%Change
+    \PikoStraight[]{G231}{(tor-001-B)}{90}{ts-003}
+    \PikoStraight[]{G239}{(ts-003-B)}{90}{ts-004}%Change
+    \PikoStraight[]{G231}{(ts-004-B)}{90}{ts-005}
+    \PikoStraight[]{G239}{(ts-005-B)}{90}{ts-006}%Change
+    \PikoStraight[]{G231}{(ts-006-B)}{90}{ts-007}
 
 
     %Terminal
@@ -65,21 +67,26 @@
     \PikoCurveAtB{R1}{(r1-002-B)}{0}{r1-003}
     \PikoCurveAtB{R1}{(r1-003-B)}{330}{r1-004}
     \PikoCurveAtB{R1}{(r1-004-B)}{300}{r1-005}
-    \TrackStraight[]{(r1-005-B)}{23.1}{90}{ts-008}%Change
+    \PikoStraight[]{G231}{(r1-005-B)}{90}{ts-008}
     \TurnoutRightAtC[]{(tor-001-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-001} %Change
-    \TrackStraight[]{(tol-001-A)}{23.1}{90}{ts-009}%Change
-    \TrackStraight[]{(ts-009-B)}{23.9}{90}{ts-010}%Change
+    \PikoStraight[]{G231}{(tol-001-A)}{90}{ts-009}
+    \PikoStraight[]{G239}{(ts-009-B)}{90}{ts-010}%Change
 
     %station
     \PikoCurveAtA{R2}{(ctol-000-C)}{210}{r2-009}
     \PikoCurveAtA{R2}{(r2-009-B)}{240}{r2-010}
-    \TrackStraight[]{(r2-010-B)}{23.9}{270}{ts-011}%Change
-    \TrackStraight[]{(ts-011-B)}{23.1}{270}{ts-012}%Change
-    \TrackStraight[]{(ts-012-B)}{23.9}{270}{ts-013}%Change
-    \TrackStraight[]{(ts-013-B)}{23.1}{270}{ts-014}%Change
-    \TrackStraight[]{(ts-014-B)}{23.9}{270}{ts-015}%Change
-    \TrackStraight[]{(ts-015-B)}{23.1}{270}{ts-016}%Change
+    \PikoStraight[]{G239}{(r2-010-B)}{270}{ts-011}%Change
+    \PikoStraight[]{G231}{(ts-011-B)}{270}{ts-012}
+    \PikoStraight[]{G239}{(ts-012-B)}{270}{ts-013}%Change
+    \PikoStraight[]{G231}{(ts-013-B)}{270}{ts-014}
+    \PikoStraight[]{G239}{(ts-014-B)}{270}{ts-015}%Change
+    \PikoStraight[]{G231}{(ts-015-B)}{270}{ts-016}
     \PikoCurveAtA{R2}{(ts-016-B)}{270}{r2-011}
     \PikoCurveAtA{R2}{(r2-011-B)}{300}{r2-012}
+
+    \TurnoutLeftAtA[]{(70,80)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}%Change
+    \TurnoutRightAtA[]{(70,75)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}%Change
+   
+
 \end{tikzpicture}
 \end{document}

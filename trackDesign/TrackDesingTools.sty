@@ -132,11 +132,11 @@
 
 \newcommand{\CurvedTurnOutRightAtA}[7][]{
     \begin{scope}
-        \CurveAtCW[#1]{#2}{#4}{#5+180}{#6}{#7}
+        \CurveAtA[#1]{#2}{#4}{#5+180}{-#6}{#7}
         \draw [#1] #4 -- ($ #4!1!#5:($ #4 + (0,#3) $)$) coordinate(#7-int-st);
         \baseCurveAtA{#1}{#2}{(#7-int-st)}{#5+180}{-#6}{#7-int}
         \coordinate(#7-C) at (#7-int-B);
-        \baseMarker[#1]{#7-C}{#5-#6}
+        \baseMarker[#1]{#7-C}{180+#5-#6}
     \end{scope}
     \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#7-A)}

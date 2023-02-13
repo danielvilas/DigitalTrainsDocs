@@ -23,7 +23,22 @@
     \baseMinControl=8;
     \railBedSize=4.1/2;
     \trackSize=3.2/2;
+    \pikoScale=1;
 }
+
+
+\newcommand{\PikoScaleDraw}[1]{
+    \tikzmath{
+        \pikoScale=#1;
+        \baseR=36/\pikoScale; 
+        \baseDR=6.19/\pikoScale; 
+        \baseMinRect=.2/\pikoScale;
+        \baseMinControl=8/\pikoScale;
+        \railBedSize=(4.1/2)/\pikoScale;
+        \trackSize=(3.2/2)/\pikoScale;
+    }
+}
+
 
 \newcommand{\pikoCurveToData}[1]{
     \ifstrequal{R1}{#1}{
@@ -66,10 +81,54 @@
         \def \curvColor{BlueViolet}
     }{}
     \tikzmath{
+        \curvRadius=\curvRadius/\pikoScale;
         \curvBedInnerRadius=\curvRadius - \railBedSize;
         \curvBedExtRadius=\curvRadius + \railBedSize;
         \curvTrkInnerRadius=\curvRadius - \trackSize;
         \curvTrkExtRadius=\curvRadius + \trackSize;
+    }
+}
+
+
+\newcommand{\pikoStraightToData}[1]{
+    \ifstrequal{G239}{#1}{
+        \tikzmath{
+            \straightLength=23.9;
+        }
+        \def \straightColor{YellowOrange}
+    }{}
+    \ifstrequal{G231}{#1}{
+        \tikzmath{
+            \straightLength=23.1;
+        }
+        \def \straightColor{BurntOrange}
+    }{}
+    \ifstrequal{G119}{#1}{
+        \tikzmath{
+            \straightLength=11.9;
+        }
+        \def \straightColor{SkyBlue}
+    }{}
+    \ifstrequal{G115}{#1}{
+        \tikzmath{
+            \straightLength=11.5;
+        }
+        \def \straightColor{SkyBlue}
+    }{}
+    \ifstrequal{G107}{#1}{
+        \tikzmath{
+            \straightLength=10.7;
+        }
+        \def \straightColor{SkyBlue}
+    }{}
+    \ifstrequal{G62}{#1}{
+        \tikzmath{
+            \straightLength=6.2;
+        }
+        \def \straightColor{SkyBlue}
+    }{}
+    \tikzmath{
+        \straightLength=\straightLength/\pikoScale;
     }
 }
 
@@ -138,4 +197,97 @@
     }
     \CurveAtA[]{\curvRadius}{#3}{#4}{\curvAngle}{#5}
     \PikoPaintCurve[#1]{#2}{#3}{#4}{#5}
+}
+
+%\PikoStraight[]{G231}{(tol-000-B)}{270}{ts-000}  
+\newcommand{\PikoStraight}[5][]{
+    \pikoStraightToData{#2}
+    \TrackStraight[]{#3}{\straightLength}{#4}{#5}
+    \calcTrackPoints{#5-A}
+    \calcTrackPoints{#5-B}
+
+    \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+        \draw[fill=lightgray] (#5-Abu) -- (#5-Abd)
+        -- (#5-Bbd) -- (#5-Bbu)
+        -- (#5-Abu);
+    }{}
+
+    \draw[fill=\straightColor] (#5-Atu) -- (#5-Atd)
+    -- (#5-Btd) -- (#5-Btu)
+    -- (#5-Atu);
+    
+    \iftoggle{pikoNames}{
+        \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#2}; 
+    }{}
+
+    \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
+    \pointDebug[color=red]{(#5-Atu)}
+    \pointDebug[color=blue]{(#5-Atd)}
+    \pointDebug[color=red]{(#5-Btu)}
+    \pointDebug[color=blue]{(#5-Btd)}
+    \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#5-Abu)}
+        \pointDebug[color=blue]{(#5-Abd)}
+        \pointDebug[color=red]{(#5-Bbu)}
+        \pointDebug[color=blue]{(#5-Bbd)}
+    }{}
+}{}
+}
+
+%\PikoTurnout[]{BWL}{(60,80)}{270}{ctor-000}
+\newcommand{\PikoTurnout}[5][]{
+    \ifstrequal{BWL}{#2}{
+        \pikoCurveToData{R2}
+        \CurvedTurnOutLeftAtA[]{\curvRadius}{\baseDR}{#3}{#4}{\curvAngle}{#5} 
+        \def \pikotomode{curve}
+        \def \stAngle{#4+\curvAngle}
+        \def \enAngle{#4}
+        \def \turnoutColor{LimeGreen}
+    }{}
+    \ifstrequal{BWR}{#2}{
+        \pikoCurveToData{R2}
+        \CurvedTurnOutRightAtA[]{\curvRadius}{\baseDR}{#3}{#4}{\curvAngle}{#5} 
+        \def \pikotomode{curve}
+        \def \stAngle{#4-\curvAngle-180}
+        \def \enAngle{#4-180}
+        \def \turnoutColor{LimeGreen}
+    }{}
+
+    \calcTrackPoints{#5-A}
+    \calcTrackPoints{#5-B}
+    \calcTrackPoints{#5-C}
+
+    \ifdefstring{\pikotomode}{curve}{
+
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \draw[fill=lightgray] (#5-Cbu) arc(\stAngle:\enAngle:\curvBedExtRadius)
+            -- (#5-Abu) -- (#5-Abd)
+            arc(\enAngle:\stAngle:\curvBedInnerRadius)
+            -- (#5-Bbd) -- (#5-Bbu) -- (#5-Cbd) -- (#5-Cbu);
+        }{}
+
+        \draw[fill=\turnoutColor] (#5-Ctu) arc(\stAngle:\enAngle:\curvTrkExtRadius)
+        -- (#5-Atu) -- (#5-Atd)
+        arc(\enAngle:\stAngle:\curvTrkInnerRadius)
+        -- (#5-Btd) -- (#5-Btu) -- (#5-Ctd) -- (#5-Ctu);
+    }{
+        \draw[red] (#5-Atu) -- (#5-Ctu);
+    }
+
+    \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#5-Atu)}
+        \pointDebug[color=blue]{(#5-Atd)}
+        \pointDebug[color=red]{(#5-Btu)}
+        \pointDebug[color=blue]{(#5-Btd)}
+        \pointDebug[color=red]{(#5-Ctu)}
+        \pointDebug[color=blue]{(#5-Ctd)}
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \pointDebug[color=red]{(#5-Abu)}
+            \pointDebug[color=blue]{(#5-Abd)}
+            \pointDebug[color=red]{(#5-Bbu)}
+            \pointDebug[color=blue]{(#5-Bbd)}
+            \pointDebug[color=red]{(#5-Cbu)}
+            \pointDebug[color=blue]{(#5-Cbd)}
+        }{}
+    }{}
 }
