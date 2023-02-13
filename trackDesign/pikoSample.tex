@@ -46,6 +46,16 @@
     \PikoCurveAtB{R2}{(ts-003-B)}{90}{r2-005}
     \PikoCurveAtB{R2}{(r2-005-B)}{60}{r2-006}
     \PikoCurveAtB{R2}{(r2-006-B)}{30}{r2-007}
+    \CurvedTurnOutRightAtA[]{42.188}{\baseDR}{(r2-007-B)}{180}{30}{ctor-000} %Change
+    \PikoCurveAtB{R2}{(ctor-000-B)}{330}{r2-008}
+    \PikoCurveAtB{R2}{(r2-008-B)}{300}{r2-009}
+    \TurnoutRightAtA[]{(r2-009-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-001}%Change
+    \TrackStraight[]{(tor-001-B)}{23.1}{90}{ts-003}%Change
+    \TrackStraight[]{(ts-003-B)}{23.9}{90}{ts-004}%Change
+    \TrackStraight[]{(ts-004-B)}{23.1}{90}{ts-005}%Change
+    \TrackStraight[]{(ts-005-B)}{23.9}{90}{ts-006}%Change
+    \TrackStraight[]{(ts-006-B)}{23.1}{90}{ts-007}%Change
+
 
     %Terminal
     \PikoCurveAtA{R9}{(tor-000-C)}{255}{r9-000}
@@ -55,5 +65,21 @@
     \PikoCurveAtB{R1}{(r1-002-B)}{0}{r1-003}
     \PikoCurveAtB{R1}{(r1-003-B)}{330}{r1-004}
     \PikoCurveAtB{R1}{(r1-004-B)}{300}{r1-005}
+    \TrackStraight[]{(r1-005-B)}{23.1}{90}{ts-008}%Change
+    \TurnoutRightAtC[]{(tor-001-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-001} %Change
+    \TrackStraight[]{(tol-001-A)}{23.1}{90}{ts-009}%Change
+    \TrackStraight[]{(ts-009-B)}{23.9}{90}{ts-010}%Change
+
+    %station
+    \PikoCurveAtA{R2}{(ctol-000-C)}{210}{r2-009}
+    \PikoCurveAtA{R2}{(r2-009-B)}{240}{r2-010}
+    \TrackStraight[]{(r2-010-B)}{23.9}{270}{ts-011}%Change
+    \TrackStraight[]{(ts-011-B)}{23.1}{270}{ts-012}%Change
+    \TrackStraight[]{(ts-012-B)}{23.9}{270}{ts-013}%Change
+    \TrackStraight[]{(ts-013-B)}{23.1}{270}{ts-014}%Change
+    \TrackStraight[]{(ts-014-B)}{23.9}{270}{ts-015}%Change
+    \TrackStraight[]{(ts-015-B)}{23.1}{270}{ts-016}%Change
+    \PikoCurveAtA{R2}{(ts-016-B)}{270}{r2-011}
+    \PikoCurveAtA{R2}{(r2-011-B)}{300}{r2-012}
 \end{tikzpicture}
 \end{document}

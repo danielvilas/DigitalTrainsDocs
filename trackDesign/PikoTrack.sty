@@ -66,10 +66,10 @@
         \def \curvColor{BlueViolet}
     }{}
     \tikzmath{
-        \curvBedInnerRadius=\curvRadius - \railBedSize/2;
-        \curvBedExtRadius=\curvRadius + \railBedSize/2;
-        \curvTrkInnerRadius=\curvRadius - \trackSize/2;
-        \curvTrkExtRadius=\curvRadius + \trackSize/2;
+        \curvBedInnerRadius=\curvRadius - \railBedSize;
+        \curvBedExtRadius=\curvRadius + \railBedSize;
+        \curvTrkInnerRadius=\curvRadius - \trackSize;
+        \curvTrkExtRadius=\curvRadius + \trackSize;
     }
 }
 
@@ -78,8 +78,8 @@
     \coordinate (#1tu) at ($(#1)!\trackSize cm!0:(#1u)$);
     \coordinate (#1td) at ($(#1)!\trackSize cm!0:(#1d)$);
     \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
-        \coordinate (#1bu) at ($(#1)!\railBedSize!0:(#1u)$);
-        \coordinate (#1bd) at ($(#1)!\railBedSize!0:(#1d)$);
+        \coordinate (#1bu) at ($(#1)!\railBedSize cm!0:(#1u)$);
+        \coordinate (#1bd) at ($(#1)!\railBedSize cm!0:(#1d)$);
     }{}
 }
 
