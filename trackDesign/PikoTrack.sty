@@ -235,7 +235,7 @@
 }
 
 %\PikoTurnout[]{BWL}{(60,80)}{270}{ctor-000}
-\newcommand{\PikoTurnout}[5][]{
+\newcommand{\PikoTurnoutAtA}[5][]{
     \ifstrequal{BWL}{#2}{
         \pikoCurveToData{R2}
         \CurvedTurnOutLeftAtA[]{\curvRadius}{\baseDR}{#3}{#4}{\curvAngle}{#5} 
@@ -252,7 +252,23 @@
         \def \enAngle{#4-180}
         \def \turnoutColor{LimeGreen}
     }{}
+    \ifstrequal{WL}{#2}{
+        \pikoCurveToData{R9}
+        \TurnoutLeftAtA[]{#3}{23.9/\pikoScale}{23.5/\pikoScale}{\baseDR/2}{15}{#4}{#5}%Change
+        \def \pikotomode{wl}
+        \def \stAngle{#4+\curvAngle}
+        \def \enAngle{#4}
+        \def \turnoutColor{LimeGreen}
+    }{}
 
+    \ifstrequal{WR}{#2}{
+        \pikoCurveToData{R9}
+        \TurnoutRightAtA[]{#3}{23.9/\pikoScale}{23.5/\pikoScale}{\baseDR/2}{15}{#4}{#5}%Change
+        \def \pikotomode{wr}
+        \def \stAngle{#4-\curvAngle-180}
+        \def \enAngle{#4-180}
+        \def \turnoutColor{LimeGreen}
+    }{}
     \calcTrackPoints{#5-A}
     \calcTrackPoints{#5-B}
     \calcTrackPoints{#5-C}
@@ -270,10 +286,29 @@
         -- (#5-Atu) -- (#5-Atd)
         arc(\enAngle:\stAngle:\curvTrkInnerRadius)
         -- (#5-Btd) -- (#5-Btu) -- (#5-Ctd) -- (#5-Ctu);
-    }{
-        \draw[red] (#5-Atu) -- (#5-Ctu);
-    }
+    }{}
+    \ifdefstring{\pikotomode}{wl}{
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \draw[fill=lightgray] (#5-Abu) -- (#5-Bbu) -- (#5-Bbd)
+            -- (#5-Cbu) -- (#5-Cbd) arc(\stAngle:\enAngle:\curvBedInnerRadius)
+            --(#5-Abd) -- (#5-Abu);
+        }{}
 
+        \draw[fill=\turnoutColor] (#5-Atu) -- (#5-Btu) -- (#5-Btd)
+        -- (#5-Ctu) -- (#5-Ctd) arc(\stAngle:\enAngle:\curvTrkInnerRadius)
+        --(#5-Atd) -- (#5-Atu);
+    }{}
+    \ifdefstring{\pikotomode}{wr}{
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \draw[fill=lightgray] (#5-Abd) -- (#5-Bbd) -- (#5-Bbu)
+            -- (#5-Cbd) -- (#5-Cbu) arc(\stAngle:\enAngle:\curvBedInnerRadius)
+            --(#5-Abu) -- (#5-Abd);
+        }{}
+
+        \draw[fill=\turnoutColor] (#5-Atd) -- (#5-Btd) -- (#5-Btu)
+        -- (#5-Ctd) -- (#5-Ctu) arc(\stAngle:\enAngle:\curvTrkInnerRadius)
+        --(#5-Atu) -- (#5-Atd);
+    }{}
     \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#5-Atu)}
         \pointDebug[color=blue]{(#5-Atd)}
@@ -290,4 +325,27 @@
             \pointDebug[color=blue]{(#5-Cbd)}
         }{}
     }{}
+}
+
+
+%\PikoTurnout[]{BWL}{(60,80)}{270}{ctor-000}
+\newcommand{\PikoTurnoutAtC}[5][]{
+    \ifstrequal{BWL}{#2}{
+        \pikoCurveToData{R2}
+    }{}
+    \ifstrequal{BWR}{#2}{
+        \pikoCurveToData{R2}
+
+    }{}
+    \ifstrequal{WL}{#2}{
+        \baseProjectPoint{#3}{#4}{(\baseDR/2,-23.5/\pikoScale)}{#5-A}
+    }{}
+
+    \ifstrequal{WR}{#2}{    
+        \baseProjectPoint{#3}{#4}{(-\baseDR/2,-23.5/\pikoScale)}{#5-A}
+    }{}
+    
+    \pointDebug[color=black,fill=yellow]{(#5-A)}
+
+    \PikoTurnoutAtA[#1]{#2}{(#5-A)}{#4}{#5}
 }

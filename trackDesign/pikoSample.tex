@@ -35,27 +35,27 @@
     \PikoCurveAtCenter{R2}{(60,60)}{90}{r2-000}
     \PikoCurveAtA{R2}{(r2-000-B)}{120}{r2-001}
     \PikoCurveAtA{R2}{(r2-001-B)}{150}{r2-002}
-    \PikoTurnout[]{BWL}{(r2-002-B)}{180}{ctol-000}
+    \PikoTurnoutAtA[]{BWL}{(r2-002-B)}{180}{ctol-000}
     \PikoCurveAtA{R2}{(ctol-000-B)}{210}{r2-003}
     \PikoCurveAtA{R2}{(r2-003-B)}{240}{r2-004}
 
-    \TurnoutLeftAtA[]{(r2-000-A)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-000} %Change
+    \PikoTurnoutAtA[]{WL}{(r2-000-A)}{270}{tol-000}
     \PikoStraight[]{G231}{(tol-000-B)}{270}{ts-000}
     \PikoStraight[]{G239}{(ts-000-B)}{270}{ts-001}
     \PikoStraight[]{G231}{(ts-001-B)}{270}{ts-002}
-    \TurnoutRightAtA[]{(ts-002-B)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-000}%Change
+    \PikoTurnoutAtA[]{WR}{(ts-002-B)}{270}{tor-000}
     \PikoStraight[]{G231}{(tor-000-B)}{270}{ts-003}
     \PikoCurveAtB{R2}{(ts-003-B)}{90}{r2-005}
     \PikoCurveAtB{R2}{(r2-005-B)}{60}{r2-006}
     \PikoCurveAtB{R2}{(r2-006-B)}{30}{r2-007}
-    \PikoTurnout[]{BWR}{(r2-007-B)}{180}{ctor-000}
+    \PikoTurnoutAtA[]{BWR}{(r2-007-B)}{180}{ctor-000}
     \PikoCurveAtB{R2}{(ctor-000-B)}{330}{r2-008}
     \PikoCurveAtB{R2}{(r2-008-B)}{300}{r2-009}
-    \TurnoutRightAtA[]{(r2-009-B)}{23.9}{23.5}{\baseDR/2}{15}{90}{tor-001}%Change
+    \PikoTurnoutAtA[]{WR}{(r2-009-B)}{90}{tor-001}
     \PikoStraight[]{G231}{(tor-001-B)}{90}{ts-003}
-    \PikoStraight[]{G239}{(ts-003-B)}{90}{ts-004}%Change
+    \PikoStraight[]{G239}{(ts-003-B)}{90}{ts-004}
     \PikoStraight[]{G231}{(ts-004-B)}{90}{ts-005}
-    \PikoStraight[]{G239}{(ts-005-B)}{90}{ts-006}%Change
+    \PikoStraight[]{G239}{(ts-005-B)}{90}{ts-006}
     \PikoStraight[]{G231}{(ts-006-B)}{90}{ts-007}
 
 
@@ -68,25 +68,43 @@
     \PikoCurveAtB{R1}{(r1-003-B)}{330}{r1-004}
     \PikoCurveAtB{R1}{(r1-004-B)}{300}{r1-005}
     \PikoStraight[]{G231}{(r1-005-B)}{90}{ts-008}
-    \TurnoutRightAtC[]{(tor-001-C)}{23.9}{23.5}{\baseDR/2}{15}{270}{tol-001} %Change
+    \PikoTurnoutAtC[]{WR}{(tor-001-C)}{270}{tol-001}
     \PikoStraight[]{G231}{(tol-001-A)}{90}{ts-009}
-    \PikoStraight[]{G239}{(ts-009-B)}{90}{ts-010}%Change
+    \PikoStraight[]{G239}{(ts-009-B)}{90}{ts-010}
 
     %station
     \PikoCurveAtA{R2}{(ctol-000-C)}{210}{r2-009}
     \PikoCurveAtA{R2}{(r2-009-B)}{240}{r2-010}
-    \PikoStraight[]{G239}{(r2-010-B)}{270}{ts-011}%Change
+    \PikoStraight[]{G239}{(r2-010-B)}{270}{ts-011}
     \PikoStraight[]{G231}{(ts-011-B)}{270}{ts-012}
-    \PikoStraight[]{G239}{(ts-012-B)}{270}{ts-013}%Change
+    \PikoStraight[]{G239}{(ts-012-B)}{270}{ts-013}
     \PikoStraight[]{G231}{(ts-013-B)}{270}{ts-014}
-    \PikoStraight[]{G239}{(ts-014-B)}{270}{ts-015}%Change
+    \PikoStraight[]{G239}{(ts-014-B)}{270}{ts-015}
     \PikoStraight[]{G231}{(ts-015-B)}{270}{ts-016}
     \PikoCurveAtA{R2}{(ts-016-B)}{270}{r2-011}
     \PikoCurveAtA{R2}{(r2-011-B)}{300}{r2-012}
 
-    \TurnoutLeftAtA[]{(70,80)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}%Change
-    \TurnoutRightAtA[]{(70,75)}{23.9}{23.5}{\baseDR/2}{15}{270}{tor-001}%Change
-   
+    %Yard
+    \PikoTurnoutAtA[]{WR}{(tol-000-C)}{285}{tol-002}
+    \PikoTurnoutAtC[]{WL}{(tol-002-B)}{90}{tol-003}
+    \PikoStraight[]{G239}{(tol-002-C)}{270}{ts-017}
+    \PikoStraight[]{G231}{(ts-017-B)}{270}{ts-018}
+    \PikoStraight[]{G239}{(ts-018-B)}{270}{ts-019}
+    \PikoStraight[]{G231}{(ts-019-B)}{270}{ts-020}
+    \PikoStraight[]{G239}{(ts-020-B)}{270}{ts-021}
+    \PikoStraight[]{G231}{(ts-021-B)}{270}{ts-022}
+
+    \PikoStraight[]{G239}{(tol-003-A)}{270}{ts-023}
+    \PikoStraight[]{G239}{(ts-023-B)}{270}{ts-024}
+    \PikoStraight[]{G231}{(ts-024-B)}{270}{ts-025}
+    \PikoStraight[]{G239}{(ts-025-B)}{270}{ts-026}
+    \PikoStraight[]{G231}{(ts-026-B)}{270}{ts-027}
+    
+    \PikoStraight[]{G231}{(tol-003-B)}{90}{ts-028}
+    \PikoStraight[]{G231}{(ts-028-B)}{90}{ts-029}
+    
+
+
 
 \end{tikzpicture}
 \end{document}
