@@ -309,6 +309,11 @@
         -- (#5-Ctd) -- (#5-Ctu) arc(\stAngle:\enAngle:\curvTrkInnerRadius)
         --(#5-Atu) -- (#5-Atd);
     }{}
+
+    \iftoggle{pikoNames}{
+        \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#2}; 
+    }{}
+
     \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
         \pointDebug[color=red]{(#5-Atu)}
         \pointDebug[color=blue]{(#5-Atd)}
@@ -348,4 +353,66 @@
     \pointDebug[color=black,fill=yellow]{(#5-A)}
 
     \PikoTurnoutAtA[#1]{#2}{(#5-A)}{#4}{#5}
+}
+
+\newcommand{\PikoCrossAtA}[5][]{
+    \ifstrequal{DKW}{#2}{
+        \pikoCurveToData{R9}
+        \TurnoutCrossAtA[]{#3}{23.9/\pikoScale}{0.4/\pikoScale}{\baseDR/2}{15}{#4}{#5}
+        \def \pikotomode{to}
+        \def \stDAngle{#4+180+\curvAngle}
+        \def \enDAngle{#4+180}
+        \def \stCAngle{#4+\curvAngle}
+        \def \enCAngle{#4}
+        \def \turnoutColor{LimeGreen}
+    }{}
+    \calcTrackPoints{#5-A}
+    \calcTrackPoints{#5-B}
+    \calcTrackPoints{#5-C}
+    \calcTrackPoints{#5-D}
+
+    \ifdefstring{\pikotomode}{to}{
+
+        \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+            \draw[fill=lightgray] (#5-Dbu) 
+            arc(\stDAngle:\enDAngle:\curvTrkInnerRadius)
+            -- (#5-Bbu) -- (#5-Bbd) -- (#5-Cbu) -- (#5-Cbd)
+            arc(\stCAngle:\enCAngle:\curvTrkInnerRadius)
+            -- (#5-Abd) -- (#5-Abu) -- (#5-Dbd) -- (#5-Dbu)
+            ;
+        }{}
+
+        \draw[fill=\turnoutColor] (#5-Dtu) 
+            arc(\stDAngle:\enDAngle:\curvTrkInnerRadius)
+            -- (#5-Btu) -- (#5-Btd) -- (#5-Ctu) -- (#5-Ctd)
+            arc(\stCAngle:\enCAngle:\curvTrkInnerRadius)
+            -- (#5-Atd) -- (#5-Atu) -- (#5-Dtd) -- (#5-Dtu)
+            ;
+    }{}
+
+
+    \iftoggle{pikoNames}{
+        \node[color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#5-A)!0.5!0:(#5-B)$){#2}; 
+    }{}
+
+    \iftoggle{pikoDebug}{ % Conditional logic for the unnumbered sections class options
+    \pointDebug[color=red]{(#5-Atu)}
+    \pointDebug[color=blue]{(#5-Atd)}
+    \pointDebug[color=red]{(#5-Btu)}
+    \pointDebug[color=blue]{(#5-Btd)}
+    \pointDebug[color=red]{(#5-Ctu)}
+    \pointDebug[color=blue]{(#5-Ctd)}
+    \pointDebug[color=red]{(#5-Dtu)}
+    \pointDebug[color=blue]{(#5-Dtd)}
+    \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#5-Abu)}
+        \pointDebug[color=blue]{(#5-Abd)}
+        \pointDebug[color=red]{(#5-Bbu)}
+        \pointDebug[color=blue]{(#5-Bbd)}
+        \pointDebug[color=red]{(#5-Cbu)}
+        \pointDebug[color=blue]{(#5-Cbd)}
+        \pointDebug[color=red]{(#5-Dbu)}
+        \pointDebug[color=blue]{(#5-Dbd)}
+    }{}
+}{}
 }

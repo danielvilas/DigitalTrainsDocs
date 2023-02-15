@@ -212,3 +212,57 @@
     \baseProjectPoint{#2}{#7}{(-#5,-#4)}{#8-A}
     \TurnoutRightAtA[#1]{(#8-A)}{#3}{#4}{#5}{#6}{#7}{#8}
 }
+%                 1      2       3             4        5     6        7      8         
+%\TurnoutCrossAtA[draw]{(StPos)}{ClosedLength}{cLengh}{cSep}{outAngle}{angle}{id}
+\newcommand{\TurnoutCrossAtA}[8][]{
+    \coordinate (#8-A) at #2;
+    \draw[#1] #2 -- ($ #2!1!#7:($ #2 +(0,#3)$)$) coordinate (#8-B);
+    \coordinate (#8-C) at ($ #2!1!#7:($ #2 +(-#5,#3-#4)$)$);
+    \coordinate (#8-D) at ($ #2!1!#7:($ #2 +(#5,#4)$)$);
+    \draw[#1] (#8-D) -- (#8-C);
+    
+
+    \baseProjectPoint{(#8-C)}{#7+#6}{(0,-\baseMinRect)}{#8-Crt}
+    \baseProjectPoint{(#8-A)}{#7}{(0,\baseMinRect)}{#8-Art}
+    \baseProjectPoint{(#8-B)}{#7}{(0,-\baseMinRect)}{#8-Brt}
+    \baseProjectPoint{(#8-D)}{#7+#6}{(0,\baseMinRect)}{#8-Drt}
+
+    \baseProjectPoint{(#8-Crt)}{#7+#6}{(0,-\baseMinControl)}{#8-Cct}
+    \baseProjectPoint{(#8-Art)}{#7}{(0,\baseMinControl)}{#8-Act}
+    \baseProjectPoint{(#8-Brt)}{#7}{(0,-\baseMinControl)}{#8-Bct}
+    \baseProjectPoint{(#8-Drt)}{#7+#6}{(0,\baseMinControl)}{#8-Dct}
+
+    \draw[#1] (#8-A) -- (#8-Art)
+        .. controls (#8-Act) and (#8-Cct) .. 
+         (#8-Crt) -- (#8-C);
+
+    \draw[#1] (#8-D) -- (#8-Drt)
+        .. controls (#8-Dct) and (#8-Bct) .. 
+        (#8-Brt) -- (#8-B);
+ 
+    
+    % \iftoggle{trkDebug}{
+    %     \draw[color=blue] (#8-C) -- (#8-Crt);
+    %     \draw[color=green] (#8-Crt) -- (#8-Cct);
+    %     \draw[color=blue] (#8-A) -- (#8-Art);
+    %     \draw[color=green] (#8-Art) -- (#8-Act);
+    %     \draw[color=blue] (#8-B) -- (#8-Brt);
+    %     \draw[color=green] (#8-Brt) -- (#8-Bct);
+    %     \draw[color=blue] (#8-D) -- (#8-Drt);
+    %     \draw[color=green] (#8-Drt) -- (#8-Dct);
+    %     \draw[color=gray] (#8-Art) -- (#8-Crt);
+    %     \draw[color=gray] (#8-Drt) -- (#8-Brt);
+    % }{}
+
+    \baseMarker[#1]{#8-A}{#7}
+    \baseMarker[#1]{#8-B}{#7}
+    \baseMarker[#1]{#8-C}{#7 + #6}
+    \baseMarker[#1]{#8-D}{#7 + #6}
+    \iftoggle{trkDebug}{ % Conditional logic for the unnumbered sections class options
+        \pointDebug[color=red]{(#8-A)}
+        \pointDebug[color=blue]{(#8-B)}
+        \pointDebug[color=green]{(#8-C)}
+        \pointDebug[color=Cerulean]{(#8-D)}
+        \node[above, color=gray,font = {\Huge\bfseries\sffamily}] at ($ (#8-A)!0.5!0:(#8-B)$){#8}; 
+    }{}
+}
