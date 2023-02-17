@@ -1,0 +1,45 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage[]{TrackDesingTools}
+\usepackage[debug]{PikoTrack}
+
+
+% \baseboard{(start)}{(size)}{name}
+\newcommand{\baseBoard}[3]{
+    \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
+}
+\begin{document}
+
+
+\newcommand{\madrid}[1]{
+    \PikoTurnoutAtA[LimeGreen]{WL}{(0,0)}{#1}{mad-1-000}
+    \PikoCrossAtD[blue]{DKW}{(mad-1-000-C)}{#1}{mad-2-000}
+    \PikoTurnoutAtA[blue]{WR}{(mad-2-000-B)}{#1}{mad-2-001}
+    \PikoTurnoutAtC[LimeGreen]{WR}{(mad-2-001-C)}{#1+180}{mad-1-001}
+
+
+    \PikoStraight[blue]{G231}{(mad-2-000-A)}{#1+180}{mad-2-r000}
+    \PikoStraight[blue]{G231}{(mad-2-001-B)}{#1}{mad-2-r001}
+    
+
+
+    \PikoTurnoutAtC[BurntOrange]{WL}{(mad-2-000-C)}{#1+180}{mad-3-000}
+    \PikoStraight[BurntOrange]{G231}{(mad-3-000-B)}{#1+180}{mad-3-r000}
+    \PikoStraight[BurntOrange]{G231}{(mad-3-r000-B)}{#1+180}{mad-3-r001}
+    \PikoStraight[BurntOrange]{G239}{(mad-3-000-A)}{#1}{mad-3-r002}
+}
+
+\begin{tikzpicture}
+    
+    \baseBoard{(-1,1)}{+(100,100)}{boardCSW}
+    
+    %MainLine
+    
+
+    \madrid{-30}
+    %\PikoCrossAtA[]{DKW}{(70,60)}{270}{test}
+
+
+\end{tikzpicture}
+\end{document}

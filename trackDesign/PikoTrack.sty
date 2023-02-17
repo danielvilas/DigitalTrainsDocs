@@ -206,6 +206,8 @@
     \calcTrackPoints{#5-A}
     \calcTrackPoints{#5-B}
 
+    \ifblank{#1}{}{\def \straightColor{#1} }
+
     \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
         \draw[fill=lightgray] (#5-Abu) -- (#5-Abd)
         -- (#5-Bbd) -- (#5-Bbu)
@@ -272,6 +274,8 @@
     \calcTrackPoints{#5-A}
     \calcTrackPoints{#5-B}
     \calcTrackPoints{#5-C}
+
+    \ifblank{#1}{}{\def \turnoutColor{#1} }
 
     \ifdefstring{\pikotomode}{curve}{
 
@@ -350,7 +354,7 @@
         \baseProjectPoint{#3}{#4}{(-\baseDR/2,-23.5/\pikoScale)}{#5-A}
     }{}
     
-    \pointDebug[color=black,fill=yellow]{(#5-A)}
+    %\pointDebug[color=black,fill=yellow]{(#5-A)}
 
     \PikoTurnoutAtA[#1]{#2}{(#5-A)}{#4}{#5}
 }
@@ -370,6 +374,8 @@
     \calcTrackPoints{#5-B}
     \calcTrackPoints{#5-C}
     \calcTrackPoints{#5-D}
+
+    \ifblank{#1}{}{\def \turnoutColor{#1} }
 
     \ifdefstring{\pikotomode}{to}{
 
@@ -415,4 +421,11 @@
         \pointDebug[color=blue]{(#5-Dbd)}
     }{}
 }{}
+}
+\newcommand{\PikoCrossAtD}[5][]{
+    \ifstrequal{DKW}{#2}{
+        %\coordinate (#5-A) at ($ #3+(-\baseDR/2,-0.4/\pikoScale) $);
+        \baseProjectPoint{#3}{#4}{(-\baseDR/2,-0.4/\pikoScale)}{#5-A}
+    }{}
+    \PikoCrossAtA[#1]{#2}{(#5-A)}{#4}{#5}
 }
