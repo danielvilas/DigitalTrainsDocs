@@ -13,11 +13,17 @@
 
 
 \newcommand{\madrid}[1]{
+
+	\draw[fill=lightgray] (90/\pikoScale,0) rectangle +(18/\pikoScale,100);
+
     \PikoTurnoutAtA[LimeGreen]{WL}{(0,0)}{#1}{mad-1-000}
     \PikoCrossAtD[blue]{DKW}{(mad-1-000-C)}{#1}{mad-2-000}
     \PikoTurnoutAtA[blue]{WR}{(mad-2-000-B)}{#1}{mad-2-001}
     \PikoTurnoutAtC[LimeGreen]{WR}{(mad-2-001-C)}{#1+180}{mad-1-001}
 
+	\PikoStraight[LimeGreen]{G231}{(mad-1-000-B)}{#1}{mad-1-r000}
+	\PikoStraight[LimeGreen]{G231}{(mad-1-r000-B)}{#1}{mad-1-r001}
+	
 
     \PikoStraight[blue]{G231}{(mad-2-000-A)}{#1+180}{mad-2-r000}
     \PikoStraight[blue]{G231}{(mad-2-001-B)}{#1}{mad-2-r001}
@@ -28,17 +34,25 @@
     \PikoStraight[BurntOrange]{G231}{(mad-3-000-B)}{#1+180}{mad-3-r000}
     \PikoStraight[BurntOrange]{G231}{(mad-3-r000-B)}{#1+180}{mad-3-r001}
     \PikoStraight[BurntOrange]{G239}{(mad-3-000-A)}{#1}{mad-3-r002}
+
+
+
+
+  \TrackStraight[LimeGreen]{(mad-1-001-A)}{47/\pikoScale}{#1}{mad-1-r002}
+
 }
 
 \begin{tikzpicture}
+
+	\PikoScaleDraw{1}
     
-    \baseBoard{(-1,1)}{+(100,100)}{boardCSW}
+    \baseBoard{(-1,-1)}{+(400,100)}{boardCSW}
     
     %MainLine
     
 
-    \madrid{-30}
-    %\PikoCrossAtA[]{DKW}{(70,60)}{270}{test}
+    \madrid{-60}
+    %\PikoCrossAtA[]{DKW}{(70,60)}{240}{test}
 
 
 \end{tikzpicture}
