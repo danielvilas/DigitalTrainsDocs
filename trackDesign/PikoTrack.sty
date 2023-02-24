@@ -146,7 +146,7 @@
 \newcommand{\PikoPaintCurve}[5][]{
     \calcTrackPoints{#5-A}
     \calcTrackPoints{#5-B}
-
+	 \ifblank{#1}{}{\def \curvColor{#1} }
     \iftoggle{pikoRailBed}{ % Conditional logic for the unnumbered sections class options
         \draw[fill=lightgray] (#5-Abu) -- (#5-Abd)
         arc (#4:(#4+\curvAngle):\curvBedInnerRadius)

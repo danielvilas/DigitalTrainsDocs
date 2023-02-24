@@ -7,7 +7,7 @@
 
 % \baseboard{(start)}{(size)}{name}
 \newcommand{\baseBoard}[3]{
-    \draw[fill=Apricot!60] #1 rectangle +#2 node[fitting node] (#3){};
+    \draw[fill=white!60] #1 rectangle +#2 node[fitting node] (#3){};
 }
 \begin{document}
 
@@ -28,32 +28,65 @@
     \PikoStraight[blue]{G231}{(mad-2-000-A)}{#1+180}{mad-2-r000}
     \PikoStraight[blue]{G231}{(mad-2-001-B)}{#1}{mad-2-r001}
     
-
-
     \PikoTurnoutAtC[BurntOrange]{WL}{(mad-2-000-C)}{#1+180}{mad-3-000}
     \PikoStraight[BurntOrange]{G231}{(mad-3-000-B)}{#1+180}{mad-3-r000}
     \PikoStraight[BurntOrange]{G231}{(mad-3-r000-B)}{#1+180}{mad-3-r001}
     \PikoStraight[BurntOrange]{G239}{(mad-3-000-A)}{#1}{mad-3-r002}
 
+  \TrackStraight[LimeGreen]{(mad-1-001-A)}{58.5/\pikoScale}{#1}{mad-1-r002}
+
+	\TrackStraight[blue]{(mad-2-r001-B)}{58.5/\pikoScale}{#1}{mad-2-r002}
+
+	\TrackStraight[BurntOrange]{(mad-3-r002-B)}{58.5/\pikoScale}{#1}{mad-3-r003}
 
 
+	\coordinate (mad-playa) at (mad-3-r003-B);
+ 	\coordinate (mad-inbound) at (mad-2-r002-B);
+	\coordinate (mad-outbound) at (mad-1-r002-B);
+}
 
-  \TrackStraight[LimeGreen]{(mad-1-001-A)}{47/\pikoScale}{#1}{mad-1-r002}
+\newcommand{\playa}[2]{
+	%#1 st point
+	%#2 Angle
+	\PikoTurnoutAtA[BurntOrange]{WL}{#1}{#2}{playa-4-000}
+	\PikoTurnoutAtA[BurntOrange]{WR}{(playa-4-000-B)}{#2}{playa-4-001}
+\PikoTurnoutAtA[BurntOrange]{WR}{(playa-4-001-B)}{#2}{playa-4-002}
+	\PikoStraight[BurntOrange]{G231}{(playa-4-002-B)}{#2}{playa-4-r1}
+		\TrackStraight[BurntOrange]{(playa-4-r1-B)}{94/\pikoScale}{#2}{playa-4-r2}
+
+	\PikoCurveAtA[orange!50]{R9}{(playa-4-002-C)}{#2-15}{playa-3-c}
+		\TrackStraight[orange!50]{(playa-3-c-B)}{94/\pikoScale}{#2}{playa-3-r}
+
+\PikoTurnoutAtA[cyan]{WR}{(playa-4-000-C)}{#2+15}{playa-ind-000}
+
+\PikoTurnoutAtA[yellow]{WL}{(playa-ind-000-C)}{#2}{playa-7-000}
+\PikoTurnoutAtA[yellow]{WR}{(playa-7-000-C)}{#2+15}{playa-7-001}
+
+\PikoStraight[green]{G239}{(playa-7-000-B)}{#2}{playa-5-r1}
+\TrackStraight[green]{(playa-5-r1-B)}{94/\pikoScale}{#2}{playa-5-r2}
+
+
+\TrackStraight[cyan]{(playa-7-001-C)}{94/\pikoScale}{#2}{playa-6-r2}
+
+\PikoCurveAtB[yellow]{R9}{(playa-7-001-B)}{#2+15-180}{playa-7-c}
+\TrackStraight[yellow]{(playa-7-c-B)}{70.9/\pikoScale}{#2}{playa-7-r1}
+
+\PikoTurnoutAtA[orange!50]{WR}{(playa-4-001-C)}{#2-15}{playa-1-000}
+
+\PikoTurnoutAtA[pink]{WL}{(playa-1-000-B)}{#2-15}{playa-1-001}
+
+\TrackStraight[pink]{(playa-1-001-C)}{49/\pikoScale}{#2}{playa-1-r1}
 
 }
 
 \begin{tikzpicture}
 
-	\PikoScaleDraw{1}
+	\PikoScaleDraw{2}
     
-    \baseBoard{(-1,-1)}{+(400,100)}{boardCSW}
-    
-    %MainLine
-    
-
+    \baseBoard{(-1,-1)}{+(400,100)}{boardCSW} 
     \madrid{-60}
     %\PikoCrossAtA[]{DKW}{(70,60)}{240}{test}
-
+	\playa{(mad-playa)}{-60}
 
 \end{tikzpicture}
 \end{document}
