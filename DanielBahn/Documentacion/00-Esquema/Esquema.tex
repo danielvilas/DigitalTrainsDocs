@@ -10,16 +10,19 @@ version={4.0},
 ]{doclicense}
 
 
-\title{Normativa General}
+\title{Esquema General}
 \author{Daniel Bahn}
 \date{Febrero 3}
 
-\dbHeaderTitle{Normativa General}
+\dbHeaderTitle{Esquema General}
 \dbType{D}
 \dbDate{23}
 \dbCode{000}
 \dbStatus{Draft}
 \dbVersion{0.1}
+
+\input{tikz/Maqueta_simple.tex}
+
 
 \begin{document}
 %\pagestyle{fancy}
@@ -30,16 +33,26 @@ version={4.0},
 Daniel Bahn es una empresa ficticia para una maqueta de trenes personal. Esta empresa simula ser la gestora de la red ferroviaria dispuesta en dicha maqueta.
 Es por tanto el hilo conductor que nos permite entender dicha maqueta.
 
-Para esta maqueta se ha decidido definir una serie de reglas u normativas para facilitar la evolucion de la maqueta propiamente dicha y una metodologia
-reutilizable para futuras maquetas.
-
-Este documento es el registro del esquema de la maqueta
+Para esta maqueta se ha decidido definir una serie de documentos para llevar el registro y documentacion de la maqueta.
+Este documento es el registro del esquema de la maqueta que de manera esquematica es:
 
 \begin{figure}[H]
     \centering
-    \input{tikz/Maqueta_simple.tex}
-    \caption{Segmentos y Buses}
+
+\begin{tikzpicture}
+
+    %\draw [very thin, green]  (-6,-3) grid (6,3);
+	\paintBoard  
+	\paintMain{2pt}
+	\paintStation{2pt}
+   \paintTerminus{2pt}
+   \paintYard{2pt}
+	
+\end{tikzpicture}
+
+    \caption{Esquema de la maqueta}
     \label{fig:ModulosBuses}
 \end{figure}
-
+\newpage
+\input{Zonas.tex}
 \end{document}
