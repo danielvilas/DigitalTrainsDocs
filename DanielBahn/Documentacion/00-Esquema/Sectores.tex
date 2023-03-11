@@ -1,0 +1,21 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = Esquema.tex
+% !TEX root = Esquema.tex
+
+
+\section{Sectores}
+Los sectores son las diferentes agrupaciones en las que se divide la maqueta desde unos punto de vista electricos. Los fabricantes suelen llamar a cada una de elementos agruados como \textbf{Districtos} y \textbf{Bloques} \sidenote{Solo para Digital}.
+
+La principal caracterisitica de cada elemento es que esta aislado electricamente del resto\sidenote{En maquetas DC o Analogicas, son conceptos paralelos a cada circutito que puede ser controlado por un mando}. Cada uno de estos elementos (distritos o bloques) va estar precedido por un aparato que conecte dicho elemento a la fuente de energia DCC\sidenote{Ya sea un booster o una central}
+
+\begin{itemize}
+\item \textbf{Bloque}: tambien llamado \textit{<<Bloque de deteccion>>}, monitoriza el consumo de corriente y con esa informacion puede inferir si el bloque esta ocupado. 
+
+Puede incluir un detector/lector RailComm y asi poder obtener informacion de la maquina/decoder que esta ocupando el bloque y enviandola al bus LCB.
+
+El bloque debe ser lo más pequeño posible para que solo pueda entrar un elemento a detectar, pero lo suficientemente grande como para detectar el material más grande que se quiera detectar.
+\end{itemize}
+
+
+La maqueta se ha realizado por secciones delimitadas por lo tableros, as 
