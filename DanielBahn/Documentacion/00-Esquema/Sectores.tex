@@ -33,13 +33,21 @@ La maqueta se ha realizado por secciones delimitadas por lo tableros, as
 	\paintBoard 
 
 	\paintStation[BlueGreen!25]{5pt}
+	\paintMainDb[BlueGreen!25]{5pt}  
+	\paintYard[BrickRed!25]{5pt}
+	\paintTerminusDb[BlueGreen!25]{5pt}
+	
+	\paintMainDa[BrickRed!25]{5pt}
+	\paintTerminusDa[BrickRed!25]{5pt}
+	
+
 	\paintStation[gray]{2pt}
    \paintTerminus[gray]{2pt}
-   
-	\paintYard[BrickRed!25]{5pt}
 	\paintYard[gray]{2pt}
-	  
 	\paintMain[gray]{2pt}
+
+	\paintYardZones[cyan!50]{1.5pt}
+	\paintMainZones[white]{1.5pt}
 
 	\node[draw=black, text width=4em, line width=1pt](central) at (-8.5,0) {Central Booster};
 
@@ -48,6 +56,9 @@ La maqueta se ha realizado por secciones delimitadas por lo tableros, as
 	\node[draw=black, text width=2em, line width=1pt] (dco2) at (-7,-1.5) {DCO};
 	\draw[line width=4pt] (central.east) -- (-7,0)
 	-- (dco1.south) -- (dco2.north);
+
+\draw[line width=3pt, BrickRed!25] (dco1.east) -- (-5.5,1.5);
+\draw[line width=3pt, BlueGreen!25] (dco2.east) -- (-5.5,-1.5);
 	
 \end{tikzpicture}
 
