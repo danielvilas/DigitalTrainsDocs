@@ -7,7 +7,7 @@
 \section{Sectores}
 Los sectores son las diferentes agrupaciones en las que se divide la maqueta desde unos punto de vista electricos. Los fabricantes suelen llamar a cada una de elementos agruados como \textbf{Districtos} y \textbf{Bloques} \sidenote{Solo para Digital}.
 
-La principal caracterisitica de cada elemento es que esta aislado electricamente del resto\sidenote{En maquetas DC o Analogicas, son conceptos paralelos a cada circutito que puede ser controlado por un mando}. Cada uno de estos elementos (distritos o bloques) va estar precedido por un aparato que conecte dicho elemento a la fuente de energia DCC\sidenote{Ya sea un booster o una central}. La diferencia radica en el objetivo que se quiere obtener con la segmentacion y por lo tanto el dispositivo a conectar. 
+La principal caracterisitica de cada elemento es que esta aislado electricamente del resto\sidenote{En maquetas DC o Analogicas, estos  conceptos serian equivalentes a circutitos que puede ser controlado por un mando}. Cada uno de estos elementos (distritos o bloques) va estar precedido por un aparato que conecte dicho elemento a la fuente de energia DCC\sidenote{Ya sea un booster o una central}. La diferencia radica en el objetivo que se quiere obtener con la segmentacion y por lo tanto el dispositivo a conectar. 
 
 \begin{itemize}
 \item \textbf{Bloque}: tambien llamado \textit{<<Bloque de deteccion>>}, monitoriza el consumo de corriente y con esa informacion puede inferir si el bloque esta ocupado. 
@@ -22,7 +22,7 @@ Hoy en dia las centrales y los booster tienen protecciones ante corto, por lo ta
 \end{itemize}
 
 
-La maqueta se ha realizado por secciones delimitadas por lo tableros, as 
+La maqueta se ha realizado por modulos delimitadas por lo tableros, asi que estos mismos nos ayudan a delimitar los bloques y distritos de la maqueta.
 
 
 \begin{figure}[H]
@@ -64,6 +64,12 @@ La maqueta se ha realizado por secciones delimitadas por lo tableros, as
 	
 \end{tikzpicture}
 
-    \caption{Zonas de la maqueta}
-    \label{fig:particion}
+    \caption{Distritos y bloques de la maqueta}
+    \label{fig:particionSectores}
 \end{figure}
+
+Como se puede apreciar la maqueta se ha divido en dos sectores (Estacion y Playa de vias),
+de tal forma que un corto en uno de ellos no afecte al otro. En el diagrama es el color de base (Rosa o Azul)
+
+
+Asi mismo cada modulo de la misma va a tener un bloque de deteccion por via que tenga. Con la excepcion de los desvios, los cuales se separan en dos bloques si permiten tener dos trenes en el sector. Para diferneciarlos todo el esquema se ha pintado de gris sobre los dos distritos y los bloques con el color de la zona seprados por pequeños huecos.
