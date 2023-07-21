@@ -29,14 +29,14 @@ Asi pues, Daniel Bahn esta organizada 4 Zonas:
     %\draw [very thin, green]  (-6,-3) grid (6,3);
 	\paintBoard 
 	\paintStation[red]{2pt}
-   \paintTerminus[green]{2pt}
-   \paintYard[cyan]{2pt}
-	  
+    \paintTerminus[green]{2pt}
+    \paintYard[cyan]{2pt}
 	\paintMain[black]{4pt}
+
 \end{tikzpicture}
 
     \caption{Zonas de la maqueta}
-    \label{fig:ModulosBuses}
+    \label{fig:ZonasMaqueta}
 \end{figure}
 
 \subsection{Version Lineal}
@@ -45,6 +45,15 @@ Para entender la maqueta pongamosla en una version lineal. Para ello empezarmos 
 \begin{figure}[H]
     \centering
 \begin{tikzpicture}
+    \begin{scope}[scale=0.25,shift={(-8,0)}]
+        \paintBoard 
+        \paintStation[red]{0.5pt}
+        \paintTerminus[green]{0.5pt}
+        \paintYard[cyan]{0.5pt}         
+        \paintMain[black]{1pt}
+        \node[] (start) at (0,1.20) {\tiny A};
+        \draw[line width=.25pt,-stealth] (start.west) -- (-1.5,1.20);
+    \end{scope}
 \node[left] at (0,0) {A};
 
 \node[right] at (5,0) {A};
@@ -58,7 +67,7 @@ Para entender la maqueta pongamosla en una version lineal. Para ello empezarmos 
 \end{tikzpicture}
 
 \caption{Version Lineal}
-    \label{fig:ModulosBuses}
+    \label{fig:VersionLineal}
 \end{figure}
 
 
@@ -89,8 +98,8 @@ Esta maqueta se puede extender de una manera ficticia, donde cada zona puede rep
 
 \end{tikzpicture}
 
-\caption{Version Lineal}
-    \label{fig:ModulosBuses}
+\caption{Version Lineal Alargada}
+    \label{fig:VersionLinealAlargada}
 \end{figure}
 
 En este caso, hemos creado dos estaciones termino, empezamos en la zona <<estacion>> y <<estacion termino>>. Una vez que salimos de la estacion daremos dos vueltas a la via principal.Durante estas dos vueltas ignoraremos los desvios de las zonas <<playa de vias>> y <<estacion termino>>. Pero una vez que hemos dado las dos vueltas la zona <<estacion termino>> repesentara en este caso una linea industrial y justo despues ya tenemos la playa de vias y la estacion final.
