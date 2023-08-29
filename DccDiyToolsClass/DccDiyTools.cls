@@ -20,7 +20,6 @@
 \ProvidesClass{DccDiyTools/DccDiyTools}[2022/06/24 Dcc Diy Tools Master Document Class v0.1]
 
 \RequirePackage[dvipsnames,table]{xcolor}
-
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{float}
@@ -198,3 +197,6 @@
 \fancyfoot[L]{} % Left footer
 \fancyfoot[C]{\thepage/\ref{TotPages}} % Center footer
 \fancyfoot[R]{} % Right footer
+
+
+\usepackage{mdframed}

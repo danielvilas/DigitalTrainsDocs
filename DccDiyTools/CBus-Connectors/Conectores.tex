@@ -1,0 +1,28 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = CBus.tex
+%!TEX root=CBus.tex
+
+\subsection{Placa - Cable}
+Para conectar las placas al bus CBUS tenemos varias opciones validas, y las usaremos segun nos sea util
+
+\subsubsection{Poca Potencia/MERG Screw Terminal Block}
+Para las placas de poca potencia (consumo del bus <\SI{100}{\milli\ampere}, o con su propia fuente) podemos usar la solucion de MERG con un bloque terminal tipo MKDS - PHOENIX CONTACT.
+
+El cable a utilizar es el de latiguillo (\SI{0,25}{\milli\metre\squared}/22AWG) usando una ferrula adecuada (Codigo-color). 
+
+\begin{mdframed}
+Nota: Sale mas barato comprar 2 de 1x02 que 1 de 1x04 
+\end{mdframed}
+
+Tabla de refencias 
+
+\subsection{Media Potencia/MERG Plug Terminal Block}
+Cuando la placa requiera mas potencia (Consumo del bus <\SI{500}{\milli\ampere}, ej: esp32 usando Wifi activamente)  podremos usar una version plug 3,5mm o 5mm
+
+Si es posible utilizar el cable de latiguillo (\SI{0,25}{\milli\metre\squared}/22AWG) usando una ferrula adecuada (Codigo), pero si no se puede usar el del bus general
+(\SI{0,5}{\milli\metre\squared}/20AWG) con su ferrula adecuada (codigo-color). 
+
+Tabla de refencias 
+\subsubsection{Alta Potencia}
+Finalmente si la placa requiere mucha potencia, como puede ser un distribuidor de CBUS, o un motor alimentado del bus. Se podra usar la version PCB del conector Cable-Cable o soldar directamente el cable a la PCB
