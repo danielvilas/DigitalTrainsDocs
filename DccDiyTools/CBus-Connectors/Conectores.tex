@@ -2,37 +2,6 @@
 % !TeX spellcheck = es_ES
 % !TeX root = CBus.tex
 %!TEX root=CBus.tex
-\subsection{Topologia}
-CBus\sidenote{Usando CAN} ha sido pensado para seguir lo más fielmente posible una topologia de Bus y en los extremos una resistencia de \SI{120}{\ohm}.
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        %\draw [very thin, green]  (-6,-3) grid (6,3);
-        \node at (-6,3) [rectangle,draw,align=left] (ps) {\SI{120}{\ohm}};
-        \node at (6,3) [rectangle,draw,align=left] (ns) {\SI{120}{\ohm}};
-        
-        \node at (-4,0) [rectangle,draw,align=left,rotate=-90] (d1) {Modulo 1};
-        \node at (-2,0) [rectangle,draw,align=left ,rotate=-90] (d2) {Modulo 2};
-        \node at (0,0) [rectangle,draw,align=left ,rotate=-90] (d3) {Modulo 3};
-
-\node at (2,0) [rectangle,draw,align=left ,rotate=-90] (d4) {Modulo 4};
-
-\node at (4,0) [rectangle,draw,align=left ,rotate=-90] (d5) {Modulo \dots};
-
-        \draw [line width=2, blue] (-4,3) --(d1.west);
-        \draw [line width=2, blue] (-2,3) --(d2.west);
-        \draw [line width=2, blue] (0,3) --(d3.west);
-
-\draw [line width=2, blue] (2,3) --(d4.west);
-\draw [line width=2, blue] (4,3) --(d5.west);
-
-        \draw [line width=5] (ps.east) -- (ns.west);
-    \end{tikzpicture}
-    \caption{Topologia Bus}
-    \label{fig:BusPuro}
-\end{figure}
-Pero a su vez permite algunas ramificaciones siempre y cuando la resitencia entre los conductores diferenciales sea aproximadamente \SI{60}{\ohm}. Ya que todos los modulos estaran conectados en paralelo a los 4 conductores.
 
 \subsection{Segmento - Segmento}
 
