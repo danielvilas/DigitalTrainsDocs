@@ -95,10 +95,54 @@ usando el protocolo CBUS
 Sirva este apartado para aclarar y definir estos terminos. Puesto que esto son muy parecidos a una instalacion
 TCP/IP.
 
-Como ya se tiene la idea de lo que es la Red, empezaremos con el Bus. Siendo este el canal que permite
-a todos los dispositivos conectados fisicamente al mismo. Hoy por Hoy solo hay dos tecnologias disponibles
+\subsubsection{Bus}
+Como ya se tiene una idea de lo que es la Red, empezaremos con el Bus. Siendo este el canal que permite
+a todos los dispositivos conectados fisicamente al mismo comunicarse con una misma tecnologia. Hoy por Hoy solo hay dos disponibles
 \sidenote{segun este punto de vista}
 \begin{itemize}
     \item \textbf{CAN Bus}: Utilizar un par diferencial CAN como comunicacion.
     \item \textbf{CBusServer}: Los dispositivos se conectan mediante una conexion TCP.
+
 \end{itemize}
+
+De cada bus puede haber varias instancias, que no tienen que comunicarse de por si.
+
+En resumen un Bus es un canal por lo el cual varios dispositivos se comunican entre si, sin tener que cambiar de medio.
+
+Los buses pueden unirse o partirse, lo que hablaremos de redes o de segmentos.
+Si para unirlos  es necesario una logica de transformacion de datos o de medio fisico, estaremos ante una red.
+
+\subsubsection{Segmento}
+Cuando un bus lo podamos cortar en varios trozos fisicos hablamos de segementos. En el caso de un Bus Can,
+al final son dispositivos conectados entre si mediante un par de cables (H y L)\sidenote{y como mucho Vcc y GND}. Por lo que estos cables se pueden cortar en segmentos. Por otra parte CBusServer puede ejecutarse en varias maquinas (cada una una instancia) y configurase para que se hablen entre si, pero al final los clientes se conectaran a una sola maquina.
+
+En resumen un segemento es cada una de las partes en las que un bus se puede partir sin perder la caracteristica de bus.
+
+\subsubsection{Red}
+Cuando nos encontremos con varios buses y tengamos que comunicarse entre ambos, nos encontramos con el concepto de Red. Este concepto aparece cuando al unir dos segmentos aparece alguna de estas casuisticas:
+\begin{itemize}
+	\item \textbf{Cambio de Medio}: Por ejemplo al pasar de CAN a TCP. Esta es una razon un poco debil, por que por ejemplo un "repetidor CAN" segun como este echo puede cambiar de medio momentanemente, o lo mismo un firewall (que no deje pasar tramas no CBUS, como OpenLCB).
+Y segun lo estrictos que seamos puede ser dos buses o no.
+	\item \textbf{Transformacion de datos}: Si los eventos deben ser transformados (cambiar ids, agrupar,...) 
+	\item \textbf{Diferentes Funciones}: Para cada bus hemos definido una funcion diferente como puede ser eventos locales a un modulo o globales a toda la maqueta. O un bus para traccion y otro para accesorios.
+\end{itemize}
+
+En la implementacion Merg, no existe este concepto, puesto que no lo han necesitado. Tener una Red, implica tener varios buses, con la consecuencia de tener que gestionar la red. Saber para que es cada uno de los buses, asignar identificadores,\dots Pero nos abre la puerta a diseños más complejos y optimos.
+
+\subsubsection {CBusServer}
+CBusServer se corresponde con un protocolo de aplicacion sobre TCP/IP para enviar tramas CBus entre aplicaciones informaticas y como esta vision forma una tecnologia de Bus.
+
+Pero a su vez es un Sofware de Servidor donde las diferentes aplicaciones clientes se conectan con TCP y se encarga de enviar los paquetes CBus que recibe de un cliente al resto. Este sofware puede usar el Modulo CanUSB4 de Merg y/o el Modulo CanPiHat para conectarse a una Red CBus directamente.
+
+\subsection{Ejemplo Practico 1 - Dos Habitaciones}
+Imaginemosnos una maqueta dividida en dos grandes zonas o habitaciones y con un ordenador central para  mostar el estado general de la maqueta. 
+
+Como todo en la vida hay multiples soluciones, que implican desde un bus hasta una red de 4 o más buses.
+
+\subsubsection{Solucion de un solo bus}
+Una primera solucion podria ser tener todos los accesorios conectados a un solo bus, tanto de una zona como de la otra.
+
+En esta solucion depende que en conjunto no se supere la longitud maxima de cableado y de dispostivos conectados \sidenote{Muchos metros y decenas de dispositivos}.
+Pero aun en el muy probale caso de que no, existe otra limitacion, que es el numero de eventos y la seguridad que los eventos de una zona son ignorados por los dispositivos de la otra.\sidenote{Como mucho interesa algun error para eviar enviar trenes de una zona a la otra}
+
+\subsubsection{Dos buses}
