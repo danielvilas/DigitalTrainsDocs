@@ -134,6 +134,19 @@ CBusServer se corresponde con un protocolo de aplicacion sobre TCP/IP para envia
 
 Pero a su vez es un Sofware de Servidor donde las diferentes aplicaciones clientes se conectan con TCP y se encarga de enviar los paquetes CBus que recibe de un cliente al resto. Este sofware puede usar el Modulo CanUSB4 de Merg y/o el Modulo CanPiHat para conectarse a una Red CBus directamente.
 
+Este ultimo caso lo podemos representar con dos buses CAN donde "Modulo 2" seria el CBusServer y
+JMRI se conecta a traves de Wifi o un CanUSB.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+		\draw(-4,0) rectangle (-0.5,2) 
+           (0.5,0) rectangle (4,2);
+    \end{tikzpicture}
+    \caption{Ejemplo Practico}
+    \label{fig:ejPractico}
+\end{figure}
+
 \subsection{Ejemplo Practico 1 - Dos Habitaciones}
 Imaginemosnos una maqueta dividida en dos grandes zonas o habitaciones y con un ordenador central para  mostar el estado general de la maqueta. 
 
@@ -145,4 +158,11 @@ Una primera solucion podria ser tener todos los accesorios conectados a un solo 
 En esta solucion depende que en conjunto no se supere la longitud maxima de cableado y de dispostivos conectados \sidenote{Muchos metros y decenas de dispositivos}.
 Pero aun en el muy probale caso de que no, existe otra limitacion, que es el numero de eventos y la seguridad que los eventos de una zona son ignorados por los dispositivos de la otra.\sidenote{Como mucho interesa algun error para eviar enviar trenes de una zona a la otra}
 
+
+\begin{mdframed}
+Para Pensar: Si usamos un CBusServer para comunicar las zonas, seguimos en un bus o son tres... 
+\end{mdframed}
+
 \subsubsection{Dos buses}
+Como hemos visto que hay dos zonas podemos tener cada una con su bus propio y un ordenador conectado a ambas redes. Este ordenador procesaria los eventos para mostrar en su pantalla y como mucho pasaria eventos de error en la otra zona para evitar enviar trenes de una a otra.
+
