@@ -27,6 +27,7 @@
 \usetikzlibrary{fit}
 \RequirePackage[european]{circuitikz}
 \RequirePackage{siunitx}
+\usetikzlibrary{patterns.meta}
 \usepackage{tcolorbox}
 \usepackage{tabularx}
 \usepackage{multirow}

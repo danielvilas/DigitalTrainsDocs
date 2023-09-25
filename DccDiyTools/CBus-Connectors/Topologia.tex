@@ -137,20 +137,33 @@ Pero a su vez es un Sofware de Servidor donde las diferentes aplicaciones client
 Este ultimo caso lo podemos representar con dos buses CAN donde "Modulo 2" seria el CBusServer y
 JMRI se conecta a traves de Wifi o un CanUSB.
 
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-		\draw(-4,0) rectangle (-0.5,2) 
-           (0.5,0) rectangle (4,2);
-    \end{tikzpicture}
-    \caption{Ejemplo Practico}
-    \label{fig:ejPractico}
-\end{figure}
-
 \subsection{Ejemplo Practico 1 - Dos Habitaciones}
 Imaginemosnos una maqueta dividida en dos grandes zonas o habitaciones y con un ordenador central para  mostar el estado general de la maqueta. 
 
 Como todo en la vida hay multiples soluciones, que implican desde un bus hasta una red de 4 o más buses.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+		\draw[fill=Melon!15](-4,0) rectangle (-0.1,2) 
+           (0.1,0) rectangle (4,2);
+
+		\draw [pattern={Lines[angle=45,distance=4pt]},pattern color=gray] 
+    (-0.1,0.3) rectangle (0.1,1.7)
+    (-0.1,-.2) -- (-0.1,0.1) -- (0.1,0.1) --(0.1,-0.2)
+(-0.1,2.2) -- (-0.1,1.9) -- (0.1,1.9) --(0.1,2.2);
+		\draw (-3,1.8) --(3,1.8) (-3,0.2) -- (3,0.2)
+    (-3,1.8) arc (90:270:0.8) (-1,1.8) arc (90:-90:0.8)
+		(1,1.8) arc (90:270:0.8) (3,1.8) arc (90:-90:0.8);
+		\draw (1,0.2) ..controls (2,0.2) and (2,1.8).. (3,1.8);
+		\draw (-3,0.2) ..controls(-2.9,0.2) and (-2.1,0.4).. (-2,0.4);
+	
+    \end{tikzpicture}
+    \caption{Ejemplo Practico}
+    \label{fig:ejPractico}
+\end{figure}
+Por simplificar hemos dibujado dos ovalos, uno en cada habitacion, con dos conexiones. Simplemente representan una maqueta dividida en dos habitaciones.
 
 \subsubsection{Solucion de un solo bus}
 Una primera solucion podria ser tener todos los accesorios conectados a un solo bus, tanto de una zona como de la otra.
