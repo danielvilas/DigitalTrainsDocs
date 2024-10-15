@@ -1,0 +1,93 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = es_ES
+% !TeX root = ComponentCatalog.tex
+%!TEX root=ComponentCatalog.tex
+\subsection{PortaPilas}
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Portapilas 2xAA}
+        \multirow{5}{*}{\makecell{Cableado }}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(1.4,1.1);
+                \node[inner sep=0pt] at (0.8,0.4)
+                    {\includegraphics[scale=0.25]{pictures/2463-2469-2473.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Amazon}{Porta Pilas} {3V} {1A} 
+        
+        \connectorinfo{Codigo}{2463}{
+            \tabitem \textbf{Fabricante}: Keystone
+        }
+        & \multicolumn{4}{|l|}{\tabitem Modificado, terminado en un JST XH2.54 2 vias} \\
+        \hline
+        \connectorblockinfo{Uso}{Dcc Decoder Config - Portable}
+        \connectorblockinfo{Ubicacion}{TR}
+    \end{tabular}
+    \caption{Porta Pilas 2463}
+    \label{tab:pp2463}
+\end{table}
+
+\subsection{Servo Motores}
+\input{Otros/Servos.tex}
+
+\subsection{Networking}
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Modulos Ethernet}
+        \multirow{4}{*}{\makecell{ENC28J60 }}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[rotate=-30] at (1.5,0.75)
+                    {\includegraphics[scale=0.08]{pictures/ETHArduino.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Aliexpress}{Eth Arduino ENC} {5V} {1A} 
+        & \multicolumn{4}{|l|}{\tabitem Sin marca} \\
+        \hline
+        \connectorblockinfo{Uso}{LCB por Ethernet}
+        \connectorblockinfo{Ubicacion}{TT-Tren}
+    \end{tabular}
+    \caption{Ethernet}
+    \label{tab:ModuloEncETH}
+\end{table}
+\subsection{Audio}
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \beginConnectorTable{Modulos Audio}
+        \multirow{4}{*}{\makecell{PCM-5102 }}
+        \connectordata{
+            \begin{scope}
+                \clip (0,0) rectangle  +(3,1.5);
+                \node[] at (1.5,0.8)
+                    {\includegraphics[scale=0.14]{pictures/PCM5102.jpg}};
+            \end{scope}
+        }{
+            \draw (0,0) rectangle (3,1.5) ;
+        }{Aliexpress}{PCM5102A} {5V} {10mA} 
+        & \multicolumn{4}{|l|}{\tabitem CJMCU} \\
+        \hline
+        \connectorblockinfo{Uso}{Audio de fondo en la Maqueta}
+        \connectorblockinfo{Ubicacion}{TT-Tren}
+    \end{tabular}
+    \caption{Modulos de Audio}
+    \label{tab:Pcm5102}
+\end{table}
