@@ -12,9 +12,68 @@ No se pueden separar, por que de hacerlo, no podra realizar su funcion. Para fac
 Por ultimo podemos agrupar varios cables en una manguera, Dentro de esta cada cable mantiene su individualidad. Las mangueras pueden tener su capa aislante o pueden sujetarse solo con bridas o similar.
 
 \subsubsection{En el mundo anglosajon}
-Hemos insistido que esa terminologia es en el castellano. 
+Hemos insistido que esa terminologia es en el castellano. Como presuponemos que nuestro lector querra adquirir productos por internet conviene repasar los terminos utilizados en paises de habla inglesa. 
+
+\textbf{Wire}: Es lo que en castellano llamamos cable de un solo conductor. Para las maquetas, como nos vamos a hacer cables (de varios conductores) es lo que más compraremos. A veces los llamamos hilos, polos o conductores
+
+\textbf{Cable}: Es una agrupacion de \textit{Wires}, de la misma longitud y normalmente recubiertos de una capa de aislamiento adicional. Ejemplo Cable USB. En castellano es un cable de varios conductores.
+
+\textbf{Harness}: Lo que llamamos manguera. Usada por ejemplo para conectar los instrumentos de un estudio a la mesa de mezclas.
+
 
 \subsection{Caracteristicas}
+\subsubsection{Electricas}
+Un cable, por estar en un circuito tiene las caracteristicas de un elemento pasivo, es decir \textbf{Resistencia}, \textbf{Inductancia} y \textbf{Capacitancia}. Es decir, se puede comportar como una \textit{resitencia}, una \textit{bobina} o un \textit{condensador}.
+\begin{itemize}
+\item \textbf{Inductancia}: La señal que pongamos al principio de un conductor tiene que trasladarse por el mismo y, aunque su velocidad es cercana a la velocidad de la luz, tarda un tiempo en llegar al otro extremo. Por lo que si tenemos dos cables, uno el doble de largo que el otro, podemos decir que la señal tardara el doble. A las frecuencias que trabajan los protocolos estos retardos no van a ser significativos pero pueden explicar alguos problemas de sincronizacion entre bloques DCC.
+
+Otra influencia de esta carcteristica es que, cuanto más largo sea el cable, más estara expuesto a ruido electromagnetico. Puediendo captar señales electromagneticas de otros conductores dentro el mismo cable\sidenote{cross-talk} o fuentes externas al cable.
+
+Aunque por norma general, a las frecuencias y voltajes de trabajo, esta caracteristica es descartable, pero debemos conocer su existencia.
+
+\item \textbf{Capacitancia}: Un condesador aparece cuando tenemos dos superficies cargadas a diferente voltaje y estan separadas por una distancia pequeña mediante un dielectrico. Y un cable de varios conductures son muchas superficies cargadas a diferente voltaje separadas por los materiales aislantes.
+
+Tanto la distancia entre hilos, que es lo sufucientemente grande, como el aislante, que es un <<mal dielectrico>>, hacen que la capacidad que surga es minima, pero es un efecto que existe.
+
+\item \textbf{Resistencia}: El cobre, o cualquier otro conductor, va a tener impurezas que se traducen en una resitencia Ohmnica, pequeña, de unos pocos Ohmios por kilometro\sidenote{ej: $\SI{80}{\ohm/\km}$}. Que dependra del tamaño de la seccion del conductor. 
+
+Esta <<pequeña>> resistencia, va hacer que el cable se caliente. Llegando, si la corriente es lo suficientemente grande, a poner el metal al rojo vivo, pudiendo provocar incendios, o cortos o \dots
+ 
+\end{itemize}
+
+Escoger mál un cable puede tener resultados catastroficos. Por suerte, los tamaños se han estandarizado y los cables/wire deben ser certificados. Desde un punto de vista de aficionados nos bastara con fijarnos en las tablas de tamaño que indican la corriente maxima que pueden soportar. Las tablas pueden ser \textbf{AWG} (Americanas) o \textbf{mm2} (Europeas).
+
+\subsubsection{Fisicas}
+En la practica un cable/wire es un conductor o varios recubierto/s de una capa aislante asi que
+desde punto de vista fisico podemos ver 3 caracteristicas importantes:
+\begin{itemize}
+\item \textbf{Area de Seccion}: El area que tenga un conductor impacta directamente en la resistencia que tenga, es decir a la corriente máxima que pueda soportar. Es por ello que en los estandares europeos se nombran por $mm^2$. 
+\item \textbf{Conductor Solido/MultiHilo}: Los cables pueden ser solidos, o estar formados por muchos hilos más pequeños. Los cables formado por un conductor solido son <<ligeramente>> más pequeños (a misma categoria), pero son más rigidos y fragiles, puediendose romperse\sidenote{O sufrir tensiones} si se doblan demasiado. Los Multihilo son un haz de varios hilos, haciendo que sea mucho más flexibles. Pero necesitando un poco mas de espacio.
+\item \textbf{Aislante}: Es un material plastico que recubre el conductor, normalmente PVC o Silicona. Añade diametro al conductor y cuanto más grueso <<mejores prestaciones>>. Un aislante más grueso estara certificando para soportar más temperatura o voltajes\footnote{No produce chispa si el aislante toca otro conductor con otro Voltaje}. El material puede influenciar lo flexible que es el cable y tener materiales ignifugos o al menos retardadores para el caso que se produzca un incendio. 
+
+Por supuesto, el aislante es la parte más visible, por lo que no hay que olvidar el color, aunque esto es mas una caracteristica estetica, nos sirve para identificar la funcionalidad.
+\end{itemize}
+
+\subsubsection{Base de Datos - Campos}
+Si queremos mantener un registro de los cables que tenemos deberiamos tener una tabla como la siguiente:
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+     \multicolumn{7}{|c|}{\thead{Cables}} \\ \hline
+		\thead{Id Compra}& \thead{AWG} & \thead{$mm^2$} &\thead{Corriente Max} & \thead{Diametro Aislante} & \thead{color} & \thead{Otros} \\ \hline
+     Mnf Mpn & \multicolumn{2}{|c|}{O equivalente} & \multicolumn{3}{|c|}{Segun ds} & \dots \\ \hline
+  \end{tabular}
+    \caption{Porta Pilas 2463}
+    \label{tab:EjemploTablaCables}
+\end{table}
+
+
 
 
 \subsection{PortaPilas}
