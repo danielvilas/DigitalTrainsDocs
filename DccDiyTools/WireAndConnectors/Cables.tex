@@ -73,6 +73,40 @@ Si queremos mantener un registro de los cables que tenemos deberiamos tener una 
     \label{tab:EjemploTablaCables}
 \end{table}
 
+\subsection{Estandares}
+El limite de corriente maxima que soporta un cable depende de dos cosas:
+\begin{itemize}
+\item \textbf{El area} en mm2. 
+\item \textbf{La temperatura} que dejemos que suba. 
+Esto es importante puesto que no es lo mismo dejar un cable al aire, con refigeración o encerrado en una caja.
+\end{itemize}
+
+En la siguiente tabla hemos dejado unos valores orientativos y conservativos para los tamaños recomendados por <<dcc-ex>> y <<dcc wiki>>
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+     \multicolumn{4}{|c|}{\thead{AWS/mm2 vs Corriente}} \\ \hline
+		\thead{AWG} & \thead{$mm^2$} &\thead{Corriente Max} & \thead{Diametro Fisico} \\ \hline
+
+    \textbf{12}& \textit{3.31} & 22 & 2.05\\ \hline
+    \textit{13}& \textbf{2.5} & 18 & 1.8 \\ \hline
+    \textbf{14}& \textit{2.0} & 16.0 & 1.6\\ \hline
+    \textit{15}& \textbf{1.5} & 14 & 2.4\\ \hline
+    \textbf{18}& \textit{0.80} & 7.0 & 1.0\\ \hline
+    \textbf{20}& \textit{0.52} & 5.0 & 0.81\\ \hline
+    \textit{21}& \textbf{0.5} & 4.0 & 0.81\\ \hline
+    \textbf{24}& \textit{0.2} & 1.5 & 0.51\\ \hline
+
+  \end{tabular}
+    \caption{Porta Pilas 2463}
+    \label{tab:TablaCablesStds}
+\end{table}
 
 
 
