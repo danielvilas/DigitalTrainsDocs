@@ -42,6 +42,7 @@
 \RequirePackage[english, spanish]{babel}
 \usepackage[oneside]{sidenotes}
 \RequirePackage{hyperref}
+\usepackage{lastpage}
 
 
 %\hypersetup{
@@ -196,7 +197,7 @@
 \fancyhead[C]{\dbHeaderTitle\  v\dbVersion} 
 \fancyhead[R]{\includegraphics[height=0.75cm]{DccDiyTools/LogoLargo.png}} 
 \fancyfoot[L]{} % Left footer
-\fancyfoot[C]{\thepage/\ref{TotPages}} % Center footer
+\fancyfoot[C]{\thepage/\pageref{LastPage}} % Center footer
 \fancyfoot[R]{} % Right footer
 
 

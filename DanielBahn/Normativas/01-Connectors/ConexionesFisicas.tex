@@ -22,3 +22,63 @@ Estos conectores y cables deben seguir siendo polarizados, pero no necesitaran t
 
 
 \end{itemize}
+
+\subsection{Tipos de Conectores y Cables}
+En la practica para los buses DCC y CC necesitamos dos cables para cada uno y, como transportan potencia, no vale cualquier cable que nos encontremos. Deben ser de un grosor adecuado para la corriente que pueden llegar a llevar y por ende los conectores tienen que ir parejos a dicha corriente. 
+
+\begin{table}[H]
+    \centering
+    \renewcommand\theadfont{\bfseries}
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \Xhline{2\arrayrulewidth}
+        \multicolumn{5}{|c|}{\thead[b]{Cables}}  \\
+        \Xhline{2\arrayrulewidth}
+		\thead[b]{Bus} & \thead[b]{Calibre} & \thead[b]{Uso} & \thead[b]{color} & \thead[b]{codigo} \\
+		\Xhline{2\arrayrulewidth}
+		%DCC
+		\multirow{2}{*}{\thead[b]{DCC}} & \multirow{2}{*}{\makecell[c]{13 AWG \\ (8A)}}& Rail Derecho & Rojo \colorbox{red}{\textcolor{red}{\rule{3pt}{6pt}}} & Marron Obra ($2.5mm^2$)  \\ \cline{3-5}
+		&  & Rail Izquierdo & Azul \colorbox{RoyalBlue}{\textcolor{RoyalBlue}{\rule{3pt}{6pt}}} &  Azul Obra ($2.5mm^2$) \\
+		\Xhline{2\arrayrulewidth}
+		%DCC-L
+		\multirow{2}{*}{\thead[b]{DCC-L}} & \multirow{2}{*}{\makecell[c]{21 AWG \\ (1.5A)}}& Rail Derecho  & Rojo \colorbox{red}{\textcolor{red}{\rule{3pt}{6pt}}} & PP001269 \\ \cline{3-5}
+		&  & Rail Izquierdo & Azul Oscuro \colorbox{blue}{\textcolor{blue}{\rule{3pt}{6pt}}} & PP001214 \\
+		\Xhline{2\arrayrulewidth}
+		%CC
+		\multirow{2}{*}{\thead[b]{CC}} & \multirow{2}{*}{\makecell[c]{15 AWG \\ (4A)}} & Positivo & Transparente/Rojo \fcolorbox{red}{Melon}{\textcolor{Melon}{\rule{3pt}{6pt}}} & \multirow{2}{*}{\makecell[c]{HiFi Obra (2x)\\($1.5mm^2$)}} \\ \cline{3 - 4}
+		&  & Negativo & Transparente \colorbox{Melon}{\textcolor{Melon}{\rule{3pt}{6pt}}} &  \\
+		\Xhline{2\arrayrulewidth}
+		%CC-L
+		\multirow{4}{*}{\thead[b]{CC-L}} & \multirow{4}{*}{\makecell[c]{22 AWG \\ (0.9A)}} & 12V & Violeta \colorbox{Orchid}{\textcolor{Orchid}{\rule{3pt}{6pt}}}& PP001279 \\ \cline{3 - 5}
+		&  & 5V & Verde \colorbox{green}{\textcolor{green}{\rule{3pt}{6pt}}}& PP001221 \\ \cline{3 - 5}
+		&  & 3.3V & Azul Claro \colorbox{cyan}{\textcolor{cyan}{\rule{3pt}{6pt}}}&  PP001248\\ \cline{3 - 5}
+		&  & GND & Negro \colorbox{black}{\textcolor{black}{\rule{3pt}{6pt}}}&  PP001185\\ \cline{3 - 5}
+		\Xhline{2\arrayrulewidth}
+		%CBUS
+		\multirow{5}{*}{\thead[b]{CBUS}} & \multirow{5}{*}{\makecell[c]{21 AWG\\$1mm^2$\\(1.5A)}} & VCC (5V) & Verde \colorbox{green}{\textcolor{green}{\rule{3pt}{6pt}}} & PP001221 \\ \cline{3 - 5}
+		&  & VCC (12V) & Violeta \colorbox{Orchid}{\textcolor{Orchid}{\rule{3pt}{6pt}}}& PP001279 \\ \cline{3 - 5}
+		&  & CAN-L & Naranja \colorbox{orange}{\textcolor{orange}{\rule{3pt}{6pt}}}& PP001255  \\ \cline{3 - 5}
+		&  & CAN-H & Amarillo \colorbox{yellow}{\textcolor{yellow}{\rule{3pt}{6pt}}}& PP001295 \\ \cline{3 - 5}
+		&  & GND & Negro \colorbox{black}{\textcolor{black}{\rule{3pt}{6pt}}}&  PP001185\\ \cline{3 - 5}
+		\Xhline{2\arrayrulewidth}
+		%CBUS-L
+		\multirow{5}{*}{\thead[b]{CBUS-L}} & \multirow{5}{*}{\makecell[c]{21 AWG \\ (1.5A)}} & VCC (5V) & Verde \colorbox{green}{\textcolor{green}{\rule{3pt}{6pt}}} & 3251 GR005\\ \cline{3 - 5}
+		&  & VCC (12V) & Violeta \colorbox{Orchid}{\textcolor{Orchid}{\rule{3pt}{6pt}}}& 3251 VI005\\ \cline{3 - 5}
+		&  & CAN-L & Naranja \colorbox{orange}{\textcolor{orange}{\rule{3pt}{6pt}}}& 3051 OR005\\ \cline{3 - 5}
+		&  & CAN-H & Amarillo \colorbox{yellow}{\textcolor{yellow}{\rule{3pt}{6pt}}}& 3051 YL005 \\ \cline{3 - 5}
+		&  & GND & Negro \colorbox{black}{\textcolor{black}{\rule{3pt}{6pt}}}& 3051 BK005\\ \cline{3 - 5}
+		\Xhline{2\arrayrulewidth}
+		%Pequeña señal
+		\multirow{6}{*}{\thead[b]{Pequeña señal}} & \multirow{6}{*}{\makecell[c]{24 AWG \\ (0.5A)}} & VCC & Rojo \colorbox{red}{\textcolor{red}{\rule{3pt}{6pt}}} & 3050 RD005 \\ \cline{3 - 5}
+		&  & DCC Signal & Azul \colorbox{RoyalBlue}{\textcolor{RoyalBlue}{\rule{3pt}{6pt}}}& 3050 BL005 \\ \cline{3 - 5}
+		&  & DCC ACK & Naranja \colorbox{orange}{\textcolor{orange}{\rule{3pt}{6pt}}}& 3050 OR005 \\ \cline{3 - 5}
+		&  & I2C SDA & Blanco \fcolorbox{black}{white}{\textcolor{white}{\rule{3pt}{6pt}}}& 3250 WH005 \\ \cline{3 - 5}
+		&  & I2C SCL & Amarillo \colorbox{yellow}{\textcolor{yellow}{\rule{3pt}{6pt}}}& 3250 YL005 \\ \cline{3 - 5}
+		&  & GND & Negro \colorbox{black}{\textcolor{black}{\rule{3pt}{6pt}}}& 892419 BK005\\
+		\Xhline{2\arrayrulewidth}
+    \end{tabular}
+	\caption{Definicion estandar de colores de cables}
+    \label{tab:cables}
+\end{table}

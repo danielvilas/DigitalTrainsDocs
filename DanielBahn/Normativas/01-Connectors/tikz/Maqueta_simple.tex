@@ -1,7 +1,7 @@
 \begin{tikzpicture}
 
-    %\draw [very thin, green]  (-6,-3) grid (6,3);
-    
+    \draw [very thin, green]  (-6,-3) grid (6,3);
+
     %Base Board
     \draw [fill=Melon!15] (-5,0) rectangle +(3,3)
         (-2,1.5) rectangle +(2,1.5)
@@ -28,7 +28,13 @@
         arc (-90:-180:2.1) -- (-4.1,0);
     
     %R1 Circuit
-    \draw[line width=2pt](0,-1.8) -- (2,-1.8) arc(-90:90:1.8)
+    \draw[line width=2pt](-1,-1.8) -- (2,-1.8) arc(-90:90:1.8)
     -- (1.5,1.8) -- (0.2,2.1);
+    \draw[line width=2pt] (0.2,-1.8) -- (1.8,-2.1);
+
+    %Playa de vias
+    \draw[line width=2pt](-4.3,2.4) -- (4.3,2.4);
+    \draw[line width=2pt] (-1.8,2.1) -- (-0.2,2.4);
+    \draw[line width=2pt] (2.2,2.4) -- (4.2,2.0);
 
 \end{tikzpicture}
